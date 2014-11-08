@@ -6,13 +6,21 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var bs = require('browser-sync');
+var reload = bs.reload;
+var IF = require('gulp-if');
+var jshint = require('gulp-jshint');
+var stylus = require('gulp-stylus');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  stylus: ['www/**/*.stylus'],
+  js: ['www/app/**/*.js']
 };
 
 gulp.task('default', ['sass']);
 
+// ionic uses SASSS
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
@@ -23,6 +31,10 @@ gulp.task('sass', function(done) {
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
+});
+
+gulp.task('stylus', function() {
+
 });
 
 gulp.task('watch', function() {
@@ -47,4 +59,32 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+gulp.task('stylus', function() {
+  return gulp.src(['www/style.styl'])
+    .pipe(stylus())
+    .pipe(gulp.dest('www/css'))
+    .pipe(reload({ stream: true }))
+});
+
+gulp.task('jshint', function() {
+  return gulp.src(paths.js)
+    .pipe(reload({ stream: true, once: true }))
+    .pipe(jshint())
+    .pipe(jshint.reporter('stylish'))
+    .pipe(IF(!bs.active, jshint.reporter('fail')));
+});
+
+gulp.task('serve', function() {
+  bs({
+    notify: true,
+    server: {
+      baseDir: 'www'
+    },
+    files: ['www/app/**/*.html', 'www/index.html']
+  });
+
+  gulp.watch(paths.stylus, ['stylus']);
+  gulp.watch(paths.js, ['jsint']);
 });
