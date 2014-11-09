@@ -1,0 +1,17 @@
+<ion-nav-bar></ion-nav-bar>
+  <md-sidenav component-id="left" class="md-sidenav-left md-whiteframe-z2">
+    <md-toolbar md-theme="purple" class="md-tall">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content class="md-padding" ng-controller="LeftCtrl">
+        <md-button ng-click="main.nav('close')" class="md-primary" hide-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide show-md>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+  </md-sidenav>
+<ion-nav-view name="pane"></ion-nav-view>
+
