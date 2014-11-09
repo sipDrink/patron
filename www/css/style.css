@@ -1,3 +1,8 @@
 div.scroll {
   height: 100%;
 }
+ion-nav-view,
+.pane,
+.view {
+  position: inherit;
+}
