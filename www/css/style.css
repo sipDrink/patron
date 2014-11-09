@@ -10,18 +10,15 @@ md-sidenav {
   padding-top: 40px;
 }
 .nav-menu {
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 .nav-menu .md-tile-left {
-  margin-left: 45px;
+  margin-left: 20px;
 }
 .nav-header {
   padding: 10px 30px;
 }
-.nav-header .name {
-  margin-left: 12px;
-}
-.nav-header .name h2 {
+.nav-header .name h3 {
   color: #fff;
 }
 .nav-header div img {

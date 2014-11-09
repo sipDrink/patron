@@ -4,7 +4,8 @@
 * Description
 */
 angular.module('sip.main', [
-  'sip.main.bars'
+  'sip.main.bars',
+  'sip.main.profile'
 ])
 .config(function($stateProvider) {
   $stateProvider

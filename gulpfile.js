@@ -58,7 +58,7 @@ gulp.task('git-check', function(done) {
 });
 
 gulp.task('stylus', function() {
-  return gulp.src(['www/style.styl'])
+  return gulp.src(['www/app/style.styl'])
     .pipe(stylus())
     .pipe(gulp.dest('www/css'))
     .pipe(reload({ stream: true }));

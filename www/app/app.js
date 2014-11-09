@@ -12,7 +12,7 @@ angular.module('sip', [
 ])
 
 .config(function($stateProvider, $urlRouterProvider, authProvider) {
-  $urlRouterProvider.otherwise('/main/bars/list')
+  $urlRouterProvider.otherwise('/main/bars/list');
   $stateProvider
     .state('sip', {
       abstract: true,

@@ -1,10 +1,10 @@
 <ion-nav-bar class="md-whiteframe-z2" padding="true"></ion-nav-bar>
-  <md-sidenav component-id="left" class="md-sidenav-left md-whiteframe-z2" padding on-swipe-left="main.nav('close')">
+  <md-sidenav component-id="left" class="md-sidenav-left md-whiteframe-z2" padding on-drag-left="main.nav('close')">
     <md-toolbar md-theme="pink" class="md-tall">
       <div layout="horizontal" layout-align="start end" layout-fill class="nav-header">
-        <div><img src="http://www.myicore.com/post_pics/facebook/two-face-facebook-avatar.jpg" alt=""></div>
+        <div flex><img src="http://www.myicore.com/post_pics/facebook/two-face-facebook-avatar.jpg" alt=""></div>
         <!-- <span flex></span> -->
-        <div class="name"><h2>Scott Moss</h2></div>
+        <div flex class="name"><h3>Fig Newton</h3></div>
       </div>
     </md-toolbar>
       <md-content class="md-padding">
@@ -25,13 +25,26 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content class="nav-menu" ink-ripple >
+            <md-item-content class="nav-menu" ink-ripple ng-click="main.goAndClose('sip.main.profile')">
               <div class="md-tile-left">
                 <!-- <img ng-src="{{item.face}}" class="face" alt="{{item.who}}"> -->
                 <i class="icon ion-person"></i>
               </div>
               <div class="md-tile-content nav-menu">
                 profile
+              </div>
+            </md-item-content>
+          </md-item>
+          <md-divider></md-divider>
+
+           <md-item>
+            <md-item-content class="nav-menu" ink-ripple>
+              <div class="md-tile-left">
+                <!-- <img ng-src="{{item.face}}" class="face" alt="{{item.who}}"> -->
+                <i class="icon ion-gear-b"></i>
+              </div>
+              <div class="md-tile-content nav-menu">
+                settings
               </div>
             </md-item-content>
           </md-item>
