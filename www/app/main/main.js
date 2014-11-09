@@ -16,7 +16,7 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state, auth) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state, auth, $ionicPopover, $ionicNavBarDelegate) {
   this.nav = function(what){
     $mdSidenav('left')[what]();
   };
@@ -25,8 +25,41 @@ angular.module('sip.main', [
     this.nav('close');
     $state.go(state);
   };
-  console.log(auth);
+
+  this.goBack = function() {
+    $ionicNavBarDelegate.back();
+  };
+
+  this.getPrevTitle = function() {
+    return $ionicNavBarDelegate.getPreviousTitle();
+  };
+
   angular.extend(this, auth);
+
+  var that = this;
+  $ionicPopover.fromTemplateUrl('my-popover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    that.popover = popover;
+  });
+  that.openPopover = function($event) {
+    that.popover.show($event);
+  };
+  that.closePopover = function() {
+    that.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    that.popover.remove();
+  });
+  // Execute action on hide popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
 
 })
 .controller('LeftCtrl', function(){
