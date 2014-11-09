@@ -1,10 +1,25 @@
-<ion-view title="Drinks">
+<ion-view title="Drinks" md-theme="pink">
+  <ion-nav-buttons side="left">
+    <div class="btn-wrapper" ng-click="main.goBack()">
+      <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
+        {{ main.getPrevTitle() || 'back' }}
+      </i>
+    </div>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <div class="btn-wrapper">
+      <i ng-click="main.openPopover($event)" class="icon ion-android-more settings"></i>
+    </div>
+  </ion-nav-buttons>
+  <md-button class="md-fab md-primary md-fab-bottom-right right">
+    <i style="font-size: 2em;" class="icon ion-card"></i>
+  </md-button>
   <ion-content on-swipe-right="main.nav('open')">
     <md-content>
       <md-list>
         <md-item ng-repeat-start="drink in drinks.bar.drinks">
           <md-item-content layout-padding layout="horizontal"
-          layout-fill layout-align="start center" ink-ripple>
+          layout-fill layout-align="start center">
             <div flex><h2>{{ ::drink.name }}</h2></div>
             <div flex><h2>{{ ::drink.price | currency }}</h2></div>
           </md-item-content>

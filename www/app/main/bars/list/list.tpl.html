@@ -1,17 +1,27 @@
 <ion-view title="Bars">
+  <ion-nav-buttons side="left">
+    <div class="btn-wrapper" ng-click="main.nav('toggle')">
+      <i class="icon ion-navicon-round nav-ham"></i>
+    </div>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <div class="btn-wrapper" ng-click="main.openPopover($event)">
+      <i class="icon ion-android-more settings"></i>
+    </div>
+  </ion-nav-buttons>
   <ion-content on-swipe-right="main.nav('open')">
     <md-content>
       <md-list>
         <md-item ng-repeat-start="bar in bars.barsNearUser">
           <md-item-content layout-padding layout="horizontal"
             layout-fill layout-align="start center"
-            ink-ripple ui-sref="sip.main.bars.drinks({ bar: bar._id })">
+            ui-sref="sip.main.bars.drinks({ bar: bar._id })">
             <div flex class="md-tile-leftsdf"><h3 class="bar-name">{{ ::bar.name }}</h3></div>
             <div flex class="md-tile-contensdfsadt">
-              <h5>{{ ::bar.distance }} mi</h5>
+              <h4>{{ ::bar.distance }} mi</h4>
             </div>
             <div flex>
-              <h5>{{ bar.people }}+ people</h5>
+              <h4>{{ bar.people }}+ people</h>
             </div>
           </md-item-content>
         </md-item>

@@ -11,7 +11,7 @@ angular.module('sip.main.bars.list.drinks', [])
         templateUrl: 'app/main/bars/list/drinks/drinks.tpl.html',
         controller: 'DrinksCtrl as drinks',
         data: {
-          requiresLogin: true
+          // requiresLogin: true
         }
       });
   })

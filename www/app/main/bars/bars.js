@@ -10,9 +10,9 @@ angular.module('sip.main.bars', [
   $stateProvider
     .state('sip.main.bars', {
       url: '/bars',
+      abstract: true,
       views: {
         'pane': {
-          abstract: true,
           template: '<ion-nav-view></ion-nav-view>'
         }
       }

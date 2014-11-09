@@ -13,7 +13,7 @@ angular.module('sip.main.bars.list', [
         templateUrl: 'app/main/bars/list/list.tpl.html',
         controller: 'BarListCtrl as bars',
         data: {
-          requiresLogin: true
+          // requiresLogin: true
         }
       });
   })
@@ -28,6 +28,13 @@ angular.module('sip.main.bars.list', [
       { name: 'jack n coke', price: 6 },
       { name: 'superman', price: 11 },
       { name: 'rum', price: 15 },
+      { name: 'vodka', price: 12 },
+      { name: 'whiskey', price: 8 },
+      { name: 'fireball', price: 10 },
+      { name: 'jack n coke', price: 6 },
+      { name: 'superman', price: 11 },
+      { name: 'rum', price: 15 }
+
     ];
     return {
       barsNearUser: [
