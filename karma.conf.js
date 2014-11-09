@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: 'www',
 
 
     // frameworks to use
@@ -15,6 +15,23 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'lib/collide/collide.js',
+      'lib/hammerjs/hammer.js',
+      'io.js',
+      'lib/angular/angular.js',
+      'lib/angular-animate/angular-animate.js',
+      'lib/angular-aria/angular-aria.js',
+      'lib/angular-sanitize/angular-sanitize.js',
+      'lib/angular-mocks/angular-mocks.js',
+      'nightly.js',
+      'lib/auth0-angular/build/auth0-angular.js',
+      'lib/a0-angular-storage/dist/angular-storage.js',
+      'lib/angular-jwt/dist/angular-jwt.js',
+      'lib/auth0-lock/build/auth0-lock.js',
+      'lib/angular-material/angular-material.js',
+      'lib/angular-ui-router/release/angular-ui-router.js',
+
+      'app/**/*.js'
     ],
 
 
