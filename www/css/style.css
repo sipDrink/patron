@@ -26,3 +26,6 @@ md-sidenav {
   height: 60px;
   border-radius: 100%;
 }
+.bar-name {
+  color: #e91e63;
+}
