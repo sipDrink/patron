@@ -1,0 +1,16 @@
+<ion-view title="Drinks">
+  <ion-content on-swipe-right="main.nav('open')">
+    <md-content>
+      <md-list>
+        <md-item ng-repeat-start="drink in drinks.bar.drinks">
+          <md-item-content layout-padding layout="horizontal"
+          layout-fill layout-align="start center" ink-ripple>
+            <div flex><h2>{{ ::drink.name }}</h2></div>
+            <div flex><h2>{{ ::drink.price | currency }}</h2></div>
+          </md-item-content>
+        </md-item>
+        <md-divider ng-repeat-end></md-divider>
+      </md-list>
+    </md-content>
+  </ion-content>
+</ion-view>

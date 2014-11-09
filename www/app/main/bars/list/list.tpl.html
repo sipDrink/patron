@@ -1,5 +1,22 @@
 <ion-view title="Bars">
   <ion-content on-swipe-right="main.nav('open')">
-    <h1>Bars</h1>
+    <md-content>
+      <md-list>
+        <md-item ng-repeat-start="bar in bars.barsNearUser">
+          <md-item-content layout-padding layout="horizontal"
+            layout-fill layout-align="start center"
+            ink-ripple ui-sref="sip.main.bars.drinks({ bar: bar._id })">
+            <div flex class="md-tile-leftsdf"><h3 class="bar-name">{{ ::bar.name }}</h3></div>
+            <div flex class="md-tile-contensdfsadt">
+              <h5>{{ ::bar.distance }} mi</h5>
+            </div>
+            <div flex>
+              <h5>{{ bar.people }}+ people</h5>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider ng-repeat-end></md-divider>
+      </md-list>
+    </md-content>
   </ion-content>
 </ion-view>
