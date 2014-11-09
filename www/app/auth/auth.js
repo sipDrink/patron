@@ -12,16 +12,6 @@ angular.module('sip.auth', [])
         controller: 'AuthCtrl as auth'
       });
   })
-  .controller('AuthCtrl', function($scope, $state, UserFactory){
+  .controller('AuthCtrl', function($scope, UserFactory){
     angular.extend(this, UserFactory);
-    this.auth = function() {
-      UserFactory.signIn().then(function(profile) {
-        UserFactory.user = profile;
-        console.log('got profile', profile);
-        $state.go('sip.main.bars.list');
-      })
-      .catch(function(error) {
-        console.error(error);
-      });
-    };
   });

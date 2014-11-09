@@ -15,10 +15,17 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state, auth) {
   this.nav = function(what){
     $mdSidenav('left')[what]();
   };
+
+  this.goAndClose = function(state) {
+    this.nav('close');
+    $state.go(state);
+  };
+  console.log(auth);
+  angular.extend(this, auth);
 
 })
 .controller('LeftCtrl', function(){

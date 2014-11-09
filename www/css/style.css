@@ -6,3 +6,26 @@ ion-nav-view,
 .view {
   position: inherit;
 }
+md-sidenav {
+  padding-top: 40px;
+}
+.nav-menu {
+  font-size: 1.5em;
+}
+.nav-menu .md-tile-left {
+  margin-left: 45px;
+}
+.nav-header {
+  padding: 10px 30px;
+}
+.nav-header .name {
+  margin-left: 12px;
+}
+.nav-header .name h2 {
+  color: #fff;
+}
+.nav-header div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
