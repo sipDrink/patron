@@ -1,1 +1,28 @@
-/* Empty. Add your own CSS if you like */
+div.scroll {
+  height: 100%;
+}
+ion-nav-view,
+.pane,
+.view {
+  position: inherit;
+}
+md-sidenav {
+  padding-top: 40px;
+}
+.nav-menu {
+  font-size: 1.3em;
+}
+.nav-menu .md-tile-left {
+  margin-left: 20px;
+}
+.nav-header {
+  padding: 10px 30px;
+}
+.nav-header .name h3 {
+  color: #fff;
+}
+.nav-header div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
