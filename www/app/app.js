@@ -8,7 +8,8 @@ angular.module('sip', [
   'sip.auth', 'sip.common',
   'sip.main','auth0',
   'angular-storage',
-  'angular-jwt'
+  'angular-jwt',
+  'pubnub.angular.service'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, authProvider) {
@@ -21,8 +22,8 @@ angular.module('sip', [
     });
 
   authProvider.init({
-    domain: 'sip.auth0.com',
-    clientID: 'H8NxvIqgLfabxM8mDzzNfwSdAYKMDwPD',
+    domain: 'sadf.auth0.com',
+    clientID: 'mKM91tCQWyj8WyqI0oxaSp3B3aP23A4b',
     callbackURL: location.href,
     loginState: 'sip.auth'
   });

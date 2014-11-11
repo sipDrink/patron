@@ -1,3 +1,6 @@
+// dark #191919
+// light dark #1f1f1f
+
 div.scroll
   height 100%
 
@@ -6,20 +9,32 @@ ion-nav-view
 .view
   position inherit
 
+md-backdrop
+  z-index 11
 md-sidenav
-  padding-top 40px
+  background-color dark !important
+  z-index 12
+  md-toolbar
+    // background-color primary !important
+    background url(../img/side-nav-bg.jpg) no-repeat center center
+  md-content
+    background-color dark !important
+    *
+      background-color light
+      color dividerColor
 
+h1.title
+  color light !important
 .nav-menu
   font-size 1.3em
-
   .md-tile-left
     margin-left 20px
 
 .nav-header
   padding 10px 30px
-
   .name h3
     color white
+
   div img
     width 60px
     height 60px
@@ -27,9 +42,9 @@ md-sidenav
 
 .nav-ham
   font-size 2em
-  color white
+  color light
 .btn-wrapper
-  width 55px
+  width 120px
 
 .bar-header.nav-bar
   height 55px
@@ -39,11 +54,11 @@ md-sidenav
 
 .buttons.left-buttons
   margin-top 10px
-  color white
+  color light
 .settings
-  color white
+  color light
   font-size 1.6em
-  margin-left 40px
+  margin-left 80px
 .popover
   margin-top 2%
 

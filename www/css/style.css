@@ -6,8 +6,25 @@ ion-nav-view,
 .view {
   position: inherit;
 }
+md-backdrop {
+  z-index: 11;
+}
 md-sidenav {
-  padding-top: 40px;
+  background-color: #191919 !important;
+  z-index: 12;
+}
+md-sidenav md-toolbar {
+  background: url("../img/side-nav-bg.jpg") no-repeat center center;
+}
+md-sidenav md-content {
+  background-color: #191919 !important;
+}
+md-sidenav md-content * {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+h1.title {
+  color: #1f1f1f !important;
 }
 .nav-menu {
   font-size: 1.3em;
@@ -28,10 +45,10 @@ md-sidenav {
 }
 .nav-ham {
   font-size: 2em;
-  color: #fff;
+  color: #1f1f1f;
 }
 .btn-wrapper {
-  width: 55px;
+  width: 120px;
 }
 .bar-header.nav-bar {
   height: 55px;
@@ -41,12 +58,12 @@ md-sidenav {
 }
 .buttons.left-buttons {
   margin-top: 10px;
-  color: #fff;
+  color: #1f1f1f;
 }
 .settings {
-  color: #fff;
+  color: #1f1f1f;
   font-size: 1.6em;
-  margin-left: 40px;
+  margin-left: 80px;
 }
 .popover {
   margin-top: 2%;
@@ -54,6 +71,24 @@ md-sidenav {
 .scroll-content.ionic-scroll {
   margin-top: 10px;
 }
-.bar-name {
-  color: #e91e63;
+.bars-list md-item md-item-content {
+  background-color: #1f1f1f;
+}
+.bars-list md-item md-item-content * {
+  color: #b3b3b3;
+}
+#order-fab {
+  background-color: #00bfa5 !important;
+  color: #1f1f1f;
+}
+.drinks-list md-item md-item-content {
+  background-color: #1f1f1f;
+}
+.drinks-list md-item md-item-content * {
+  color: #b3b3b3;
+}
+md-content,
+ion-content,
+body {
+  background-color: #191919 !important;
 }
