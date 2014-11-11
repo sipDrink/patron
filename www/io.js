@@ -4742,7 +4742,7 @@ function($scope, scrollViewOptions, $timeout, $window, $$scrollValueCache, $loca
   this.scrollTop = function(shouldAnimate) {
     ionic.DomUtil.blurAll();
     this.resize().then(function() {
-      scrollView.scrollTo(0, 0, !!shouldAnimate);
+      if (scrollView) scrollView.scrollTo(0, 0, !!shouldAnimate);
     });
   };
 

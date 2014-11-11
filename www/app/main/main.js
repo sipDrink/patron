@@ -16,8 +16,11 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state, auth, $ionicPopover, $ionicNavBarDelegate) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state, auth, $ionicPopover, $ionicNavBarDelegate, $log, PB) {
+  PB.sub({ channel: 'sip' });
+
   this.nav = function(what){
+    $log.log('nav:', what);
     $mdSidenav('left')[what]();
   };
 
@@ -26,8 +29,10 @@ angular.module('sip.main', [
     $state.go(state);
   };
 
-  this.goBack = function() {
-    $ionicNavBarDelegate.back();
+  this.goBack = function(event) {
+
+    $log.log('going back', event);
+    $ionicNavBarDelegate.back(event);
   };
 
   this.getPrevTitle = function() {

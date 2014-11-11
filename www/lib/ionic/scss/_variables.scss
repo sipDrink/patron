@@ -1,21 +1,30 @@
 
 // Colors
 // -------------------------------
-// primary light
-$light:                           #3F51B5 !default;
-// background
-$stable:                          #efefef !default;
-// accent
-$positive:                        #F50057 !default;
-$calm:                            #43cee6 !default;
-$balanced:                        #66cc33 !default;
-$energized:                       #f0b840 !default;
-$assertive:                       #ef4e3a !default;
-// primary
-$royal:                           #303F9F !default;
-// primaryDark
-$dark:                            #1A237E !default;
 
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$balanced:                        #66cc33 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #303F9F !default;
+
+$positive:                        #311B92 !default;
+$energized:                       #00BFA5 !default;
+$calm:                            #1f1f1f !default;
+$dark:                            #191919 !default;
+
+.bg {
+  background-color: $dark;
+}
+.bg-light {
+  background-color: $calm;
+}
+.pri {
+  background-color: $positive;
+}
+.accent {
+  background-color: $energized;
+}
 
 // Base
 // -------------------------------
