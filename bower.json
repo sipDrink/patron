@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "auth0-angular": "~3.0.5",
+    "angular-material": "~0.5.1",
     "a0-angular-storage": "~0.0.6",
     "angular-jwt": "~0.0.4",
     "ngCordova": "~0.1.7-alpha",
