@@ -4,35 +4,22 @@
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
 $balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
 $assertive:                       #ef4e3a !default;
-$royal:                           #303F9F !default;
+$royal:                           #8a6de9 !default;
+$dark:                            #444 !default;
 
-$positive:                        #311B92 !default;
-$energized:                       #00BFA5 !default;
-$calm:                            #1f1f1f !default;
-$dark:                            #191919 !default;
-
-.bg {
-  background-color: $dark;
-}
-.bg-light {
-  background-color: $calm;
-}
-.pri {
-  background-color: $positive;
-}
-.accent {
-  background-color: $energized;
-}
 
 // Base
 // -------------------------------
 
-$font-family-sans-serif:          "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !default;
-$font-family-light-sans-serif:    "Helvetica Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !default;
-$font-family-serif:               Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:           Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$font-family-sans-serif:          "Helvetica Neue", "Roboto" sans-serif !default;
+$font-family-light-sans-serif:    "HelveticaNeue-Light", "Roboto-Light", sans-serif-light !default;
+$font-family-serif:               serif !default;
+$font-family-monospace:           monospace !default;
 
 $font-family-base:                $font-family-sans-serif !default;
 $font-size-base:                  14px !default;
@@ -638,8 +625,8 @@ $loading-padding:                 20px !default;
 $loading-border-radius:           5px !default;
 $loading-font-size:               15px !default;
 
-$loading-backdrop-fadein-duration:0.3s !default;
-$loading-backdrop-bg-color:       rgba(0,0,0,0.7) !default;
+$loading-backdrop-fadein-duration:0.1s !default;
+$loading-backdrop-bg-color:       rgba(0,0,0,0.4) !default;
 
 
 // Badges
@@ -694,14 +681,17 @@ $z-index-item-options:            1 !default;
 $z-index-pane:                    1 !default;
 $z-index-slider-pager:            1 !default;
 $z-index-view:                    1 !default;
+$z-index-view-below:              2 !default;
 $z-index-item:                    2 !default;
 $z-index-item-checkbox:           3 !default;
 $z-index-item-radio:              3 !default;
 $z-index-item-reorder:            3 !default;
 $z-index-item-toggle:             3 !default;
+$z-index-view-above:              3 !default;
 $z-index-tabs:                    5 !default;
 $z-index-item-reordering:         9 !default;
-$z-index-bar:                     10 !default;
+$z-index-bar:                     9 !default;
+$z-index-bar-above:               10 !default;
 $z-index-menu-scroll-content:     10 !default;
 $z-index-modal:                   10 !default;
 $z-index-popover:                 10 !default;

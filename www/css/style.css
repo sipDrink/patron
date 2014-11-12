@@ -1,3 +1,6 @@
+.accent {
+  background-color: #00bfa5 !important;
+}
 div.scroll {
   height: 100%;
 }
@@ -50,7 +53,7 @@ h1.title {
 .btn-wrapper {
   width: 120px;
 }
-.bar-header.nav-bar {
+.bar-header.bar {
   height: 55px;
 }
 .buttons.right-buttons {

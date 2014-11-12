@@ -16,5 +16,5 @@ angular.module('sip.main.bars.list.drinks', [])
       });
   })
   .controller('DrinksCtrl', function($stateParams, Bars) {
-    this.bar = _.find(Bars.barsNearUser, { _id: $stateParams.bar });
+    this.bar = _.find(Bars.barsNearUser, { _id: $stateParams.bar }) || Bars.barsNearUser[0];
   });
