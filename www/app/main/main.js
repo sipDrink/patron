@@ -16,7 +16,8 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state, auth, $ionicPopover, $ionicNavBarDelegate, $log, PB) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, PB) {
+
   PB.sub({ channel: 'sip' });
 
   this.nav = function(what){
@@ -30,16 +31,15 @@ angular.module('sip.main', [
   };
 
   this.goBack = function(event) {
-
     $log.log('going back', event);
-    $ionicNavBarDelegate.back(event);
+    $ionicHistory.goBack(event);
   };
 
   this.getPrevTitle = function() {
-    return $ionicNavBarDelegate.getPreviousTitle();
+    return $ionicHistory.backTitle();
   };
 
-  angular.extend(this, auth);
+  // angular.extend(this, auth);
 
   var that = this;
   $ionicPopover.fromTemplateUrl('my-popover.html', {

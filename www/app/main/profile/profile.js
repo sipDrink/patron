@@ -13,10 +13,8 @@ angular.module('sip.main.profile', [])
             templateUrl: 'app/main/profile/profile.tpl.html',
             controller: 'ProfileCtrl as profile'
           }
-        }
-        // ,data: {
-        //   requiresLogin: true
-        // }
+        },
+        authenticate: true
       });
   })
   .controller('ProfileCtrl', function(){

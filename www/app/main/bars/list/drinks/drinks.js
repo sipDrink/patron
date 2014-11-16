@@ -9,12 +9,10 @@ angular.module('sip.main.bars.list.drinks', [])
       .state('sip.main.bars.drinks', {
         url: '/drinks/:bar',
         templateUrl: 'app/main/bars/list/drinks/drinks.tpl.html',
-        controller: 'DrinksCtrl as drinks',
-        data: {
-          // requiresLogin: true
-        }
+        controller: 'DrinksCtrl as drinks'
+        // authenticate: true
       });
   })
   .controller('DrinksCtrl', function($stateParams, Bars) {
-    this.bar = _.find(Bars.barsNearUser, { _id: $stateParams.bar });
+    this.bar = _.find(Bars.barsNearUser, { _id: $stateParams.bar }) || Bars.barsNearUser[0];
   });

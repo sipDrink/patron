@@ -2,7 +2,7 @@
   <ion-nav-buttons side="left">
     <div class="btn-wrapper" ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
-        {{ main.getPrevTitle() || 'back' }}
+        <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
     </div>
   </ion-nav-buttons>
@@ -31,7 +31,7 @@
               </md-slider>
             </div>
             <div flex>
-              <h3>{{ drink.total }}</h3>
+              <h1>{{ drink.total }}</h1>
             </div>
           </md-item-content>
         </md-item>

@@ -1,10 +1,17 @@
 base = #000000
 dark = #191919
 light = #1f1f1f
-primary = #311B92
-accent = #00BFA5
+primary = #00BCD4 // cyan-500
+primaryLight = #B2EBF2 // cyan-100
+primaryDark = #00838F
+accent = #1DE9B6 // teal-A400
 
 dividerColor = lighten(base, 88%)
 hintColor = lighten(base, 74%)
 iconColor = lighten(base, 46%)
 textColor = lighten(base, 70%)
+
+.accent
+  background-color accent !important
+.primary
+  background-color primary !important
