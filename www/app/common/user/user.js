@@ -42,5 +42,9 @@ angular.module('sip.common.user', [])
     //   }
     // });
 
-    return {};
+    var User = {};
+
+    User.init = function(profile) {
+
+    };
   });
