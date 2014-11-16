@@ -9,8 +9,8 @@ angular.module('sip.main.bars.list.drinks', [])
       .state('sip.main.bars.drinks', {
         url: '/drinks/:bar',
         templateUrl: 'app/main/bars/list/drinks/drinks.tpl.html',
-        controller: 'DrinksCtrl as drinks',
-        authenticate: true
+        controller: 'DrinksCtrl as drinks'
+        // authenticate: true
       });
   })
   .controller('DrinksCtrl', function($stateParams, Bars) {
