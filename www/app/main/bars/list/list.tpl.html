@@ -15,7 +15,8 @@
         <md-item ng-repeat-start="bar in bars.barsNearUser">
           <md-item-content layout-padding layout="horizontal"
             layout-fill layout-align="start center"
-            ui-sref="sip.main.bars.drinks({ bar: bar._id })">
+            ui-sref="sip.main.bars.drinks({ bar: bar._id })"
+            ink-ripple>
             <div flex class="md-tile-leftsdf"><h3 class="bar-name">{{ ::bar.name }}</h3></div>
             <div flex class="md-tile-contensdfsadt">
               <h4>{{ ::bar.distance }} mi</h4>

@@ -4,7 +4,7 @@
 * Description
 */
 angular.module('sip.main.bars.list', [
-  'sip.main.bars.list.drinks'
+'sip.main.bars.list.drinks'
 ])
   .config(function($stateProvider) {
     $stateProvider
@@ -12,9 +12,7 @@ angular.module('sip.main.bars.list', [
         url: '/list',
         templateUrl: 'app/main/bars/list/list.tpl.html',
         controller: 'BarListCtrl as bars',
-        data: {
-          // requiresLogin: true
-        }
+        authenticate: true
       });
   })
   .controller('BarListCtrl', function($scope, Bars){

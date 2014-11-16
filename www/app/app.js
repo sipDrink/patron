@@ -6,13 +6,15 @@
 angular.module('sip', [
   'ionic', 'ngMaterial',
   'sip.auth', 'sip.common',
-  'sip.main','auth0',
-  'angular-storage',
-  'angular-jwt',
-  'pubnub.angular.service'
+  'sip.main', 'ngCordova',
+  'pubnub.angular.service',
+  'ngResource', 'angular-jwt',
+  'LocalStorageModule'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, authProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider) {
+  $httpProvider.interceptors.push('jwtInterceptor');
+
   $urlRouterProvider.otherwise('/main/bars/list');
   $stateProvider
     .state('sip', {
@@ -21,30 +23,21 @@ angular.module('sip', [
       templateUrl: 'app/app.tpl.html'
     });
 
-  authProvider.init({
-    domain: 'sadf.auth0.com',
-    clientID: 'mKM91tCQWyj8WyqI0oxaSp3B3aP23A4b',
-    callbackURL: location.href,
-    loginState: 'sip.auth'
-  });
+  localStorageServiceProvider
+    .setPrefix('sip');
 
 })
-.run(function($ionicPlatform, $rootScope, $state, store, jwtHelper, auth) {
-  auth.hookEvents();
-
-  $rootScope.$on('$locationChangeStart', function() {
-    if (!auth.isAuthenticated) {
-      var token = store.get('token');
-      if (token) {
-        if (!jwtHelper.isTokenExpired(token)) {
-          auth.authenticate(store.get('profile'), token);
-        } else {
-          // Either show Login page or use the refresh token to get a new idToken
-          $state.go('sip.auth');
-        }
+.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth) {
+  $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
+    Auth.isSignedin(function(signedIn) {
+      if (toState.authenticate && !signedIn) {
+        console.log('nooope');
+        e.preventDefault();
+        $state.go('sip.auth');
       }
-    }
+    });
   });
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -52,7 +45,25 @@ angular.module('sip', [
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
+      console.log('status bar');
       StatusBar.styleDefault();
+      // $cordovaStatusbar.overlaysWebView(true);
+
+      // $cordovaStatusbar.styleHex('#004D40');
+
+      // $cordovaStatusbar.show();
     }
   });
+})
+.factory('jwtInterceptor', function(localStorageService) {
+  return {
+    request: function(config) {
+      config.headers = config.headers || {};
+      var token = localStorageService.get('user');
+      if (token) {
+        config.headers.Authorization = 'Bearer ' + token;
+      }
+      return config;
+    }
+  };
 });

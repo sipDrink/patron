@@ -10,9 +10,7 @@ angular.module('sip.main.bars.list.drinks', [])
         url: '/drinks/:bar',
         templateUrl: 'app/main/bars/list/drinks/drinks.tpl.html',
         controller: 'DrinksCtrl as drinks',
-        data: {
-          // requiresLogin: true
-        }
+        authenticate: true
       });
   })
   .controller('DrinksCtrl', function($stateParams, Bars) {

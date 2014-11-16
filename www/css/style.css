@@ -1,5 +1,8 @@
 .accent {
-  background-color: #00bfa5 !important;
+  background-color: #1de9b6 !important;
+}
+.primary {
+  background-color: #00bcd4 !important;
 }
 div.scroll {
   height: 100%;
@@ -81,7 +84,7 @@ h1.title {
   color: #b3b3b3;
 }
 #order-fab {
-  background-color: #00bfa5 !important;
+  background-color: #1de9b6 !important;
   color: #1f1f1f;
 }
 .drinks-list md-item md-item-content {
