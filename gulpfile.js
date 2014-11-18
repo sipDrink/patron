@@ -6,6 +6,8 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+
+
 var bs = require('browser-sync');
 var reload = bs.reload;
 var IF = require('gulp-if');
@@ -57,6 +59,7 @@ gulp.task('git-check', function(done) {
   done();
 });
 
+// all mine
 gulp.task('stylus', function() {
   return gulp.src(['www/app/style.styl'])
     .pipe(stylus())

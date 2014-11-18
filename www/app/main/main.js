@@ -16,9 +16,10 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, PB) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, PB, $rootScope) {
 
-  PB.sub({ channel: 'sip' });
+  // PB.sub({ channel: 'sip' });
+  this.user = $rootScope.user;
 
   this.nav = function(what){
     $log.log('nav:', what);

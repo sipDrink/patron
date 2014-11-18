@@ -11,8 +11,8 @@ angular.module('sip.main.bars.list', [
       .state('sip.main.bars.list', {
         url: '/list',
         templateUrl: 'app/main/bars/list/list.tpl.html',
-        controller: 'BarListCtrl as bars'
-        // authenticate: true
+        controller: 'BarListCtrl as bars',
+        authenticate: true
       });
   })
   .controller('BarListCtrl', function($scope, Bars){

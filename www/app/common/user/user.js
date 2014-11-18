@@ -4,7 +4,7 @@
 * Description
 */
 angular.module('sip.common.user', [])
-  .factory('User', function($mdBottomSheet, $q, $state, PB) {
+  .factory('User', function($mdBottomSheet, $q, $state, PB, $rootScope, CONFIG) {
 
     // var UserFactory = {
     //   showListBottomSheet: function($event, cb) {
@@ -41,11 +41,54 @@ angular.module('sip.common.user', [])
     //     url: URLS.api + '/user/current'
     //   }
     // });
-
+    var channel;
     var User = {};
 
-    User.init = function(profile) {
 
+    User.initStreams = function(user) {
+      console.log('init');
+      channel = 'private-'+user._id;
+
+      PB.init(user.auth_key);
+
+      // PB.pub({
+      //   channel: channel,
+      //   message: {data: 'give me data'},
+      //   error: function(e){
+      //     console.error(e)
+      //   },
+      //   callback: function(){
+      //     console.log('pubbed!!');
+      //   }
+      // });
+
+      PB.sub({
+        channel: channel,
+        message: function(message){
+          if (message.to === CONFIG.alias) {
+            console.log(message.actions);
+          }
+        }
+      });
+
+      User.update();
     };
+
+    User.update = function(values) {
+      console.log('updating');
+
+      var user = angular.copy($rootScope.user);
+      user.name = "Will Scott Moss";
+      PB.pub({
+        channel: channel,
+        message: {
+          to: 'API',
+          actions: {
+            'update': user
+          }
+        }
+      });
+    };
+
     return User;
   });

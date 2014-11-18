@@ -15,8 +15,8 @@ angular.module('sip.auth', [])
   .controller('AuthCtrl', function($scope, User, Auth){
     angular.extend(this, User, Auth);
   })
-  .factory('Auth', function(PB, $http, $window, $ionicLoading, localStorageService, URLS, $state, User, jwtHelper) {
-    var currentUser = {};
+  .factory('Auth', function(PB, $http, $window, $ionicLoading, localStorageService, URLS, $state, User, jwtHelper, $rootScope) {
+    $rootScope.user = {};
 
     var signin = function(provider){
       var parseToken = function(url) {
@@ -34,10 +34,10 @@ angular.module('sip.auth', [])
         ref.close();
         $ionicLoading.hide();
         console.log('finishing up');
-        PB.pub({
-          channel: 'global-grant',
-          message: {token: 'token-2938hrhfkhfiwryh'}
-        });
+        // PB.pub({
+        //   channel: 'global-grant',
+        //   message: {token: 'token-2938hrhfkhfiwryh'}
+        // });
         $state.go('sip.main.bars.list');
       };
 
@@ -53,8 +53,8 @@ angular.module('sip.auth', [])
 
         if (/auth\?token=/.test(url)) {
           var token = parseToken(url);
-          currentUser = jwtHelper.decodeToken(token).user;
-          // User.initStreams(currentUser);
+          $rootScope.user = jwtHelper.decodeToken(token).user;
+          User.initStreams($rootScope.user);
           finishUp(popUpWindow);
         }
 
@@ -66,14 +66,14 @@ angular.module('sip.auth', [])
     };
 
     var isSignedin = function(cb) {
-      if(currentUser.hasOwnProperty('$promise')) {
-        currentUser.$promise.then(function(user) {
+      if($rootScope.user.hasOwnProperty('$promise')) {
+        $rootScope.user.$promise.then(function(user) {
           cb(true);
         })
         .catch(function() {
           cb(false);
         });
-      } else if (currentUser.hasOwnProperty('_id')){
+      } else if ($rootScope.user.hasOwnProperty('_id')){
         cb(true);
       } else {
         cb(false);
@@ -81,7 +81,7 @@ angular.module('sip.auth', [])
     };
 
     var getCurrentUser = function() {
-      return currentUser;
+      return $rootScope.user;
     };
 
     var getUserToken = function() {
@@ -89,7 +89,8 @@ angular.module('sip.auth', [])
     };
 
     if (!!getUserToken()) {
-      currentUser = jwtHelper.decodeToken(getUserToken()).user;
+      $rootScope.user = jwtHelper.decodeToken(getUserToken()).user;
+      User.initStreams($rootScope.user);
     }
 
     return {
