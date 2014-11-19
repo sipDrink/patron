@@ -15,10 +15,11 @@ angular.module('sip.auth', [])
   .controller('AuthCtrl', function($scope, User, Auth){
     angular.extend(this, User, Auth);
   })
-  .factory('Auth', function(PB, $http, $window, $ionicLoading, localStorageService, URLS, $state, User, jwtHelper, $rootScope) {
-    $rootScope.user = {};
+  .factory('Auth', function($dispatcher, $http, $window, $ionicLoading, localStorageService, URLS, $state, jwtHelper) {
+    var user = {};
 
     var signin = function(provider){
+
       var parseToken = function(url) {
         var token = url.split('token=')[1];
 
@@ -33,11 +34,6 @@ angular.module('sip.auth', [])
       var finishUp = function(ref) {
         ref.close();
         $ionicLoading.hide();
-        console.log('finishing up');
-        // PB.pub({
-        //   channel: 'global-grant',
-        //   message: {token: 'token-2938hrhfkhfiwryh'}
-        // });
         $state.go('sip.main.bars.list');
       };
 
@@ -53,8 +49,8 @@ angular.module('sip.auth', [])
 
         if (/auth\?token=/.test(url)) {
           var token = parseToken(url);
-          $rootScope.user = jwtHelper.decodeToken(token).user;
-          User.initStreams($rootScope.user);
+          user = jwtHelper.decodeToken(token).user;
+          $dispatcher.kickstart('private-' + user._id, user.auth_key);
           finishUp(popUpWindow);
         }
 
@@ -63,40 +59,36 @@ angular.module('sip.auth', [])
       popUpWindow.addEventListener('loadstop', function(e){
         popUpWindow.show();
       });
+
     };
 
     var isSignedin = function(cb) {
-      if($rootScope.user.hasOwnProperty('$promise')) {
-        $rootScope.user.$promise.then(function(user) {
-          cb(true);
-        })
-        .catch(function() {
-          cb(false);
-        });
-      } else if ($rootScope.user.hasOwnProperty('_id')){
-        cb(true);
-      } else {
-        cb(false);
-      }
+      cb(!!getUserToken());
     };
 
     var getCurrentUser = function() {
-      return $rootScope.user;
+      return user;
     };
 
     var getUserToken = function() {
       return localStorageService.get('user');
     };
 
+    var signOut = function() {
+      localStorageService.remove('user');
+      // $state.go('sip.auth');
+    };
+
     if (!!getUserToken()) {
-      $rootScope.user = jwtHelper.decodeToken(getUserToken()).user;
-      User.initStreams($rootScope.user);
+      user = jwtHelper.decodeToken(getUserToken()).user;
+      $dispatcher.kickstart('private-' + user._id, user.auth_key);
     }
 
     return {
       signIn: signin,
       isSignedin: isSignedin,
       getCurrentUser: getCurrentUser,
-      getUserToken: getUserToken
+      getUserToken: getUserToken,
+      signout: signOut
     };
   });

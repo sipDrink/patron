@@ -16,21 +16,23 @@ md-backdrop {
   z-index: 11;
 }
 md-sidenav {
-  background-color: #191919 !important;
+  background-color: #1c262b !important;
   z-index: 12;
 }
 md-sidenav md-toolbar {
   background: url("../img/side-nav-bg.jpg") no-repeat center center;
 }
 md-sidenav md-content {
-  background-color: #191919 !important;
+  background-color: #1c262b !important;
 }
 md-sidenav md-content * {
-  background-color: #1f1f1f;
-  color: #e0e0e0;
+  color: #ccc;
+}
+md-divider {
+  border-top-color: rgba(84,84,84,0.6) !important;
 }
 h1.title {
-  color: #1f1f1f !important;
+  color: #2a373e !important;
 }
 .nav-menu {
   font-size: 1.3em;
@@ -51,23 +53,23 @@ h1.title {
 }
 .nav-ham {
   font-size: 2em;
-  color: #1f1f1f;
+  color: #2a373e;
 }
 .btn-wrapper {
   width: 120px;
 }
 .bar-header.bar {
-  height: 55px;
+  height: 56px;
 }
 .buttons.right-buttons {
   margin-top: 10px;
 }
 .buttons.left-buttons {
   margin-top: 10px;
-  color: #1f1f1f;
+  color: #2a373e;
 }
 .settings {
-  color: #1f1f1f;
+  color: #2a373e;
   font-size: 1.6em;
   margin-left: 80px;
 }
@@ -78,23 +80,23 @@ h1.title {
   margin-top: 10px;
 }
 .bars-list md-item md-item-content {
-  background-color: #1f1f1f;
+  background-color: #2a373e;
 }
 .bars-list md-item md-item-content * {
-  color: #b3b3b3;
+  color: #ccc;
 }
 #order-fab {
   background-color: #1de9b6 !important;
-  color: #1f1f1f;
+  color: #2a373e;
 }
 .drinks-list md-item md-item-content {
-  background-color: #1f1f1f;
+  background-color: #2a373e;
 }
 .drinks-list md-item md-item-content * {
-  color: #b3b3b3;
+  color: #ccc;
 }
 md-content,
 ion-content,
 body {
-  background-color: #191919 !important;
+  background-color: #1c262b !important;
 }

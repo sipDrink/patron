@@ -1,6 +1,3 @@
-// dark #191919
-// light dark #1f1f1f
-
 div.scroll
   height 100%
 
@@ -20,8 +17,10 @@ md-sidenav
   md-content
     background-color dark !important
     *
-      background-color light
-      color dividerColor
+      // background-color light
+      color textColor
+md-divider
+  border-top-color rgba(dividerColor, .6) !important
 
 h1.title
   color light !important
@@ -47,7 +46,7 @@ h1.title
   width 120px
 
 .bar-header.bar
-  height 55px
+  height 56px
 
 .buttons.right-buttons
   margin-top 10px

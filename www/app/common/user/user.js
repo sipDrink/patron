@@ -4,54 +4,25 @@
 * Description
 */
 angular.module('sip.common.user', [])
-  .factory('User', function($mdBottomSheet, $q, $state, PB, $rootScope, CONFIG) {
-
-    // var UserFactory = {
-    //   showListBottomSheet: function($event, cb) {
-    //     $mdBottomSheet.show({
-    //       templateUrl: 'app/auth/bottom-sheet-tpl.html',
-    //       targetEvent: $event,
-    //       controller: function($scope, $mdBottomSheet) {
-    //         $scope.items = [
-    //           { name: 'Share', icon: 'share' },
-    //           { name: 'Upload', icon: 'upload' },
-    //           { name: 'Copy', icon: 'copy' },
-    //           { name: 'Print this page', icon: 'print' },
-    //         ];
-
-    //         $scope.listItemClick = function($index) {
-    //           var clickedItem = $scope.items[$index];
-    //           $mdBottomSheet.hide(clickedItem);
-    //         };
-    //       }
-    //     })
-    //     .then(function() {
-    //       if (cb) cb();
-    //     });
-    //   },
-
-    // };
-
-    // return UserFactory;
-
-    // return $resource(URLS.api + '/user/:id', { id: '@_id' }, {
-    //   current: {
-    //     method: 'GET',
-    //     isArray: false,
-    //     url: URLS.api + '/user/current'
-    //   }
-    // });
+  .factory('User', function($mdBottomSheet, $q, $state, $dispatcher, $rootScope, CONFIG) {
     var channel;
-    var User = {};
-
+    var User = {
+      on: function(action, val) {
+        console.log(action, val.name);
+        if (action === 'updated') {
+          $rootScope.user = val;
+        }
+      }
+    };
 
     User.initStreams = function(user) {
       console.log('init');
+
       channel = 'private-'+user._id;
 
-      PB.init(user.auth_key);
+      $dispatcher.init(user.auth_key);
 
-      // PB.pub({
+      // $dispatcher.pub({
       //   channel: channel,
       //   message: {data: 'give me data'},
       //   error: function(e){
@@ -62,12 +33,20 @@ angular.module('sip.common.user', [])
       //   }
       // });
 
-      PB.sub({
+      $dispatcher.sub({
         channel: channel,
         message: function(message){
+          console.log(message[0]);
+          message = message[0];
           if (message.to === CONFIG.alias) {
-            console.log(message.actions);
+            console.log(message);
+            _.forEach(message.actions, function(vals, action) {
+              User.on(action, vals);
+            });
           }
+        },
+        callback: function() {
+          console.log('subscribed');
         }
       });
 
@@ -76,10 +55,9 @@ angular.module('sip.common.user', [])
 
     User.update = function(values) {
       console.log('updating');
-
       var user = angular.copy($rootScope.user);
-      user.name = "Will Scott Moss";
-      PB.pub({
+      user.name = "Very Often";
+      $dispatcher.pub({
         channel: channel,
         message: {
           to: 'API',

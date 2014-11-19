@@ -1,4 +1,4 @@
-/**
+ /**
 * sip.main Module
 *
 * Description
@@ -16,10 +16,15 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, PB, $rootScope) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, $dispatcher, $rootScope, $store, Auth) {
 
-  // PB.sub({ channel: 'sip' });
-  this.user = $rootScope.user;
+  // $dispatcher.sub({ channel: 'sip' });
+
+  $store.getMe();
+  // this.user = $rootScope.user;
+  this.signout = function() {
+    Auth.signout();
+  };
 
   this.nav = function(what){
     $log.log('nav:', what);

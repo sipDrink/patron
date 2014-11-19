@@ -9,10 +9,10 @@ angular.module('sip', [
   'sip.main', 'ngCordova',
   'pubnub.angular.service',
   'ngResource', 'angular-jwt',
-  'LocalStorageModule'
+  'LocalStorageModule', 'flux'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider) {
   $httpProvider.interceptors.push('jwtInterceptor');
 
   $urlRouterProvider.otherwise('/main/bars/list');
@@ -26,12 +26,15 @@ angular.module('sip', [
   localStorageServiceProvider
     .setPrefix('sip');
 
+  $ionicConfigProvider.views.maxCache(10)
+    .transition('android');
+
 })
-.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth) {
+.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth, User) {
+
   $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
     Auth.isSignedin(function(signedIn) {
       if (toState.authenticate && !signedIn) {
-        console.log('nooope');
         e.preventDefault();
         $state.go('sip.auth');
       }
@@ -45,7 +48,6 @@ angular.module('sip', [
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      console.log('status bar');
       StatusBar.styleDefault();
       // $cordovaStatusbar.overlaysWebView(true);
 
