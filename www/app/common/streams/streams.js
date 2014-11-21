@@ -34,10 +34,25 @@ angular.module('sip.common.streams', [])
           });
         },
 
-        getMe: function() {
+        getNewMe: function() {
+          var that = this;
           return $dispatcher.pub({
             actions: {
-              'get': { what: 'me' }
+              'get': that.user
+            }
+          });
+        },
+
+        getUser: function() {
+          return this.user;
+        },
+
+        updateUser: function(name) {
+          var user = angular.copy(this.user);
+          user.name = name;
+          $dispatcher.pub({
+            actions: {
+              'update': user
             }
           });
         }
@@ -51,11 +66,10 @@ angular.module('sip.common.streams', [])
 
     var _pnCb = function(message) {
       console.log('got message', message);
-      message = message[0];
-
       if (message.to === _alias) {
+        console.log('for mobile!!');
         _.forEach(message.actions, function(args, action) {
-          actions[action](args);
+          $actions[action](args);
         });
       }
     };
@@ -73,7 +87,7 @@ angular.module('sip.common.streams', [])
           subscribe_key: 'sub-c-e72ce3bc-6960-11e4-8e76-02ee2ddab7fe',
           auth_key: auth
         });
-        console.log('is sub?', _mainChannel);
+
         pbFlux.sub(_mainChannel);
       },
 
@@ -81,9 +95,9 @@ angular.module('sip.common.streams', [])
         channel = channel || _mainChannel;
         PubNub.ngSubscribe({
           channel: channel,
-          message: _pnCb,
-          callback: function() {
-            console.log('subbed to ' + channel);
+          callback: _pnCb,
+          error: function(e) {
+            console.error(e);
           }
         });
       },

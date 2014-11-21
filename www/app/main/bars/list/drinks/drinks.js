@@ -9,10 +9,21 @@ angular.module('sip.main.bars.list.drinks', [])
       .state('sip.main.bars.drinks', {
         url: '/drinks/:bar',
         templateUrl: 'app/main/bars/list/drinks/drinks.tpl.html',
-        controller: 'DrinksCtrl as drinks',
-        authenticate: true
+        controller: 'DrinksCtrl as drinks'
+        // authenticate: true
       });
   })
-  .controller('DrinksCtrl', function($stateParams, Bars) {
+  .controller('DrinksCtrl', function($stateParams, $mdToast, Bars) {
+    console.log($mdToast);
     this.bar = _.find(Bars.barsNearUser, { _id: $stateParams.bar }) || Bars.barsNearUser[0];
+    var toast = {
+      hideDelay: 0,
+      template: 'drink added',
+      position: 'left'
+    };
+
+    this.toast = function() {
+      console.log('toast');
+      $mdToast.show(toast);
+    };
   });

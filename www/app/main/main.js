@@ -16,12 +16,11 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, $dispatcher, $rootScope, $store, Auth) {
+.controller('MainCtrl', function($scope, $mdSidenav, $state,$ionicPopover, $ionicHistory, $log, $rootScope, $store, Auth) {
 
   // $dispatcher.sub({ channel: 'sip' });
-
-  $store.getMe();
   // this.user = $rootScope.user;
+  Auth.restart();
   this.signout = function() {
     Auth.signout();
   };

@@ -64,18 +64,6 @@ h1.title {
 .buttons.right-buttons {
   margin-top: 10px;
 }
-.buttons.left-buttons {
-  margin-top: 10px;
-  color: #2a373e;
-}
-.settings {
-  color: #2a373e;
-  font-size: 1.6em;
-  margin-left: 80px;
-}
-.popover {
-  margin-top: 2%;
-}
 .scroll-content.ionic-scroll {
   margin-top: 10px;
 }
@@ -94,6 +82,9 @@ h1.title {
 }
 .drinks-list md-item md-item-content * {
   color: #ccc;
+}
+body * {
+  font-family: Roboto;
 }
 md-content,
 ion-content,

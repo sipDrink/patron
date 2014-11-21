@@ -20,7 +20,8 @@ angular.module('sip', [
     .state('sip', {
       abstract: true,
       url: '',
-      templateUrl: 'app/app.tpl.html'
+      templateUrl: 'app/app.tpl.html',
+      controller: 'AppController as app'
     });
 
   localStorageServiceProvider
@@ -29,6 +30,19 @@ angular.module('sip', [
   $ionicConfigProvider.views.maxCache(10)
     .transition('android');
 
+})
+.controller('AppController', function($store, $scope, $log) {
+  $store.bindTo($scope, function() {
+    $log.log('updated in app');
+    this.user = $store.getUser();
+  }.bind(this));
+
+  this.newUser = function() {
+    $store.getNewMe();
+  };
+  this.updateName = function() {
+    $store.updateUser('Hendrix');
+  };
 })
 .run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth, User) {
 
