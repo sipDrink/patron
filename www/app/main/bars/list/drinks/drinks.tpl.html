@@ -6,11 +6,6 @@
       </i>
     </div>
   </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <div class="btn-wrapper">
-      <i ng-click="main.openPopover($event)" class="icon ion-android-more settings"></i>
-    </div>
-  </ion-nav-buttons>
   <md-button id="order-fab"
   class="md-fab md-primary md-fab-bottom-right right"
   ng-click="drinks.toast()">
@@ -24,15 +19,15 @@
           <md-item-content layout-padding layout="horizontal"
            layout-align="start center">
             <div flex>
-              <h3>{{ ::drink.name }}</h3>
-              <h4 class="price">{{ ::drink.price | currency }}</h4>
+              {{ ::drink.name }}
+              <span class="price">{{ ::drink.price | currency }}</span>
             </div>
             <div flex>
               <md-slider md-theme="teal" flex min="0" max="10" step="1" ng-model="drink.total" aria-label="red" id="red-slider">
               </md-slider>
             </div>
             <div flex>
-              <h1>{{ drink.total }}</h1>
+              {{ drink.total }}
             </div>
           </md-item-content>
         </md-item>
@@ -40,4 +35,5 @@
       </md-list>
     </md-content>
   </ion-content>
+
 </ion-view>

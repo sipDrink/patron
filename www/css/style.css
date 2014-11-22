@@ -18,6 +18,7 @@ md-backdrop {
 md-sidenav {
   background-color: #1c262b !important;
   z-index: 12;
+  width: 80%;
 }
 md-sidenav md-toolbar {
   background: url("../img/side-nav-bg.jpg") no-repeat center center;
@@ -30,6 +31,9 @@ md-sidenav md-content * {
 }
 md-divider {
   border-top-color: rgba(84,84,84,0.6) !important;
+}
+.bar {
+  background-image: none;
 }
 h1.title {
   color: #2a373e !important;

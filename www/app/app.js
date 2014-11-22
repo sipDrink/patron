@@ -9,10 +9,11 @@ angular.module('sip', [
   'sip.main', 'ngCordova',
   'pubnub.angular.service',
   'ngResource', 'angular-jwt',
-  'LocalStorageModule', 'flux'
+  'LocalStorageModule', 'flux',
+  'auth0'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider) {
   $httpProvider.interceptors.push('jwtInterceptor');
 
   $urlRouterProvider.otherwise('/main/bars/list');
@@ -30,6 +31,12 @@ angular.module('sip', [
   $ionicConfigProvider.views.maxCache(10)
     .transition('android');
 
+  authProvider.init({
+    domain: 'sadf.auth0.com',
+    clientID: 'mKM91tCQWyj8WyqI0oxaSp3B3aP23A4b',
+    loginState: 'sip.auth'
+  });
+
 })
 .controller('AppController', function($store, $scope, $log) {
   $store.bindTo($scope, function() {
@@ -37,23 +44,30 @@ angular.module('sip', [
     this.user = $store.getUser();
   }.bind(this));
 
-  this.newUser = function() {
-    $store.getNewMe();
-  };
-  this.updateName = function() {
-    $store.updateUser('Hendrix');
-  };
 })
-.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth, User) {
+.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth, User, auth, localStorageService, jwtHelper) {
+  auth.hookEvents();
+  // $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
+  //   Auth.isSignedin(function(signedIn) {
+  //     if (toState.authenticate && !signedIn) {
+  //       e.preventDefault();
+  //       $state.go('sip.auth');
+  //     }
+  //   });
+  // });
 
-  $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
-    Auth.isSignedin(function(signedIn) {
-      if (toState.authenticate && !signedIn) {
-        e.preventDefault();
+  if (!auth.isAuthenticated) {
+    var token = localStorageService.get('token');
+    if (token) {
+      if (!jwtHelper.isTokenExpired(token)) {
+        auth.authenticate(localStorageService.get('profile'), token);
+      } else {
+        // Either show Login page or use the refresh token to get a new idToken
+
         $state.go('sip.auth');
       }
-    });
-  });
+    }
+  }
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

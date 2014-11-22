@@ -20,7 +20,8 @@ angular.module('sip.main', [
 
   // $dispatcher.sub({ channel: 'sip' });
   // this.user = $rootScope.user;
-  Auth.restart();
+  $dispatcher.kickstart
+  $store.getNewMe();
   this.signout = function() {
     Auth.signout();
   };

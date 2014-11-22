@@ -12,83 +12,46 @@ angular.module('sip.auth', [])
         controller: 'AuthCtrl as auth'
       });
   })
-  .controller('AuthCtrl', function($scope, User, Auth){
-    angular.extend(this, User, Auth);
-  })
-  .factory('Auth', function($dispatcher, $http, $window, $ionicLoading, localStorageService, URLS, $state, jwtHelper, $actions) {
-    var user = {};
-
-    var signin = function(provider){
-
-      var parseToken = function(url) {
-        var token = url.split('token=')[1];
-
-        if (token.indexOf('#_=_') > -1) {
-          token = token.split('#_=_')[0];
-        }
-
-        localStorageService.set('user', token);
-        return token;
-      };
-
-      var finishUp = function(ref) {
-        ref.close();
-        $ionicLoading.hide();
-        $state.go('sip.main.bars.list');
-      };
-
-      var url = URLS[provider];
-      var popUpWindow = $window.open(url, '_blank', 'location=no,toolbar=no,hidden=yes');
-
-      $ionicLoading.show({
-        template: '<i class="icon ion-loading-b"></>'
-      });
-
-      popUpWindow.addEventListener('loadstart', function(e) {
-        var url = e.url;
-
-        if (/auth\?token=/.test(url)) {
-          var token = parseToken(url);
-          user = jwtHelper.decodeToken(token).user;
-          $actions.updateMe(user);
-          $dispatcher.kickstart('private-' + user._id, user.auth_key);
-          finishUp(popUpWindow);
-        }
-
-      });
-
-      popUpWindow.addEventListener('loadstop', function(e){
-        popUpWindow.show();
-      });
-
-    };
-
-    var isSignedin = function(cb) {
-      cb(!!getUserToken());
-    };
-
-    var getUserToken = function() {
-      return localStorageService.get('user');
-    };
-
-    var signOut = function() {
-      localStorageService.remove('user');
-      // $state.go('sip.auth');
-    };
-
-    var restart = function() {
-      if (!!getUserToken()) {
-        user = jwtHelper.decodeToken(getUserToken()).user;
+  .controller('AuthCtrl', function($scope, $state, $actions, $dispatcher, Auth){
+    // angular.extend(this, User);
+    this.signIn = function() {
+      Auth.signin()
+      .then(function(user) {
+        $dispatcher.kickstart(user);
         $actions.updateMe(user);
-        $dispatcher.kickstart('private-' + user._id, user.auth_key);
-      }
+        $state.go('sip.main.drinks.list');
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+    };
+  })
+  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q) {
+    var signin = function() {
+      var defer = $q.defer();
+      auth.signin({
+        popup: true,
+        // Make the widget non closeable
+        standalone: true,
+        // This asks for the refresh token
+        // So that the user never has to log in again
+        authParams: {
+          scope: 'openid offline_access'
+        }
+      }, function(profile, idToken, accessToken, state, refreshToken) {
+        localStorageService.set('profile', profile);
+        localStorageService.set('token', idToken);
+        localStorageService.set('refreshToken', refreshToken);
+        defer.resolve(profile);
+        // $state.go('sip.main.bars.list');
+      }, function(error) {
+        defer.reject(error);
+        console.log("There was an error logging in", error);
+      });
+      return defer.promise;
     };
 
     return {
-      signIn: signin,
-      isSignedin: isSignedin,
-      getUserToken: getUserToken,
-      signout: signOut,
-      restart: restart
+      signin: signin
     };
   });

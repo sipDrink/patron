@@ -17,12 +17,12 @@
             layout-fill layout-align="start center"
             ui-sref="sip.main.bars.drinks({ bar: bar._id })"
             ink-ripple>
-            <div flex class="md-tile-leftsdf"><h3 class="bar-name">{{ ::bar.name }}</h3></div>
+            <div flex class="md-tile-leftsdf">{{ ::bar.name }}</div>
             <div flex class="md-tile-contensdfsadt">
-              <h4>{{ ::bar.distance }} mi</h4>
+              {{ ::bar.distance }} mi
             </div>
             <div flex>
-              <h4>{{ bar.people }}+ people</h>
+              {{ bar.people }}+ people
             </div>
           </md-item-content>
         </md-item>

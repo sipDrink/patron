@@ -4,15 +4,33 @@
 * Description
 */
 angular.module('sip.common.user', [])
-  .factory('User', function($mdBottomSheet, $q, $state, $dispatcher, $rootScope, CONFIG) {
+  .factory('User', function($mdBottomSheet, $q, $state, $dispatcher, $rootScope, CONFIG, auth, localStorageService) {
+    // var signIn = function() {
+    //   var defer = $q.defer();
+    //   auth.signin({
+    //     popup: true,
+    //     // Make the widget non closeable
+    //     standalone: true,
+    //     // This asks for the refresh token
+    //     // So that the user never has to log in again
+    //     authParams: {
+    //       scope: 'openid offline_access'
+    //     }
+    //   }, function(profile, idToken, accessToken, state, refreshToken) {
+    //     localStorageService.set('profile', profile);
+    //     localStorageService.set('token', idToken);
+    //     localStorageService.set('refreshToken', refreshToken);
+    //     defer.resolve(profile);
+    //     // $state.go('sip.main.bars.list');
+    //   }, function(error) {
+    //     defer.reject(error);
+    //     console.log("There was an error logging in", error);
+    //   });
+    //   return defer.promise;
+    // };
+
     var channel;
     var User = {
-      on: function(action, val) {
-        console.log(action, val.name);
-        if (action === 'updated') {
-          $rootScope.user = val;
-        }
-      }
     };
 
     User.initStreams = function(user) {
@@ -67,6 +85,6 @@ angular.module('sip.common.user', [])
         }
       });
     };
-
+    // User.signIn = signIn;
     return User;
   });

@@ -75,20 +75,21 @@ angular.module('sip.common.streams', [])
     };
 
     var pbFlux = {
-      kickstart: function(channel, auth) {
+      kickstart: function(user) {
         /*
           @auth - auth key created by server for each user
                   upon authentication.
         */
-        _mainChannel = channel;
+        _mainChannel = user.user_id;
 
         PubNub.init({
           publish_key: 'pub-c-e7567c4a-b42c-4a6d-af64-b9e6db79424d',
           subscribe_key: 'sub-c-e72ce3bc-6960-11e4-8e76-02ee2ddab7fe',
-          auth_key: auth
+          auth_key: user.identities[0].access_token
         });
 
         pbFlux.sub(_mainChannel);
+        console.log('kickstart');
       },
 
       sub: function(channel) {
@@ -105,6 +106,7 @@ angular.module('sip.common.streams', [])
       pub: function(message, config) {
         message.from = _alias;
         message.to = 'API';
+        console.log('pub channel', _mainChannel);
 
         PubNub.ngPublish({
           channel: _mainChannel,
