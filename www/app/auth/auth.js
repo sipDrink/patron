@@ -17,16 +17,16 @@ angular.module('sip.auth', [])
     this.signIn = function() {
       Auth.signin()
       .then(function(user) {
-        $dispatcher.kickstart(user);
+        // $dispatcher.kickstart(user);
         $actions.updateMe(user);
-        $state.go('sip.main.drinks.list');
+        $state.go('sip.main.bars.list');
       })
       .catch(function(err) {
         console.log(err);
       });
     };
   })
-  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q) {
+  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, auth) {
     var signin = function() {
       var defer = $q.defer();
       auth.signin({
