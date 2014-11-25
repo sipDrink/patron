@@ -18,10 +18,26 @@ angular.module('sip.main.bars.list', [
         // authenticate: true
       });
   })
-  .controller('BarListCtrl', function($scope, Bars){
+  .controller('BarListCtrl', function($scope, Bars, $cordovaGeolocation, $log, $actions, $store){
     angular.extend(this, Bars);
+
+    $store.bindTo($scope, function() {
+      this.bars  = $store.returnBars();
+      console.log('this.bars', this.bars);
+    }.bind(this));
+
+    $scope.$on('$ionicView.enter', function(message) {
+      $cordovaGeolocation
+        .getCurrentPosition()
+        .then(function(position) {
+          $store.fetchBars(position);
+        }, function(err) {
+          $log.error(err);
+        });
+    });
   })
   .factory('Bars', function(){
+
     var drinks = [
       { name: 'vodka', price: 12 },
       { name: 'whiskey', price: 8 },

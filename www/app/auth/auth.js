@@ -12,21 +12,21 @@ angular.module('sip.auth', [])
         controller: 'AuthCtrl as auth'
       });
   })
-  .controller('AuthCtrl', function($scope, $state, $actions, $dispatcher, Auth){
+  .controller('AuthCtrl', function($scope, $state, $actions, $dispatcher, $log, Auth){
     // angular.extend(this, User);
     this.signIn = function() {
       Auth.signin()
       .then(function(user) {
         // $dispatcher.kickstart(user);
-        $actions.updateMe(user);
+        // $actions.updateMe(user);
         $state.go('sip.main.bars.list');
       })
       .catch(function(err) {
-        console.log(err);
+        $log.error(err);
       });
     };
   })
-  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, auth) {
+  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, $state, auth, $log) {
     var signin = function() {
       var defer = $q.defer();
       auth.signin({
@@ -42,16 +42,24 @@ angular.module('sip.auth', [])
         localStorageService.set('profile', profile);
         localStorageService.set('token', idToken);
         localStorageService.set('refreshToken', refreshToken);
+
+        $actions.updateMe(profile);
         defer.resolve(profile);
         // $state.go('sip.main.bars.list');
       }, function(error) {
         defer.reject(error);
-        console.log("There was an error logging in", error);
+        $log.error("There was an error logging in", error);
       });
       return defer.promise;
     };
 
+    var signout = function() {
+      auth.signout();
+      $actions.resetMe();
+      $state.go('sip.auth');
+    };
     return {
-      signin: signin
+      signin: signin,
+      signout: signout
     };
   });

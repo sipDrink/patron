@@ -32,20 +32,19 @@ angular.module('sip', [
     .transition('android');
 
   authProvider.init({
-    domain: 'sadf.auth0.com',
-    clientID: 'mKM91tCQWyj8WyqI0oxaSp3B3aP23A4b',
+    domain: 'sipdrink.auth0.com',
+    clientID: 'mYLZ1owVTysjstR9o6PvdHT7Kqvj5Qa9',
     loginState: 'sip.auth'
   });
 
 })
 .controller('AppController', function($store, $scope, $log) {
   $store.bindTo($scope, function() {
-    $log.log('updated in app');
     this.user = $store.getUser();
   }.bind(this));
 
 })
-.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth, User, auth, localStorageService, jwtHelper) {
+.run(function($ionicPlatform, $cordovaSplashscreen, $rootScope, $state, $cordovaStatusbar, Auth, User, auth, localStorageService, jwtHelper) {
   auth.hookEvents();
   // $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
   //   Auth.isSignedin(function(signedIn) {
@@ -55,6 +54,10 @@ angular.module('sip', [
   //     }
   //   });
   // });
+
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  }, 5000);
 
   if (!auth.isAuthenticated) {
     var token = localStorageService.get('token');
