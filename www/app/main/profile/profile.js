@@ -14,7 +14,9 @@ angular.module('sip.main.profile', [])
             controller: 'ProfileCtrl as profile'
           }
         },
-        authenticate: true
+        data: {
+          requiresLogin: true
+        }
       });
   })
   .controller('ProfileCtrl', function(){

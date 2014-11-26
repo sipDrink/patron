@@ -4,21 +4,53 @@
 * Description
 */
 angular.module('sip.main.bars.list', [
-'sip.main.bars.list.drinks'
+'sip.main.bars.list.categories'
 ])
   .config(function($stateProvider) {
     $stateProvider
       .state('sip.main.bars.list', {
         url: '/list',
         templateUrl: 'app/main/bars/list/list.tpl.html',
-        controller: 'BarListCtrl as bars'
+        controller: 'BarListCtrl as bars',
+        data: {
+          requiresLogin: true
+        }
         // authenticate: true
       });
   })
-  .controller('BarListCtrl', function($scope, Bars){
+  .controller('BarListCtrl', function($scope, Bars, $cordovaGeolocation, $log, $actions, $store){
     angular.extend(this, Bars);
+
+    $store.bindTo($scope, function() {
+      this.bars  = $store.getBars();
+    }.bind(this));
+
+    $scope.$on('$ionicView.enter', function(message) {
+      $cordovaGeolocation
+        .getCurrentPosition()
+        .then(function(position) {
+          var coords = [position.coords.latitude, position.coords.longitude];
+          var opts = {
+            query: {
+              loc: {
+                $near: coords,
+                $maxDistance: 60
+              },
+              completedSignUp: true
+            },
+
+            extra: {
+              populate: 'drinks'
+            }
+          };
+          $store.fetchBars(opts);
+        }, function(err) {
+          $log.error(err);
+        });
+    });
   })
   .factory('Bars', function(){
+
     var drinks = [
       { name: 'vodka', price: 12 },
       { name: 'whiskey', price: 8 },

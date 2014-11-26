@@ -12,90 +12,63 @@ angular.module('sip.auth', [])
         controller: 'AuthCtrl as auth'
       });
   })
-  .controller('AuthCtrl', function($scope, User, Auth){
-    angular.extend(this, User, Auth);
-  })
-  .factory('Auth', function(PB, $http, $window, $ionicLoading, localStorageService, URLS, $state, User, jwtHelper) {
-    var currentUser = {};
-
-    var signin = function(provider){
-      var parseToken = function(url) {
-        var token = url.split('token=')[1];
-
-        if (token.indexOf('#_=_') > -1) {
-          token = token.split('#_=_')[0];
-        }
-
-        localStorageService.set('user', token);
-        return token;
-      };
-
-      var finishUp = function(ref) {
-        ref.close();
-        $ionicLoading.hide();
-        console.log('finishing up');
-        PB.pub({
-          channel: 'global-grant',
-          message: {token: 'token-2938hrhfkhfiwryh'}
-        });
+  .controller('AuthCtrl', function($scope, $state, $actions, $dispatcher, $log, Auth){
+    // angular.extend(this, User);
+    this.signIn = function() {
+      Auth.signin()
+      .then(function(user) {
+        // $dispatcher.kickstart(user);
+        // $actions.updateMe(user);
         $state.go('sip.main.bars.list');
-      };
-
-      var url = URLS[provider];
-      var popUpWindow = $window.open(url, '_blank', 'location=no,toolbar=no,hidden=yes');
-
-      $ionicLoading.show({
-        template: '<i class="icon ion-loading-b"></>'
+      })
+      .catch(function(err) {
+        $log.error(err);
       });
-
-      popUpWindow.addEventListener('loadstart', function(e) {
-        var url = e.url;
-
-        if (/auth\?token=/.test(url)) {
-          var token = parseToken(url);
-          currentUser = jwtHelper.decodeToken(token).user;
-          // User.initStreams(currentUser);
-          finishUp(popUpWindow);
+    };
+  })
+  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, $state, auth, $log, $mdSidenav) {
+    var signin = function() {
+      var defer = $q.defer();
+      auth.signin({
+        popup: true,
+        // Make the widget non closeable
+        standalone: true,
+        // This asks for the refresh token
+        // So that the user never has to log in again
+        authParams: {
+          scope: 'openid offline_access'
+        }
+      }, function(profile, idToken, accessToken, state, refreshToken) {
+        localStorageService.set('token', idToken);
+        localStorageService.set('refreshToken', refreshToken);
+        if (!profile.auth_key) {
+          profile.auth_key = profile.identities[0].access_token;
+          $log.log('auth_key', profile.auth_key);
         }
 
+        $log.log('CHANNEL', profile.private_channel);
+        localStorageService.set('profile', profile);
+        $actions.receiveUser(profile);
+        defer.resolve(profile);
+        // $state.go('sip.main.bars.list');
+      }, function(error) {
+        defer.reject(error);
+        $log.error("There was an error logging in", error);
       });
-
-      popUpWindow.addEventListener('loadstop', function(e){
-        popUpWindow.show();
-      });
+      return defer.promise;
     };
 
-    var isSignedin = function(cb) {
-      if(currentUser.hasOwnProperty('$promise')) {
-        currentUser.$promise.then(function(user) {
-          cb(true);
-        })
-        .catch(function() {
-          cb(false);
-        });
-      } else if (currentUser.hasOwnProperty('_id')){
-        cb(true);
-      } else {
-        cb(false);
-      }
+    var signout = function() {
+      auth.signout();
+      $actions.reset();
+      localStorageService.remove('profile');
+      localStorageService.remove('token');
+      localStorageService.remove('refreshToken');
+      // $mdSidenav('left').close();
+      $state.go('sip.auth');
     };
-
-    var getCurrentUser = function() {
-      return currentUser;
-    };
-
-    var getUserToken = function() {
-      return localStorageService.get('user');
-    };
-
-    if (!!getUserToken()) {
-      currentUser = jwtHelper.decodeToken(getUserToken()).user;
-    }
-
     return {
-      signIn: signin,
-      isSignedin: isSignedin,
-      getCurrentUser: getCurrentUser,
-      getUserToken: getUserToken
+      signin: signin,
+      signout: signout
     };
   });

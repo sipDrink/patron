@@ -1,6 +1,3 @@
-// dark #191919
-// light dark #1f1f1f
-
 div.scroll
   height 100%
 
@@ -14,15 +11,20 @@ md-backdrop
 md-sidenav
   background-color dark !important
   z-index 12
+  width 80%
   md-toolbar
     // background-color primary !important
     background url(../img/side-nav-bg.jpg) no-repeat center center
   md-content
     background-color dark !important
     *
-      background-color light
-      color dividerColor
+      // background-color light
+      color textColor
+md-divider
+  border-top-color rgba(dividerColor, .6) !important
 
+.bar
+  background-image none
 h1.title
   color light !important
 .nav-menu
@@ -47,20 +49,21 @@ h1.title
   width 120px
 
 .bar-header.bar
-  height 55px
+  height 56px
 
 .buttons.right-buttons
   margin-top 10px
 
-.buttons.left-buttons
-  margin-top 10px
-  color light
-.settings
-  color light
-  font-size 1.6em
-  margin-left 80px
-.popover
-  margin-top 2%
+// .buttons.left-buttons
+//   margin-top 10px
+//   color light
+
+// .settings
+//   color light
+//   font-size 1.6em
+//   margin-left 80px
+// .popover
+//   margin-top 2%
 
 .scroll-content.ionic-scroll
   margin-top 10px

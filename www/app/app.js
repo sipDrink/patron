@@ -9,10 +9,11 @@ angular.module('sip', [
   'sip.main', 'ngCordova',
   'pubnub.angular.service',
   'ngResource', 'angular-jwt',
-  'LocalStorageModule'
+  'LocalStorageModule', 'flux',
+  'auth0'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider) {
   $httpProvider.interceptors.push('jwtInterceptor');
 
   $urlRouterProvider.otherwise('/main/bars/list');
@@ -20,23 +21,56 @@ angular.module('sip', [
     .state('sip', {
       abstract: true,
       url: '',
-      templateUrl: 'app/app.tpl.html'
+      templateUrl: 'app/app.tpl.html',
+      controller: 'AppController as app'
     });
 
   localStorageServiceProvider
     .setPrefix('sip');
 
+  $ionicConfigProvider.views.maxCache(10)
+    .transition('android');
+
+  authProvider.init({
+    domain: 'sipdrink.auth0.com',
+    clientID: 'mYLZ1owVTysjstR9o6PvdHT7Kqvj5Qa9',
+    loginState: 'sip.auth'
+  });
+
 })
-.run(function($ionicPlatform, $rootScope, $state, $cordovaStatusbar, Auth) {
-  $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
-    Auth.isSignedin(function(signedIn) {
-      if (toState.authenticate && !signedIn) {
-        console.log('nooope');
-        e.preventDefault();
+.controller('AppController', function($store, $scope, $log) {
+  $store.bindTo($scope, function() {
+    this.user = $store.getUser();
+  }.bind(this));
+
+})
+.run(function($ionicPlatform, $cordovaSplashscreen, $rootScope, $state, $cordovaStatusbar, Auth, User, auth, localStorageService, jwtHelper) {
+  auth.hookEvents();
+  // $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
+  //   Auth.isSignedin(function(signedIn) {
+  //     if (toState.authenticate && !signedIn) {
+  //       e.preventDefault();
+  //       $state.go('sip.auth');
+  //     }
+  //   });
+  // });
+
+  setTimeout(function(){
+    $cordovaSplashscreen.hide();
+  }, 5000);
+
+  if (!auth.isAuthenticated) {
+    var token = localStorageService.get('token');
+    if (token) {
+      if (!jwtHelper.isTokenExpired(token)) {
+        auth.authenticate(localStorageService.get('profile'), token);
+      } else {
+        // Either show Login page or use the refresh token to get a new idToken
+
         $state.go('sip.auth');
       }
-    });
-  });
+    }
+  }
 
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,7 +79,6 @@ angular.module('sip', [
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
     if(window.StatusBar) {
-      console.log('status bar');
       StatusBar.styleDefault();
       // $cordovaStatusbar.overlaysWebView(true);
 
