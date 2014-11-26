@@ -10,16 +10,17 @@
   <ion-content on-swipe-right="main.nav('open')">
     <md-content>
       <md-list class="cat-list">
-        <md-item ng-repeat="type in categories.bar.categories">
+        <md-item ng-repeat-start="type in categories.bar.categories">
           <md-item-content layout-padding layout="row"
             layout-fill layout-align="center center"
-            ui-sref="sip.main.bars.drinks({ bar: bar._id, cat: type._id })"
+            ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
             ink-ripple>
-            <div flex="80">
+            <div flex="80" class="cat-name">
               <h2>{{ type.name }}</h2>
             </div>
           </md-item-content>
         </md-item>
+        <md-divider ng-repeat-end></md-divider>
       </md-list>
     </md-content>
   </ion-content>

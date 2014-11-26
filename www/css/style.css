@@ -87,6 +87,9 @@ h1.title {
 .cat-list md-item md-item-content * {
   color: #ccc;
 }
+.cat-name {
+  text-align: center;
+}
 #order-fab {
   background-color: #1de9b6 !important;
   color: #2a373e;

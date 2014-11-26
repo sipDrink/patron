@@ -7,7 +7,7 @@ angular.module('sip.main.bars.list.categories.drinks', [])
   .config(function($stateProvider) {
     $stateProvider
       .state('sip.main.bars.drinks', {
-        url: '/drinks',
+        url: '/drinks/:bar/:cat',
         templateUrl: 'app/main/bars/list/categories/drinks/drinks.tpl.html',
         controller: 'DrinksCtrl as drinks',
         data: {
@@ -16,6 +16,7 @@ angular.module('sip.main.bars.list.categories.drinks', [])
       });
   })
   .controller('DrinksCtrl', function($stateParams, $scope, $store, $log) {
-    // this.bar = $store.getBar($stateParams.bar);
-    // $log.log(this.bar);
+    var bar = $store.getBar($stateParams.bar);
+    this.drinks = _.find(bar.categories, { name: $stateParams.cat }).drinks;
+    $log.log('drinks', this.drinks);
   });
