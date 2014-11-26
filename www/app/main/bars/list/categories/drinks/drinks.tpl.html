@@ -15,19 +15,16 @@
   <ion-content on-swipe-right="main.nav('open')">
     <md-content>
       <md-list class="drinks-list">
-        <md-item ng-repeat-start="drink in drinks.bar.drinks">
+        <md-item ng-repeat-start="drink in drinks.drinks">
           <md-item-content layout-padding layout="row"
            layout-align="start center">
-            <div flex>
-              {{ ::drink.name }}
-              <span class="price">{{ ::drink.price | currency }}</span>
+            <div flex="33">
+              <h3>{{ drink.name }}</h3>
             </div>
-            <div flex>
-              <md-slider md-theme="teal" flex min="0" max="10" step="1" ng-model="drink.total" aria-label="red" id="red-slider">
-              </md-slider>
-            </div>
-            <div flex>
-              {{ drink.total }}
+            <div flex="33">
+              <!-- <md-slider md-theme="teal" flex min="0" max="10" step="1" ng-model="drink.total" aria-label="red" id="red-slider">
+              </md-slider> -->
+              <h3>{{ drink.price | currency }}</h3>
             </div>
           </md-item-content>
         </md-item>

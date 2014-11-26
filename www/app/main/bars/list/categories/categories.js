@@ -23,5 +23,4 @@ angular.module('sip.main.bars.list.categories',
     $store.bindTo($scope, function() {
       this.bar = $store.getBar($stateParams.bar);
     }.bind(this));
-    $log.log('grid', this.bar);
   });
