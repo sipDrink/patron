@@ -77,6 +77,16 @@ h1.title {
 .bars-list md-item md-item-content * {
   color: #ccc;
 }
+.drink-cat {
+  background-color: #2a373e;
+  height: 34vw;
+}
+.cat-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.cat-list md-item md-item-content * {
+  color: #ccc;
+}
 #order-fab {
   background-color: #1de9b6 !important;
   color: #2a373e;

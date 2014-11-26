@@ -32,7 +32,25 @@ angular.module('sip.common.flux', [
       },
 
       receiveBars: function(bars) {
-        this.bars = bars;
+        // group drinks by their categories
+        this.bars = _.map(bars, function(bar) {
+          var categories = {};
+
+          _.forEach(bar.drinks, function(drink) {
+            drink.category = drink.category || {name: 'other'};
+            if (categories[drink.category.name]) {
+              categories[drink.category.name].push(drink);
+            } else {
+              categories[drink.category.name] = [drink];
+            }
+          });
+
+          bar.categories = _.map(Object.keys(categories), function(category) {
+            return { name: category, drinks: categories[category] };
+          });
+
+          return bar;
+        });
         this.emitChange();
       },
 
@@ -44,24 +62,12 @@ angular.module('sip.common.flux', [
 
       exports: {
         getUser: function() {
-          // var id = this.user._id;
-
-          // $dispatcher.pup({
-          //   actions: {
-          //     'getOne': {
-          //       _id: id
-          //     }
-          //   },
-          //   respondTo: {
-          //     action: 'receiveUser'
-          //   }
-          // }, 'users');
           return this.user;
         },
 
         fetchBars: function(options) {
-          $log.log('fetching bars');
-
+          var that = this;
+          $log.log('fetching bars', that.user.private_channel);
           $dispatcher.pub({
             actions: {
               'get': {
@@ -71,7 +77,7 @@ angular.module('sip.common.flux', [
             },
             respondTo: {
               action: 'receiveBars',
-              channel: this.user.private_channel
+              channel: that.user.private_channel
             }
           }, 'bars');
         },

@@ -4,7 +4,7 @@
 * Description
 */
 angular.module('sip.main.bars.list', [
-'sip.main.bars.list.drinks'
+'sip.main.bars.list.categories'
 ])
   .config(function($stateProvider) {
     $stateProvider
@@ -23,7 +23,6 @@ angular.module('sip.main.bars.list', [
 
     $store.bindTo($scope, function() {
       this.bars  = $store.getBars();
-      console.log('this.bars', this.bars);
     }.bind(this));
 
     $scope.$on('$ionicView.enter', function(message) {
