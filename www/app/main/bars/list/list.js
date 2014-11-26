@@ -22,7 +22,7 @@ angular.module('sip.main.bars.list', [
     angular.extend(this, Bars);
 
     $store.bindTo($scope, function() {
-      this.bars  = $store.returnBars();
+      this.bars  = $store.getBars();
       console.log('this.bars', this.bars);
     }.bind(this));
 
@@ -30,7 +30,21 @@ angular.module('sip.main.bars.list', [
       $cordovaGeolocation
         .getCurrentPosition()
         .then(function(position) {
-          $store.fetchBars(position);
+          var coords = [position.coords.latitude, position.coords.longitude];
+          var opts = {
+            query: {
+              loc: {
+                $near: coords,
+                $maxDistance: 60
+              },
+              completedSignUp: true
+            },
+
+            extra: {
+              populate: 'drinks'
+            }
+          };
+          $store.fetchBars(opts);
         }, function(err) {
           $log.error(err);
         });

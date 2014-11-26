@@ -18,15 +18,13 @@ angular.module('sip.main', [
 })
 .controller('MainCtrl', function($scope, $mdSidenav, $state, $dispatcher, $ionicPopover, $ionicHistory, $log, $rootScope, $store, Auth) {
 
-  // $dispatcher.sub({ channel: 'sip' });
-  // this.user = $rootScope.user;
   $dispatcher.kickstart($store.getUser());
   this.signout = function() {
     Auth.signout();
   };
 
   this.nav = function(what){
-    $log.log('nav:', what);
+    $log.log('$mdSidenav ', what);
     $mdSidenav('left')[what]();
   };
 

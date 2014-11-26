@@ -4,18 +4,85 @@
 * Core PubNub service
 */
 angular.module('sip.common.flux', [
-  'sip.main.flux.mixins'
+  'sip.common.flux.mixins'
 ])
   .factory('$actions', function(flux) {
     return flux.actions([
      'receiveUser',
-     'receiveBars'
+     'receiveBars',
+     'reset'
     ]);
   })
-  .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, BarMixin, UserMixin) {
+  .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, BarMixin, UserMixin, StateMixin) {
 
     return flux.store({
-      mixin: [BarMixin, UserMixin]
+      actions: [
+        $actions.receiveUser,
+        $actions.receiveBars,
+        $actions.reset
+      ],
+
+      user: localStorageService.get('profile') || {},
+      bars: [],
+
+      receiveUser: function(nUser) {
+        _.extend(this.user, nUser);
+        localStorageService.set('profile', this.user);
+        this.emitChange();
+      },
+
+      receiveBars: function(bars) {
+        this.bars = bars;
+        this.emitChange();
+      },
+
+      reset: function() {
+        this.bars = [];
+        this.user = {};
+        this.emitChange();
+      },
+
+      exports: {
+        getUser: function() {
+          // var id = this.user._id;
+
+          // $dispatcher.pup({
+          //   actions: {
+          //     'getOne': {
+          //       _id: id
+          //     }
+          //   },
+          //   respondTo: {
+          //     action: 'receiveUser'
+          //   }
+          // }, 'users');
+          return this.user;
+        },
+
+        fetchBars: function(options) {
+          $log.log('fetching bars');
+
+          $dispatcher.pub({
+            actions: {
+              'get': {
+                query: options.query,
+                options: options.extra || {}
+              }
+            },
+            respondTo: {
+              action: 'receiveBars',
+              channel: this.user.private_channel
+            }
+          }, 'bars');
+        },
+
+        getBars: function(query, options) {
+          return this.bars;
+        },
+        getBar: function(id) {
+          return _.find(this.bars, { _id: id });
+        }
+      }
     });
 
   })
@@ -37,7 +104,7 @@ angular.module('sip.common.flux', [
           @auth - auth key created by server for each user
                   upon authentication.
         */
-
+        console.log('user', user);
         PubNub.init({
           publish_key: 'pub-c-e7567c4a-b42c-4a6d-af64-b9e6db79424d',
           subscribe_key: 'sub-c-e72ce3bc-6960-11e4-8e76-02ee2ddab7fe',
@@ -45,21 +112,24 @@ angular.module('sip.common.flux', [
           restore: true
         });
 
-        PubNub.ngSubscribe({ channel: user.private_channel });
-        $rootScope.$on(PubNub.ngMsgEv(user.private_channel), function(e, message) {
-          console.log('in history');
-          if (message.to === _alias) {
-            _.forEach(message.actions, function(args, action) {
-              $actions[action](args);
-            });
-          }
-        });
+        pbFlux.sub(user.private_channel);
 
-        PubNub.ngHistory({ channel: user.private_channel, count: 1 });
+        // PubNub.ngSubscribe({ channel: user.private_channel });
+        // $rootScope.$on(PubNub.ngMsgEv(user.private_channel), function(e, message) {
+        //   console.log('in history');
+        //   if (message.to === _alias) {
+        //     _.forEach(message.actions, function(args, action) {
+        //       $actions[action](args);
+        //     });
+        //   }
+        // });
+
+        // PubNub.ngHistory({ channel: user.private_channel, count: 1 });
         $log.log('kickstart');
       },
 
       sub: function(channel) {
+        $log.log('subscribing to ' +channel)
         PubNub.ngSubscribe({
           channel: channel,
           callback: _pnCb,

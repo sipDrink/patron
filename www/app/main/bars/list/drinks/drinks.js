@@ -15,17 +15,7 @@ angular.module('sip.main.bars.list.drinks', [])
         }
       });
   })
-  .controller('DrinksCtrl', function($stateParams, $mdToast, Bars) {
-    console.log($mdToast);
-    this.bar = _.find(Bars.barsNearUser, { _id: $stateParams.bar }) || Bars.barsNearUser[0];
-    var toast = {
-      hideDelay: 0,
-      template: 'drink added',
-      position: 'left'
-    };
-
-    this.toast = function() {
-      console.log('toast');
-      $mdToast.show(toast);
-    };
+  .controller('DrinksCtrl', function($stateParams, $scope, $store, $log) {
+    this.bar = $store.getBar($stateParams.bar);
+    $log.log(this.bar);
   });

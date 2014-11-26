@@ -12,17 +12,17 @@
   <ion-content on-swipe-right="main.nav('open')">
     <md-content>
       <md-list class="bars-list">
-        <md-item ng-repeat-start="bar in bars.barsNearUser">
+        <md-item ng-repeat-start="bar in bars.bars">
           <md-item-content layout-padding layout="horizontal"
             layout-fill layout-align="start center"
             ui-sref="sip.main.bars.drinks({ bar: bar._id })"
             ink-ripple>
             <div flex class="md-tile-leftsdf">{{ ::bar.name }}</div>
             <div flex class="md-tile-contensdfsadt">
-              {{ ::bar.distance }} mi
+              xx mi
             </div>
             <div flex>
-              {{ bar.people }}+ people
+              xx + people
             </div>
           </md-item-content>
         </md-item>

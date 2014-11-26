@@ -26,7 +26,7 @@ angular.module('sip.auth', [])
       });
     };
   })
-  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, $state, auth, $log) {
+  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, $state, auth, $log, $mdSidenav) {
     var signin = function() {
       var defer = $q.defer();
       auth.signin({
@@ -39,11 +39,16 @@ angular.module('sip.auth', [])
           scope: 'openid offline_access'
         }
       }, function(profile, idToken, accessToken, state, refreshToken) {
-        localStorageService.set('profile', profile);
         localStorageService.set('token', idToken);
         localStorageService.set('refreshToken', refreshToken);
+        if (!profile.auth_key) {
+          profile.auth_key = profile.identities[0].access_token;
+          $log.log('auth_key', profile.auth_key);
+        }
 
-        $actions.updateMe(profile);
+        $log.log('CHANNEL', profile.private_channel);
+        localStorageService.set('profile', profile);
+        $actions.receiveUser(profile);
         defer.resolve(profile);
         // $state.go('sip.main.bars.list');
       }, function(error) {
@@ -55,7 +60,11 @@ angular.module('sip.auth', [])
 
     var signout = function() {
       auth.signout();
-      $actions.resetMe();
+      $actions.reset();
+      localStorageService.remove('profile');
+      localStorageService.remove('token');
+      localStorageService.remove('refreshToken');
+      // $mdSidenav('left').close();
       $state.go('sip.auth');
     };
     return {
