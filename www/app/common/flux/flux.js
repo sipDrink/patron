@@ -38,10 +38,10 @@ angular.module('sip.common.flux', [
 
           _.forEach(bar.drinks, function(drink) {
             drink.category = drink.category || {name: 'other'};
-            if (categories[drink.category.name]) {
-              categories[drink.category.name].push(drink);
+            if (categories[drink.category]) {
+              categories[drink.category].push(drink);
             } else {
-              categories[drink.category.name] = [drink];
+              categories[drink.category] = [drink];
             }
           });
 
