@@ -55,7 +55,6 @@ angular.module('sip.main.bars.list', [
           //   initial = false;
           // }
 
-
         }, function(err) {
           if (e) {
             $scope.$broadcast(e);

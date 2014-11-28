@@ -4,6 +4,22 @@
 .primary {
   background-color: #00bcd4 !important;
 }
+.auth-view {
+  background: url("../img/auth-bg.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  margin-top: 0px !important;
+}
+.auth-view md-content {
+  background-color: transparent !important;
+  color: #ccc;
+}
+.home-logo {
+  text-align: center;
+}
+.home-logo h1 {
+  font-size: 30vw;
+}
 div.scroll {
   height: 100%;
 }
