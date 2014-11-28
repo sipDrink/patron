@@ -10,7 +10,7 @@ angular.module('sip', [
   'pubnub.angular.service',
   'ngResource', 'angular-jwt',
   'LocalStorageModule', 'flux',
-  'auth0'
+  'auth0', 'ngGeodist'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider) {

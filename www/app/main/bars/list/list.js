@@ -18,18 +18,15 @@ angular.module('sip.main.bars.list', [
         // authenticate: true
       });
   })
-  .controller('BarListCtrl', function($scope, Bars, $cordovaGeolocation, $log, $actions, $store){
+  .controller('BarListCtrl', function($scope, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration){
     angular.extend(this, Bars);
 
-    $store.bindTo($scope, function() {
-      this.bars  = $store.getBars();
-    }.bind(this));
-
-    $scope.$on('$ionicView.enter', function(message) {
+    var getBars = function(e, v) {
       $cordovaGeolocation
         .getCurrentPosition()
         .then(function(position) {
           var coords = [position.coords.latitude, position.coords.longitude];
+          $actions.receiveUser({coords: coords});
           var opts = {
             query: {
               loc: {
@@ -40,10 +37,32 @@ angular.module('sip.main.bars.list', [
             }
           };
           $store.fetchBars(opts);
+          if (e) {
+            $scope.$broadcast(e);
+          }
+
+          if (v) {
+            $cordovaVibration.vibrate(150);
+          }
         }, function(err) {
+          if (e) {
+            $scope.$broadcast(e);
+          }
           $log.error(err);
-        });
+      });
+      };
+
+    $store.bindTo($scope, function() {
+      this.bars  = $store.getBars();
+    }.bind(this));
+
+    $scope.$on('$ionicView.loaded', function(message) {
+      getBars();
     });
+
+    this.refreshBars = function() {
+      getBars('scroll.refreshComplete', true);
+    };
   })
   .factory('Bars', function(){
 

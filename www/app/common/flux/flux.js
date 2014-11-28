@@ -13,7 +13,7 @@ angular.module('sip.common.flux', [
      'reset'
     ]);
   })
-  .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, BarMixin, UserMixin, StateMixin) {
+  .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, ngGeodist) {
 
     return flux.store({
       actions: [
@@ -33,7 +33,10 @@ angular.module('sip.common.flux', [
 
       receiveBars: function(bars) {
         // group drinks by their categories
+        var that = this;
+        $log.log(bars[0]);
         this.bars = _.map(bars, function(bar) {
+          bar.distance = ngGeodist.getDistance(that.user.coords, bar.loc, { format: true });
           var categories = {};
 
           _.forEach(bar.drinks, function(drink) {
@@ -90,14 +93,12 @@ angular.module('sip.common.flux', [
         }
       }
     });
-
   })
   .factory('$dispatcher', function(PubNub, $rootScope, $log, CONFIG, $actions, $rootScope){
     var _alias = CONFIG.alias;
 
     var _pnCb = function(message) {
       if (message.to === _alias) {
-        $log.log('for mobile!!');
         _.forEach(message.actions, function(args, action) {
           $actions[action](args);
         });
@@ -110,7 +111,6 @@ angular.module('sip.common.flux', [
           @auth - auth key created by server for each user
                   upon authentication.
         */
-        console.log('user', user);
         PubNub.init({
           publish_key: 'pub-c-e7567c4a-b42c-4a6d-af64-b9e6db79424d',
           subscribe_key: 'sub-c-e72ce3bc-6960-11e4-8e76-02ee2ddab7fe',
@@ -119,18 +119,6 @@ angular.module('sip.common.flux', [
         });
 
         pbFlux.sub(user.private_channel);
-
-        // PubNub.ngSubscribe({ channel: user.private_channel });
-        // $rootScope.$on(PubNub.ngMsgEv(user.private_channel), function(e, message) {
-        //   console.log('in history');
-        //   if (message.to === _alias) {
-        //     _.forEach(message.actions, function(args, action) {
-        //       $actions[action](args);
-        //     });
-        //   }
-        // });
-
-        // PubNub.ngHistory({ channel: user.private_channel, count: 1 });
         $log.log('kickstart');
       },
 
@@ -140,7 +128,7 @@ angular.module('sip.common.flux', [
           channel: channel,
           callback: _pnCb,
           error: function(e) {
-            console.error(e);
+            $log.error(e);
           }
         });
       },

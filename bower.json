@@ -26,6 +26,7 @@
     "ionic": "driftyco/ionic-bower#master",
     "angular-material": "~0.5.1",
     "auth0-angular": "3.*",
-    "a0-angular-storage": ">= 0.0.6"
+    "a0-angular-storage": ">= 0.0.6",
+    "ngGeodist": "~0.0.2"
   }
 }
