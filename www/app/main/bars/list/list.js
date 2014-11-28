@@ -18,8 +18,13 @@ angular.module('sip.main.bars.list', [
         // authenticate: true
       });
   })
-  .controller('BarListCtrl', function($scope, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration){
+  .controller('BarListCtrl', function($scope, $timeout, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration){
     angular.extend(this, Bars);
+    var initial;
+    var showLoader = function() {
+      $log.log('loading');
+      initial = true;
+    };
 
     var getBars = function(e, v) {
       $cordovaGeolocation
@@ -44,6 +49,13 @@ angular.module('sip.main.bars.list', [
           if (v) {
             $cordovaVibration.vibrate(150);
           }
+
+          // if (initial) {
+          //   $ionicLoading.hide();
+          //   initial = false;
+          // }
+
+
         }, function(err) {
           if (e) {
             $scope.$broadcast(e);
@@ -57,7 +69,10 @@ angular.module('sip.main.bars.list', [
     }.bind(this));
 
     $scope.$on('$ionicView.loaded', function(message) {
-      getBars();
+      showLoader();
+      $timeout(function() {
+        getBars();
+      }, 1200);
     });
 
     this.refreshBars = function() {

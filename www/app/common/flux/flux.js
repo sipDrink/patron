@@ -96,7 +96,7 @@ angular.module('sip.common.flux', [
   })
   .factory('$dispatcher', function(PubNub, $rootScope, $log, CONFIG, $actions, $rootScope){
     var _alias = CONFIG.alias;
-
+    var userGlobal = 'broadcast_user';
     var _pnCb = function(message) {
       if (message.to === _alias) {
         _.forEach(message.actions, function(args, action) {
@@ -119,6 +119,9 @@ angular.module('sip.common.flux', [
         });
 
         pbFlux.sub(user.private_channel);
+        // subscribe to global users channel
+        // will be used for future features
+        pbFlux.sub(userGlobal);
         $log.log('kickstart');
       },
 
