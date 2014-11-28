@@ -37,10 +37,6 @@ angular.module('sip.main.bars.list', [
                 $maxDistance: 60
               },
               completedSignUp: true
-            },
-
-            extra: {
-              populate: 'drinks'
             }
           };
           $store.fetchBars(opts);
