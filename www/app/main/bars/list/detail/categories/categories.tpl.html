@@ -1,34 +1,29 @@
 <ion-view view-title="{{ categories.bar.name }}">
   <ion-nav-buttons side="left">
-    <div class="btn-wrapper" ng-click="main.goBack($event)">
+    <div class="btn-wrapper" ink-ripple ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
         <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
     </div>
   </ion-nav-buttons>
 
-  <div layout="vertical" layout-align="start" layout-fill>
-    <md-toolbar class="primary bar-details" layout="vertical" layout-fill layout-align="start">
-      <h2 flex>Description</h2>
+  <ion-content on-swipe-right="main.nav('open')">
+    <md-content>
+      <md-list class="category-list">
+        <md-item ng-repeat-start="type in categories.bar.categories">
+          <md-item-content layout-padding layout="row"
+            layout-fill layout-align="center center"
+            ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
+            ink-ripple>
+            <div flex="80" class="cat-name">
+              <h2><strong>{{ type.name }}</strong></h2>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider ng-repeat-end></md-divider>
+      </md-list>
+    </md-content>
+  </ion-content>
 
-    </md-toolbar>
-    <ion-content on-swipe-right="main.nav('open')" class="cats">
-      <md-content>
-        <md-list class="cat-list">
-          <md-item ng-repeat-start="type in categories.bar.categories">
-            <md-item-content layout-padding layout="row"
-              layout-fill layout-align="center center"
-              ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
-              ink-ripple>
-              <div flex="80" class="cat-name">
-                <h2><strong>{{ type.name }}</strong></h2>
-              </div>
-            </md-item-content>
-          </md-item>
-          <md-divider ng-repeat-end></md-divider>
-        </md-list>
-      </md-content>
-    </ion-content>
-  </div>
 
 </ion-view>

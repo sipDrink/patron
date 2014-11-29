@@ -1,6 +1,6 @@
 <ion-view view-title="{{ detail.bar.name }}">
   <ion-nav-buttons side="left">
-    <div class="btn-wrapper" ng-click="main.goBack($event)">
+    <div class="btn-wrapper" ink-ripple ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
         <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
@@ -9,7 +9,12 @@
 
   <div layout="vertical" layout-align="start" layout-fill class="detail-container">
     <md-toolbar class="primary bar-details" layout="vertical" layout-fill layout-align="start">
-      <h2 flex>Description</h2>
+      <div flex>
+        <h2>Description / Image</h2>
+      </div>
+      <div flex>
+        <md-text-float class="md-whiteframe-z1 bar-search" label="search" ng-model="user.lastName"></md-text-float><!-- <i class="icon ion-ios7-search-strong"></i> -->
+      </div>
 
     </md-toolbar>
     <ion-content on-swipe-right="main.nav('open')" class="detail">
@@ -64,7 +69,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item" ui-sref="sip.main.bars.categories({bar: detail.bar._id} )">
               <div flex="30">
                 <i class="icon ion-beer"></i>
               </div>

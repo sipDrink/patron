@@ -18,11 +18,14 @@ angular.module('sip.main.bars.list', [
         // authenticate: true
       });
   })
-  .controller('BarListCtrl', function($scope, $timeout, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration){
+  .controller('BarListCtrl', function($scope, $timeout, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration, $ionicLoading){
     angular.extend(this, Bars);
     var initial;
     var showLoader = function() {
       $log.log('loading');
+      $ionicLoading.show({
+        template: 'add nice icon...'
+      });
       initial = true;
     };
 
@@ -50,17 +53,17 @@ angular.module('sip.main.bars.list', [
             // $cordovaVibration.vibrate(150);
           }
 
-          // if (initial) {
-          //   $ionicLoading.hide();
-          //   initial = false;
-          // }
+          if (initial) {
+            $ionicLoading.hide();
+            initial = false;
+          }
 
         }, function(err) {
           if (e) {
             $scope.$broadcast(e);
           }
           $log.error(err);
-      });
+        });
       };
 
     $store.bindTo($scope, function() {
@@ -69,9 +72,10 @@ angular.module('sip.main.bars.list', [
 
     $scope.$on('$ionicView.loaded', function(message) {
       showLoader();
-      $timeout(function() {
-        getBars();
-      }, 1200);
+      getBars();
+      // $timeout(function() {
+      //   getBars();
+      // }, 1200);
     });
 
     this.refreshBars = function() {

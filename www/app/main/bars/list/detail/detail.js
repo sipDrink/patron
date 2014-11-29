@@ -3,7 +3,9 @@
 *
 * catergories for each bar
 */
-angular.module('sip.main.bars.list.detail', [])
+angular.module('sip.main.bars.list.detail', [
+  'sip.main.bars.list.detail.categories'
+])
   .config(function($stateProvider) {
     $stateProvider
       .state('sip.main.bars.detail', {
@@ -18,5 +20,6 @@ angular.module('sip.main.bars.list.detail', [])
   .controller('DetailCtrl', function($stateParams, $scope, $store, $log) {
     $store.bindTo($scope, function() {
       this.bar = $store.getBar($stateParams.bar);
+      this.cart = $store.getCart($stateParams.bar);
     }.bind(this));
   });
