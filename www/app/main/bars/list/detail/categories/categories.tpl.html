@@ -24,7 +24,8 @@
       <!-- <md-text-float class="md-whiteframe-z1 bar-search cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float> -->
       <md-card layout="vertical" layout-align="center center"
       ng-repeat="type in categories.bar.categories | filter:search" class="cat-card"
-      ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })">
+      ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
+      ng-class="{'first-cat-card': $first}">
         <div flex>
           <h2><strong>{{ type.name }}</strong></h2>
         </div>
