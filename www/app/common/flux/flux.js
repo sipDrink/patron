@@ -13,7 +13,7 @@ angular.module('sip.common.flux', [
      'reset'
     ]);
   })
-  .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, ngGeodist) {
+  .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, ngGeodist, $filter) {
 
     return flux.store({
       actions: [
@@ -34,13 +34,13 @@ angular.module('sip.common.flux', [
       receiveBars: function(bars) {
         // group drinks by their categories
         var that = this;
-        $log.log(bars[0]);
         this.bars = _.map(bars, function(bar) {
           bar.distance = ngGeodist.getDistance(that.user.coords, bar.loc, { format: true });
           var categories = {};
 
           _.forEach(bar.drinks, function(drink) {
-            drink.category = drink.category || {name: 'other'};
+            drink.category = drink.category || 'other';
+            drink.category = $filter('uppercase')(drink.category);
             if (categories[drink.category]) {
               categories[drink.category].push(drink);
             } else {

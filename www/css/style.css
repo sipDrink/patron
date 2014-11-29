@@ -99,6 +99,33 @@ h1.title {
 .bars-list md-item md-item-content * {
   color: #ccc;
 }
+.detail-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.detail-list md-item md-item-content * {
+  color: #ccc;
+}
+.detail-list-item div i {
+  font-size: 2em;
+  margin: 0px;
+  color: #1de9b6;
+}
+.detail-list-item div strong {
+  font-size: 2em;
+}
+.detail-container {
+  height: 100%;
+}
+.scroll-content.ionic-scroll.detail {
+  margin-top: 0px !important;
+  position: inherit;
+  min-height: 70%;
+}
+md-toolbar.bar-details {
+  margin-top: 56px;
+  height: 30%;
+  min-height: 30%;
+}
 .drink-cat {
   background-color: #2a373e;
   height: 34vw;
@@ -111,16 +138,6 @@ h1.title {
 }
 .cat-name {
   text-align: center;
-}
-.scroll-content.ionic-scroll.cats {
-  margin-top: 0px !important;
-  position: inherit;
-  min-height: 70vh;
-}
-md-toolbar.bar-details {
-  margin-top: 56px;
-  height: 30vh;
-  max-hieght: 30vh;
 }
 #order-fab {
   background-color: #1de9b6 !important;

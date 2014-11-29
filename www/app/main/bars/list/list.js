@@ -4,7 +4,7 @@
 * Description
 */
 angular.module('sip.main.bars.list', [
-'sip.main.bars.list.categories'
+'sip.main.bars.list.detail'
 ])
   .config(function($stateProvider) {
     $stateProvider
@@ -47,7 +47,7 @@ angular.module('sip.main.bars.list', [
           }
 
           if (v) {
-            $cordovaVibration.vibrate(150);
+            // $cordovaVibration.vibrate(150);
           }
 
           // if (initial) {
