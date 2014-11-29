@@ -8,8 +8,9 @@
   </ion-nav-buttons>
 
   <div layout="vertical" layout-align="start" layout-fill>
-    <md-toolbar class="primary bar-details">
-      <h2>{{ categories.bar.name }}</h2>
+    <md-toolbar class="primary bar-details" layout="vertical" layout-fill layout-align="start">
+      <h2 flex>Description</h2>
+
     </md-toolbar>
     <ion-content on-swipe-right="main.nav('open')" class="cats">
       <md-content>
@@ -20,7 +21,7 @@
               ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
               ink-ripple>
               <div flex="80" class="cat-name">
-                <h2>{{ type.name }}</h2>
+                <h2><strong>{{ type.name }}</strong>></h2>
               </div>
             </md-item-content>
           </md-item>
