@@ -21,7 +21,8 @@ angular.module('sip', [
     .state('sip', {
       abstract: true,
       url: '',
-      templateUrl: 'app/app.tpl.html',
+
+      template: '<ion-nav-view></ion-nav-view>',
       controller: 'AppController as app'
     });
 
