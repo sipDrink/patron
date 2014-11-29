@@ -90,7 +90,7 @@ h1.title {
 .buttons.right-buttons {
   margin-top: 10px;
 }
-.scroll-content.ionic-scroll {
+.platform-android .scroll-content.ionic-scroll {
   margin-top: 10px;
 }
 .bars-list md-item md-item-content {
@@ -106,12 +106,12 @@ h1.title {
   color: #ccc;
 }
 .detail-list-item div i {
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 0px;
   color: #1de9b6;
 }
 .detail-list-item div strong {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .detail-container {
   height: 100%;
