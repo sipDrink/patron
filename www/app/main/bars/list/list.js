@@ -24,7 +24,8 @@ angular.module('sip.main.bars.list', [
     var showLoader = function() {
       $log.log('loading');
       $ionicLoading.show({
-        template: 'add nice icon...'
+        template: 'add nice icon...',
+        duration: 1200
       });
       initial = true;
     };

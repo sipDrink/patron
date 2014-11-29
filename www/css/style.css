@@ -124,8 +124,13 @@ h1.title {
   position: inherit;
   min-height: 70%;
 }
-md-toolbar.bar-details {
+.platform-android md-toolbar.bar-details {
   margin-top: 44px;
+  height: 30%;
+  min-height: 30%;
+}
+.platform-ios md-toolbar.bar-details {
+  margin-top: 62px;
   height: 30%;
   min-height: 30%;
 }
