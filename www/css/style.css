@@ -4,6 +4,12 @@
 .primary {
   background-color: #00bcd4 !important;
 }
+.primary-dark {
+  background-color: #00838f !important;
+}
+.primary-light {
+  background-color: #b2ebf2 !important;
+}
 .auth-view {
   background: url("../img/auth-bg.jpg") no-repeat center center;
   -webkit-background-size: cover;
@@ -105,6 +111,15 @@ h1.title {
 }
 .cat-name {
   text-align: center;
+}
+.scroll-content.ionic-scroll.cats {
+  margin-top: 0px !important;
+  position: inherit;
+}
+md-toolbar.bar-details {
+  margin-top: 56px;
+  height: 40vw;
+  max-hieght: 40vw;
 }
 #order-fab {
   background-color: #1de9b6 !important;
