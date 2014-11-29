@@ -151,8 +151,31 @@ h1.title {
 .category-list md-item md-item-content * {
   color: #ccc;
 }
+.platform-android .cat-search {
+  font-size: 1em;
+  margin-top: 44px;
+  z-index: 100;
+}
+.platform-ios .cat-search {
+  font-size: 1em;
+  margin-top: 62px;
+  z-index: 100;
+}
 .cat-name {
   text-align: center;
+  background-color: #2a373e;
+}
+.cat-card {
+  background-color: #2a373e;
+}
+.cat-card * {
+  color: #ccc;
+}
+.cat-card-list {
+  background-color: #1c262b !important;
+}
+.first-cat-card {
+  margin-top: 18%;
 }
 #order-fab {
   background-color: #1de9b6 !important;
