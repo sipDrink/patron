@@ -1,0 +1,81 @@
+<ion-view view-title="{{ detail.bar.name }}">
+  <ion-nav-buttons side="left">
+    <div class="btn-wrapper" ng-click="main.goBack($event)">
+      <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
+        <!-- {{ main.getPrevTitle() || 'back' }} -->
+      </i>
+    </div>
+  </ion-nav-buttons>
+
+  <div layout="vertical" layout-align="start" layout-fill class="detail-container">
+    <md-toolbar class="primary bar-details" layout="vertical" layout-fill layout-align="start">
+      <h2 flex>Description</h2>
+
+    </md-toolbar>
+    <ion-content on-swipe-right="main.nav('open')" class="detail">
+      <md-content>
+        <md-list class="detail-list">
+          <md-item>
+            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+              <div flex="30">
+                <i class="icon ion-heart"></i>
+              </div>
+              <div flex="70">
+                <strong>FAVORITES</strong>
+              </div>
+            </md-item-content>
+          </md-item>
+          <md-divider></md-divider>
+
+          <md-item>
+            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+              <div flex="30">
+                <i class="icon ion-clock"></i>
+              </div>
+              <div flex="70">
+                <strong>RECENT ORDERS</strong>
+              </div>
+            </md-item-content>
+          </md-item>
+          <md-divider></md-divider>
+
+          <md-item>
+            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+              <div flex="30">
+                <i class="icon ion-beaker"></i>
+              </div>
+              <div flex="70">
+                <strong>MAKE YOUR OWN</strong>
+              </div>
+            </md-item-content>
+          </md-item>
+          <md-divider></md-divider>
+
+          <md-item>
+            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+              <div flex="30">
+                <i class="icon ion-star"></i>
+              </div>
+              <div flex="70">
+                <strong>POPULAR</strong>
+              </div>
+            </md-item-content>
+          </md-item>
+          <md-divider></md-divider>
+
+          <md-item>
+            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+              <div flex="30">
+                <i class="icon ion-beer"></i>
+              </div>
+              <div flex="70">
+                <strong>DRINKS</strong>
+              </div>
+            </md-item-content>
+          </md-item>
+
+        </md-list>
+      </md-content>
+    </ion-content>
+  </div>
+</ion-view>

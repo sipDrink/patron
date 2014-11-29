@@ -1,0 +1,36 @@
+<ion-view view-title="Drinks">
+  <ion-nav-buttons side="left">
+    <div class="btn-wrapper" ng-click="main.goBack($event)">
+      <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
+        <!-- {{ main.getPrevTitle() || 'back' }} -->
+      </i>
+    </div>
+  </ion-nav-buttons>
+  <md-button id="order-fab"
+  class="md-fab md-primary md-fab-bottom-right right"
+  ng-click="drinks.toast()">
+    <i style="font-size: 2em;" class="icon ion-card">{{ drinks.total }}</i>
+  </md-button>
+
+  <ion-content on-swipe-right="main.nav('open')">
+    <md-content>
+      <md-list class="drinks-list">
+        <md-item ng-repeat-start="drink in drinks.drinks">
+          <md-item-content layout-padding layout="row"
+           layout-align="start center">
+            <div flex="33">
+              <h3>{{ drink.name }}</h3>
+            </div>
+            <div flex="33">
+              <!-- <md-slider md-theme="teal" flex min="0" max="10" step="1" ng-model="drink.total" aria-label="red" id="red-slider">
+              </md-slider> -->
+              <h3>{{ drink.price | currency }}</h3>
+            </div>
+          </md-item-content>
+        </md-item>
+        <md-divider ng-repeat-end></md-divider>
+      </md-list>
+    </md-content>
+  </ion-content>
+
+</ion-view>

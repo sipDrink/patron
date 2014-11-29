@@ -1,1 +1,159 @@
-/* Empty. Add your own CSS if you like */
+.accent {
+  background-color: #1de9b6 !important;
+}
+.primary {
+  background-color: #00bcd4 !important;
+}
+.primary-dark {
+  background-color: #00838f !important;
+}
+.primary-light {
+  background-color: #b2ebf2 !important;
+}
+.auth-view {
+  background: url("../img/auth-bg.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  margin-top: 0px !important;
+}
+.auth-view md-content {
+  background-color: transparent !important;
+  color: #ccc;
+}
+.home-logo {
+  text-align: center;
+}
+.home-logo h1 {
+  font-size: 30vw;
+}
+div.scroll {
+  height: 100%;
+}
+ion-nav-view,
+.pane,
+.view {
+  position: inherit;
+}
+md-backdrop {
+  z-index: 11;
+}
+md-sidenav {
+  background-color: #1c262b !important;
+  z-index: 12;
+  width: 80%;
+}
+md-sidenav md-toolbar {
+  background: url("../img/side-nav-bg.jpg") no-repeat center center;
+}
+md-sidenav md-content {
+  background-color: #1c262b !important;
+}
+md-sidenav md-content * {
+  color: #ccc;
+}
+md-divider {
+  border-top-color: rgba(84,84,84,0.6) !important;
+}
+.bar {
+  background-image: none;
+}
+h1.title {
+  color: #2a373e !important;
+}
+.nav-menu {
+  font-size: 1.3em;
+}
+.nav-menu .md-tile-left {
+  margin-left: 20px;
+}
+.nav-header {
+  padding: 10px 30px;
+}
+.nav-header .name h3 {
+  color: #fff;
+}
+.nav-header div img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+}
+.nav-ham {
+  font-size: 2em;
+  color: #2a373e;
+}
+.btn-wrapper {
+  width: 120px;
+}
+.bar-header.bar {
+  height: 56px;
+}
+.buttons.right-buttons {
+  margin-top: 10px;
+}
+.scroll-content.ionic-scroll {
+  margin-top: 10px;
+}
+.bars-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.bars-list md-item md-item-content * {
+  color: #ccc;
+}
+.detail-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.detail-list md-item md-item-content * {
+  color: #ccc;
+}
+.detail-list-item div i {
+  font-size: 2em;
+  margin: 0px;
+  color: #1de9b6;
+}
+.detail-list-item div strong {
+  font-size: 2em;
+}
+.detail-container {
+  height: 100%;
+}
+.scroll-content.ionic-scroll.detail {
+  margin-top: 0px !important;
+  position: inherit;
+  min-height: 70%;
+}
+md-toolbar.bar-details {
+  margin-top: 56px;
+  height: 30%;
+  min-height: 30%;
+}
+.drink-cat {
+  background-color: #2a373e;
+  height: 34vw;
+}
+.cat-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.cat-list md-item md-item-content * {
+  color: #ccc;
+}
+.cat-name {
+  text-align: center;
+}
+#order-fab {
+  background-color: #1de9b6 !important;
+  color: #2a373e;
+}
+.drinks-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.drinks-list md-item md-item-content * {
+  color: #ccc;
+}
+body * {
+  font-family: Roboto;
+}
+md-content,
+ion-content,
+body {
+  background-color: #1c262b !important;
+}
