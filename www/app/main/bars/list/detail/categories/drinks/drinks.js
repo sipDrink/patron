@@ -3,12 +3,12 @@
 *
 * drinks for each bar
 */
-angular.module('sip.main.bars.list.categories.drinks', [])
+angular.module('sip.main.bars.list.detail.categories.drinks', [])
   .config(function($stateProvider) {
     $stateProvider
       .state('sip.main.bars.drinks', {
         url: '/drinks/:bar/:cat',
-        templateUrl: 'app/main/bars/list/categories/drinks/drinks.tpl.html',
+        templateUrl: 'app/main/bars/list/detail/categories/drinks/drinks.tpl.html',
         controller: 'DrinksCtrl as drinks',
         data: {
           requiresLogin: true
