@@ -149,8 +149,7 @@ h1.title {
   background-color: #2a373e;
 }
 .category-list md-item md-item-content * {
-  color: textColo;
-r
+  color: #ccc;
 }
 .platform-android .cat-search {
   font-size: 1em;
