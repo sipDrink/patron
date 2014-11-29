@@ -4,6 +4,28 @@
 .primary {
   background-color: #00bcd4 !important;
 }
+.primary-dark {
+  background-color: #00838f !important;
+}
+.primary-light {
+  background-color: #b2ebf2 !important;
+}
+.auth-view {
+  background: url("../img/auth-bg.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  margin-top: 0px !important;
+}
+.auth-view md-content {
+  background-color: transparent !important;
+  color: #ccc;
+}
+.home-logo {
+  text-align: center;
+}
+.home-logo h1 {
+  font-size: 30vw;
+}
 div.scroll {
   height: 100%;
 }
@@ -76,6 +98,33 @@ h1.title {
 }
 .bars-list md-item md-item-content * {
   color: #ccc;
+}
+.detail-list md-item md-item-content {
+  background-color: #2a373e;
+}
+.detail-list md-item md-item-content * {
+  color: #ccc;
+}
+.detail-list-item div i {
+  font-size: 2em;
+  margin: 0px;
+  color: #1de9b6;
+}
+.detail-list-item div strong {
+  font-size: 2em;
+}
+.detail-container {
+  height: 100%;
+}
+.scroll-content.ionic-scroll.detail {
+  margin-top: 0px !important;
+  position: inherit;
+  min-height: 70%;
+}
+md-toolbar.bar-details {
+  margin-top: 56px;
+  height: 30%;
+  min-height: 30%;
 }
 .drink-cat {
   background-color: #2a373e;

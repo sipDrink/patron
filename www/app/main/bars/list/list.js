@@ -4,7 +4,7 @@
 * Description
 */
 angular.module('sip.main.bars.list', [
-'sip.main.bars.list.categories'
+'sip.main.bars.list.detail'
 ])
   .config(function($stateProvider) {
     $stateProvider
@@ -18,18 +18,20 @@ angular.module('sip.main.bars.list', [
         // authenticate: true
       });
   })
-  .controller('BarListCtrl', function($scope, Bars, $cordovaGeolocation, $log, $actions, $store){
+  .controller('BarListCtrl', function($scope, $timeout, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration){
     angular.extend(this, Bars);
+    var initial;
+    var showLoader = function() {
+      $log.log('loading');
+      initial = true;
+    };
 
-    $store.bindTo($scope, function() {
-      this.bars  = $store.getBars();
-    }.bind(this));
-
-    $scope.$on('$ionicView.enter', function(message) {
+    var getBars = function(e, v) {
       $cordovaGeolocation
         .getCurrentPosition()
         .then(function(position) {
           var coords = [position.coords.latitude, position.coords.longitude];
+          $actions.receiveUser({coords: coords});
           var opts = {
             query: {
               loc: {
@@ -40,10 +42,41 @@ angular.module('sip.main.bars.list', [
             }
           };
           $store.fetchBars(opts);
+          if (e) {
+            $scope.$broadcast(e);
+          }
+
+          if (v) {
+            // $cordovaVibration.vibrate(150);
+          }
+
+          // if (initial) {
+          //   $ionicLoading.hide();
+          //   initial = false;
+          // }
+
         }, function(err) {
+          if (e) {
+            $scope.$broadcast(e);
+          }
           $log.error(err);
-        });
+      });
+      };
+
+    $store.bindTo($scope, function() {
+      this.bars  = $store.getBars();
+    }.bind(this));
+
+    $scope.$on('$ionicView.loaded', function(message) {
+      showLoader();
+      $timeout(function() {
+        getBars();
+      }, 1200);
     });
+
+    this.refreshBars = function() {
+      getBars('scroll.refreshComplete', true);
+    };
   })
   .factory('Bars', function(){
 
