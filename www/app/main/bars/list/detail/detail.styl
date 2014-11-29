@@ -5,11 +5,11 @@
 
 .detail-list-item
   div i
-    font-size 2em
+    font-size 1.5em
     margin 0px
     color accent
   div strong
-    font-size 2em
+    font-size 1.5em
 .detail-container
   height 100%
 
@@ -18,7 +18,22 @@
   position inherit
   min-height 70%
 
-md-toolbar.bar-details
-  margin-top 56px;
+.platform-android md-toolbar.bar-details
+  margin-top 44px;
   height 30%
   min-height 30%
+
+.platform-ios md-toolbar.bar-details
+  margin-top 62px;
+  height 30%
+  min-height 30%
+
+.bar-search
+  background-color primaryLight
+  padding-left 5%
+  label
+  input
+    color gray !important
+  input
+    font-size 1.2em
+

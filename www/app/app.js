@@ -21,7 +21,8 @@ angular.module('sip', [
     .state('sip', {
       abstract: true,
       url: '',
-      templateUrl: 'app/app.tpl.html',
+
+      template: '<ion-nav-view></ion-nav-view>',
       controller: 'AppController as app'
     });
 
@@ -61,11 +62,15 @@ angular.module('sip', [
 
   if (!auth.isAuthenticated) {
     var token = localStorageService.get('token');
+        console.log('here')
     if (token) {
+      console.log('token');
       if (!jwtHelper.isTokenExpired(token)) {
+
         auth.authenticate(localStorageService.get('profile'), token);
       } else {
         // Either show Login page or use the refresh token to get a new idToken
+        console.log('expired?')
 
         $state.go('sip.auth');
       }

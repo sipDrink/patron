@@ -1,34 +1,40 @@
 <ion-view view-title="{{ categories.bar.name }}">
   <ion-nav-buttons side="left">
-    <div class="btn-wrapper" ng-click="main.goBack($event)">
+    <div class="btn-wrapper" ink-ripple ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
         <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
     </div>
   </ion-nav-buttons>
+  <md-text-float class="md-whiteframe-z1 bar-search cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float>
+  <ion-content on-swipe-right="main.nav('open')">
+    <md-content>
+      <!-- <md-list class="category-list">
+        <md-item ng-repeat="type in categories.bar.categories">
+          <md-item-content
+            ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
+            ink-ripple class="cat-card-list">
+            <md-card layout="column"
+            layout-fill layout-align="space-around center" class="cat-name">
+              <h2 flex><strong>{{ type.name }}</strong></h2>
+            </md-card>
+          </md-item-content>
+        </md-item>
+      </md-list> -->
+      <!-- <md-text-float class="md-whiteframe-z1 bar-search cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float> -->
+      <md-card layout="vertical" layout-align="center center"
+      ng-repeat="type in categories.bar.categories | filter:search" class="cat-card"
+      ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
+      ng-class="{'first-cat-card': $first}">
+        <div flex>
+          <h2><strong>{{ type.name }}</strong></h2>
+        </div>
+        <div flex>
+          <h3>DESCRIPTION</h3>
+        </div>
+      </md-card>
+    </md-content>
+  </ion-content>
 
-  <div layout="vertical" layout-align="start" layout-fill>
-    <md-toolbar class="primary bar-details" layout="vertical" layout-fill layout-align="start">
-      <h2 flex>Description</h2>
-
-    </md-toolbar>
-    <ion-content on-swipe-right="main.nav('open')" class="cats">
-      <md-content>
-        <md-list class="cat-list">
-          <md-item ng-repeat-start="type in categories.bar.categories">
-            <md-item-content layout-padding layout="row"
-              layout-fill layout-align="center center"
-              ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
-              ink-ripple>
-              <div flex="80" class="cat-name">
-                <h2><strong>{{ type.name }}</strong></h2>
-              </div>
-            </md-item-content>
-          </md-item>
-          <md-divider ng-repeat-end></md-divider>
-        </md-list>
-      </md-content>
-    </ion-content>
-  </div>
 
 </ion-view>

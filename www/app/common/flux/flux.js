@@ -10,7 +10,8 @@ angular.module('sip.common.flux', [
     return flux.actions([
      'receiveUser',
      'receiveBars',
-     'reset'
+     'reset',
+     'updateCart'
     ]);
   })
   .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, ngGeodist, $filter) {
@@ -19,11 +20,13 @@ angular.module('sip.common.flux', [
       actions: [
         $actions.receiveUser,
         $actions.receiveBars,
-        $actions.reset
+        $actions.reset,
+        $actions.updateCart
       ],
 
       user: localStorageService.get('profile') || {},
       bars: [],
+      carts: {},
 
       receiveUser: function(nUser) {
         _.extend(this.user, nUser);
@@ -60,10 +63,23 @@ angular.module('sip.common.flux', [
       reset: function() {
         this.bars = [];
         this.user = {};
+        this.carts = {};
         this.emitChange();
       },
 
+      updateCart: function(bardId, item) {
+        if (!this.carts[bardId]) {
+          this.carts[bardId] = [item];
+        } else {
+          this.carts[barId].push(item);
+        }
+        this.emitChange();
+      },
       exports: {
+        getCart: function(barId) {
+          return this.carts[barId];
+        },
+
         getUser: function() {
           return this.user;
         },
