@@ -15,7 +15,6 @@ angular.module('sip.main.bars.list', [
         data: {
           requiresLogin: true
         }
-        // authenticate: true
       });
   })
   .controller('BarListCtrl', function($scope, $timeout, Bars, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration, $ionicLoading){
@@ -25,7 +24,7 @@ angular.module('sip.main.bars.list', [
       $log.log('loading');
       $ionicLoading.show({
         template: 'add nice icon...',
-        duration: 1200
+        duration: 3000
       });
       initial = true;
     };
