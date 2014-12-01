@@ -1,28 +1,29 @@
 <ion-view view-title="{{ categories.bar.name }}">
   <ion-nav-buttons side="left">
-    <div class="btn-wrapper" ink-ripple ng-click="main.goBack($event)">
+    <div class="btn-wrapper" md-ink-ripple="#ffffff" ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
         <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
     </div>
   </ion-nav-buttons>
-  <md-text-float class="md-whiteframe-z1 bar-search cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float>
+  <md-button id="order-fab"
+  class="md-fab md-primary md-fab-bottom-right right"
+  ng-click="">
+    <i style="font-size: 1.2em;" class="icon icon-material-cart">{{ categories.cart.length || ''}}</i>
+  </md-button>
+  <ion-header-bar class="bar-subheader accent-dark">
+    <div layout="row" layout-align="start center">
+      <div flex="10">
+        <i class="icon icon-material-search" style="color: white;"></i>
+      </div>
+      <div flex="90">
+        <md-text-float class="cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float>
+      </div>
+    </div>
+  </ion-header-bar>
   <ion-content on-swipe-right="main.nav('open')">
     <md-content>
-      <!-- <md-list class="category-list">
-        <md-item ng-repeat="type in categories.bar.categories">
-          <md-item-content
-            ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
-            ink-ripple class="cat-card-list">
-            <md-card layout="column"
-            layout-fill layout-align="space-around center" class="cat-name">
-              <h2 flex><strong>{{ type.name }}</strong></h2>
-            </md-card>
-          </md-item-content>
-        </md-item>
-      </md-list> -->
-      <!-- <md-text-float class="md-whiteframe-z1 bar-search cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float> -->
-      <md-card layout="vertical" layout-align="center center"
+      <md-card layout="column" layout-align="center center"
       ng-repeat="type in categories.bar.categories | filter:search" class="cat-card"
       ui-sref="sip.main.bars.drinks({ bar: categories.bar._id, cat: type.name })"
       ng-class="{'first-cat-card': $first}">

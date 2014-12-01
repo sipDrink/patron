@@ -1,15 +1,22 @@
 base = #000000
-dark = #1C262B // soft black
-light = #2A373E // soft lighter black
-primary = #00BCD4 // cyan-500
-primaryLight = #B2EBF2 // cyan-100
-primaryDark = #00838F
+dark = #263238 // soft black
+light = #37474F // soft lighter black
+primary = #F44336 // deep-orange-500
+primaryLight = #E57373 // cyan-100
+primaryDark = #B71C1C
 accent = #1DE9B6 // teal-A400
-
-dividerColor = lighten(base, 33%)
+accentDark = #00BFA5
+dividerColor = lighten(base, 40%)
 hintColor = lighten(base, 74%)
 iconColor = lighten(base, 46%)
 textColor = lighten(base, 80%)
+
+redVal = blue(#263238)
+dark = red(#263238, redVal)
+
+val = blue(#37474F)
+light = red(#37474F, val)
+
 
 
 .accent
@@ -20,3 +27,5 @@ textColor = lighten(base, 80%)
   background-color primaryDark !important
 .primary-light
   background-color primaryLight !important
+.accent-dark
+  background-color accentDark !important
