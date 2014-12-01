@@ -29,7 +29,7 @@ angular.module('sip.main.bars.list.detail.categories.drinks', [])
       $mdToast.show(
         $mdToast.simple()
         .content('1 ' + drink.name + ' added to cart')
-        .position('top')
+        .position('bottom')
         .action('undo')
         .hideDelay(1800)
       ).then(function() {

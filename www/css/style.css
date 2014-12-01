@@ -101,6 +101,7 @@ h1.title {
 }
 .bars-list md-item md-item-content {
   background-color: #4f474f;
+  min-height: 55px;
 }
 .bars-list md-item md-item-content * {
   color: #ccc;
@@ -200,12 +201,20 @@ ion-header-bar.bar-subheader.accent-dark {
 .drinks-list md-item md-item-content * {
   color: #ccc;
 }
-.drink-action-icon {
+.drink-action {
   text-align: center;
 }
-.drink-action-icon * {
-  color: #00bfa5 !important;
+.drink-action * {
   font-size: 1.2em;
+}
+.drink-action.add * {
+  color: #00bfa5 !important;
+}
+.drink-action.fave * {
+  color: #f44336 !important;
+}
+.drink-action.notes * {
+  color: #ccc !important;
 }
 .last-drink {
   margin-bottom: 20%;
