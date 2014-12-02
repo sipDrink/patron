@@ -23,5 +23,6 @@ angular.module('sip.main.bars.list.detail.categories',
     $log.log($stateParams)
     $store.bindTo($scope, function() {
       this.bar = $store.getBar($stateParams.bar);
+      this.cart = $store.getCart($stateParams.bar);
     }.bind(this));
   });

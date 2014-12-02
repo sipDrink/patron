@@ -15,8 +15,25 @@ angular.module('sip.main.bars.list.detail.categories.drinks', [])
         }
       });
   })
-  .controller('DrinksCtrl', function($stateParams, $scope, $store, $log) {
+  .controller('DrinksCtrl', function($stateParams, $scope, $store, $log, $actions, $mdToast) {
+    $store.bindTo($scope, function() {
+      this.cart = $store.getCart($stateParams.bar);
+    }.bind(this));
+
     var bar = $store.getBar($stateParams.bar);
     this.drinks = _.find(bar.categories, { name: $stateParams.cat }).drinks;
     $log.log('drinks', this.drinks);
+
+    this.addToCart = function(drink) {
+      $actions.updateCart($stateParams.bar, drink);
+      $mdToast.show(
+        $mdToast.simple()
+        .content('1 ' + drink.name + ' added to cart')
+        .position('bottom')
+        .action('undo')
+        .hideDelay(1800)
+      ).then(function() {
+        $actions.updateCart($stateParams.bar, null, drink.name);
+      });
+    };
   });

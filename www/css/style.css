@@ -2,13 +2,16 @@
   background-color: #1de9b6 !important;
 }
 .primary {
-  background-color: #00bcd4 !important;
+  background-color: #f44336 !important;
 }
 .primary-dark {
-  background-color: #00838f !important;
+  background-color: #b71c1c !important;
 }
 .primary-light {
-  background-color: #b2ebf2 !important;
+  background-color: #e57373 !important;
+}
+.accent-dark {
+  background-color: #00bfa5 !important;
 }
 .auth-view {
   background: url("../img/auth-bg.jpg") no-repeat center center;
@@ -38,7 +41,7 @@ md-backdrop {
   z-index: 11;
 }
 md-sidenav {
-  background-color: #1c262b !important;
+  background-color: #383238 !important;
   z-index: 12;
   width: 80%;
 }
@@ -46,19 +49,19 @@ md-sidenav md-toolbar {
   background: url("../img/side-nav-bg.jpg") no-repeat center center;
 }
 md-sidenav md-content {
-  background-color: #1c262b !important;
+  background-color: #383238 !important;
 }
 md-sidenav md-content * {
   color: #ccc;
 }
 md-divider {
-  border-top-color: rgba(84,84,84,0.6) !important;
+  border-top-color: rgba(102,102,102,0.6) !important;
 }
 .bar {
   background-image: none;
 }
 h1.title {
-  color: #2a373e !important;
+  color: #4f474f !important;
 }
 .nav-menu {
   font-size: 1.3em;
@@ -84,7 +87,7 @@ h1.title {
 }
 .nav-ham {
   font-size: 2em;
-  color: #2a373e;
+  color: #4f474f;
 }
 .btn-wrapper {
   width: 120px;
@@ -97,16 +100,20 @@ h1.title {
   margin-top: 10px;
 }
 .bars-list md-item md-item-content {
-  background-color: #2a373e;
+  background-color: #4f474f;
+  min-height: 55px;
 }
 .bars-list md-item md-item-content * {
   color: #ccc;
 }
 .detail-list md-item md-item-content {
-  background-color: #2a373e;
+  background-color: #4f474f;
 }
 .detail-list md-item md-item-content * {
   color: #ccc;
+}
+.detail-list-item {
+  min-height: 50px;
 }
 .detail-list-item div i {
   font-size: 1.5em;
@@ -130,39 +137,87 @@ h1.title {
   min-height: 30%;
 }
 .platform-ios md-toolbar.bar-details {
-  margin-top: 62px;
+  margin-top: 44px;
   height: 30%;
   min-height: 30%;
 }
 .bar-search {
-  background-color: #b2ebf2;
+  background-color: #00bfa5;
   padding-left: 5%;
 }
 .bar-search label,
 .bar-search input {
-  color: #808080 !important;
+  color: #fff !important;
 }
 .bar-search input {
   font-size: 1.2em;
 }
 .category-list md-item md-item-content {
-  background-color: #2a373e;
+  background-color: #4f474f;
 }
 .category-list md-item md-item-content * {
   color: #ccc;
 }
+.platform-android .cat-search {
+  font-size: 1em;
+  margin: 0px;
+}
+.platform-android .cat-search * {
+  color: #fff !important;
+}
+.platform-ios .cat-search {
+  font-size: 1em;
+  margin: 0px;
+}
+.platform-ios .cat-search * {
+  color: #fff !important;
+}
 .cat-name {
   text-align: center;
+  background-color: #4f474f;
+}
+.cat-card {
+  background-color: #4f474f;
+}
+.cat-card * {
+  color: #ccc;
+}
+.cat-card-list {
+  background-color: #383238 !important;
+}
+.first-cat-card {
+  margin-top: 6%;
+}
+ion-header-bar.bar-subheader.accent-dark {
+  height: 55px;
 }
 #order-fab {
   background-color: #1de9b6 !important;
-  color: #2a373e;
+  color: #4f474f;
 }
 .drinks-list md-item md-item-content {
-  background-color: #2a373e;
+  background-color: #4f474f;
 }
 .drinks-list md-item md-item-content * {
   color: #ccc;
+}
+.drink-action {
+  text-align: center;
+}
+.drink-action * {
+  font-size: 1.2em;
+}
+.drink-action.add * {
+  color: #00bfa5 !important;
+}
+.drink-action.fave * {
+  color: #f44336 !important;
+}
+.drink-action.notes * {
+  color: #ccc !important;
+}
+.last-drink {
+  margin-bottom: 20%;
 }
 body * {
   font-family: Roboto;
@@ -170,5 +225,5 @@ body * {
 md-content,
 ion-content,
 body {
-  background-color: #1c262b !important;
+  background-color: #383238 !important;
 }

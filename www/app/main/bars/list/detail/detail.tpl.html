@@ -1,27 +1,27 @@
 <ion-view view-title="{{ detail.bar.name }}">
   <ion-nav-buttons side="left">
-    <div class="btn-wrapper" ink-ripple ng-click="main.goBack($event)">
+    <div class="btn-wrapper" md-ink-ripple="#ffffff" ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
         <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
     </div>
   </ion-nav-buttons>
-
-  <div layout="vertical" layout-align="start" layout-fill class="detail-container">
-    <md-toolbar class="primary bar-details" layout="vertical" layout-fill layout-align="start">
+  <md-button id="order-fab"
+  class="md-fab md-primary md-fab-bottom-right right"
+  ng-click="">
+    <i style="font-size: 1.2em;" class="icon icon-material-cart">{{ detail.cart.length || '' }}</i>
+  </md-button>
+  <div layout="column" layout-align="start" layout-fill class="detail-container">
+    <md-toolbar class="primary-dark bar-details" layout="vertical" layout-align="center center">
       <div flex>
-        <h2>Description / Image</h2>
+        {{ detail.bar.name }}
       </div>
-      <div flex>
-        <md-text-float class="md-whiteframe-z1 bar-search" label="search" ng-model="user.lastName"></md-text-float><!-- <i class="icon ion-ios7-search-strong"></i> -->
-      </div>
-
     </md-toolbar>
-    <ion-content on-swipe-right="main.nav('open')" class="detail">
+    <ion-content on-swipe-right="main.nav('open')" class="detail" flex>
       <md-content>
         <md-list class="detail-list">
           <md-item>
-            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
               <div flex="10">
                 <i class="icon ion-heart"></i>
               </div>
@@ -33,7 +33,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
               <div flex="10">
                 <i class="icon ion-clock"></i>
               </div>
@@ -45,7 +45,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
               <div flex="10">
                 <i class="icon ion-beaker"></i>
               </div>
@@ -57,7 +57,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item">
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
               <div flex="10">
                 <i class="icon ion-star"></i>
               </div>
@@ -69,7 +69,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content ink-ripple layout-padding layout="row" layout-align="center center" class="detail-list-item" ui-sref="sip.main.bars.categories({bar: detail.bar._id} )">
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" ui-sref="sip.main.bars.categories({bar: detail.bar._id} )" layout-fill>
               <div flex="10">
                 <i class="icon ion-beer"></i>
               </div>
