@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2014 by original authors @ fontello.com</metadata>
+<defs>
+<font id="material-font" horiz-adv-x="1000" >
+<font-face font-family="material-font" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="material-cart" unicode="&#x30;" d="m292 100c-46 0-83-37-83-83s37-84 83-84 83 38 83 84-37 83-83 83z m-250 667v-84h83l150-316-56-102c-7-12-11-25-11-40 0-46 38-83 84-83h500v83h-483c-6 0-10 5-10 10l1 5 38 68h310c31 0 59 17 73 43l149 271c3 6 5 13 5 20 0 23-19 41-42 41h-616l-39 84h-136z m666-667c-45 0-83-37-83-83s38-84 83-84 84 38 84 84-38 83-84 83z" horiz-adv-x="1000" />
+<glyph glyph-name="material-search" unicode="&#xe800;" d="m646 267h-33l-12 11c41 47 66 109 66 176 0 150-122 271-271 271s-271-121-271-271 121-271 271-271c67 0 129 25 176 66l11-12v-33l209-208 62 62-208 209z m-250 0c-104 0-188 83-188 187s84 188 188 188 187-84 187-188-83-187-187-187z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>

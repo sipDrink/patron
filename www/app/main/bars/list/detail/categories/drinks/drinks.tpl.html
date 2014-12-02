@@ -8,8 +8,8 @@
   </ion-nav-buttons>
   <md-button id="order-fab"
   class="md-fab md-primary md-fab-bottom-right right"
-  ng-click="drinks.toast()">
-    <i style="font-size: 2em;" class="icon ion-card">{{ drinks.total }}</i>
+  ng-click="">
+    <i style="font-size: 1.2em;" class="icon icon-material-cart">{{ drinks.cart.length || '' }}</i>
   </md-button>
 
   <ion-content on-swipe-right="main.nav('open')">
@@ -17,18 +17,23 @@
       <md-list class="drinks-list">
         <md-item ng-repeat-start="drink in drinks.drinks">
           <md-item-content layout-padding layout="row"
-           layout-align="start center">
+           layout-align="center center" layout-fill>
             <div flex="33">
               <h3>{{ drink.name }}</h3>
-            </div>
-            <div flex="33">
-              <!-- <md-slider md-theme="teal" flex min="0" max="10" step="1" ng-model="drink.total" aria-label="red" id="red-slider">
-              </md-slider> -->
               <h3>{{ drink.price | currency }}</h3>
+            </div>
+            <div flex="15" ng-click="drinks.addToCart(drink)" class="drink-action add" >
+              <i class="icon ion-android-add"></i>
+            </div>
+            <div flex="15" class="drink-action fave">
+              <i class="icon ion-heart"></i>
+            </div>
+            <div flex="15" class="drink-action notes">
+              <i class="icon ion-android-settings"></i>
             </div>
           </md-item-content>
         </md-item>
-        <md-divider ng-repeat-end></md-divider>
+        <md-divider  ng-class="{'last-drink': $last}" ng-repeat-end></md-divider>
       </md-list>
     </md-content>
   </ion-content>

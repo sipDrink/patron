@@ -1,8 +1,8 @@
-<ion-nav-bar class="md-whiteframe-z2 primary-dark" padding="true" align-title="center">
+<ion-nav-bar class="md-whiteframe-z2 primary" padding="true" align-title="center">
 </ion-nav-bar>
-<md-sidenav component-id="left" class="md-sidenav-left md-whiteframe-z2" padding on-swipe-left="main.nav('close')">
+<md-sidenav md-component-id="left" class="md-sidenav-left md-whiteframe-z2" padding on-swipe-left="main.nav('close')">
   <md-toolbar class="">
-    <div layout="horizontal" layout-align="start end" layout-fill class="nav-header">
+    <div layout="row" layout-align="start end" layout-fill class="nav-header">
       <div flex><img ng-src="{{ app.user.picture }}" alt=""></div>
       <div flex class="name"><h3>{{ app.user.name }}</h3></div>
     </div>

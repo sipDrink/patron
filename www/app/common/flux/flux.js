@@ -27,6 +27,7 @@ angular.module('sip.common.flux', [
       user: localStorageService.get('profile') || {},
       bars: [],
       carts: {},
+      orders: {},
 
       receiveUser: function(nUser) {
         _.extend(this.user, nUser);
@@ -67,9 +68,13 @@ angular.module('sip.common.flux', [
         this.emitChange();
       },
 
-      updateCart: function(bardId, item) {
-        if (!this.carts[bardId]) {
-          this.carts[bardId] = [item];
+      updateCart: function(barId, item, drinkname) {
+        if (drinkname) {
+          // remove form cart
+          var cart = this.carts[barId];
+          cart.splice(_.findIndex(cart, { name: drinkname }), 1);
+        } else if (!this.carts[barId]) {
+          this.carts[barId] = [item];
         } else {
           this.carts[barId].push(item);
         }
