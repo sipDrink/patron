@@ -39,7 +39,7 @@ angular.module('sip.main.bars.list', [
             query: {
               loc: {
                 $near: coords,
-                $maxDistance: 60
+                $maxDistance: 6000
               },
               completedSignUp: true
             }
