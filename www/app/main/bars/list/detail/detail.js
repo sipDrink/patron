@@ -4,7 +4,8 @@
 * catergories for each bar
 */
 angular.module('sip.main.bars.list.detail', [
-  'sip.main.bars.list.detail.categories'
+  'sip.main.bars.list.detail.drinks',
+  'sip.main.bars.list.detail.create'
 ])
   .config(function($stateProvider) {
     $stateProvider

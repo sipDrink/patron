@@ -26,7 +26,7 @@ angular.module('sip.auth', [])
       });
     };
   })
-  .factory('Auth', function(localStorageService, jwtHelper, $actions, $q, $state, auth, $log, $mdSidenav) {
+  .factory('Auth', function(localStorageService, jwtHelper, $ionicHistory, $actions, $q, $state, auth, $log, $mdSidenav) {
     var signin = function() {
       var defer = $q.defer();
       auth.signin({
@@ -65,6 +65,7 @@ angular.module('sip.auth', [])
       localStorageService.remove('token');
       localStorageService.remove('refreshToken');
       // $mdSidenav('left').close();
+      $ionicHistory.clearCache();
       $state.go('sip.auth');
     };
     return {

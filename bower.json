@@ -29,6 +29,7 @@
     "auth0-angular": "3.*",
     "a0-angular-storage": ">= 0.0.6",
     "ngGeodist": "~0.0.2",
-    "ng-loading": "~0.0.5"
+    "ng-loading": "~0.0.5",
+    "ngFx": "~1.0.5"
   }
 }

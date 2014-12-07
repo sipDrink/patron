@@ -48,10 +48,8 @@ md-sidenav {
 md-sidenav md-toolbar {
   background: url("../img/side-nav-bg.jpg") no-repeat center center;
 }
-md-sidenav md-content {
-  background-color: #383238 !important;
-}
 md-sidenav md-content * {
+  background-color: #4f474f;
   color: #ccc;
 }
 md-divider {
@@ -105,6 +103,12 @@ h1.title {
 }
 .bars-list md-item md-item-content * {
   color: #ccc;
+}
+md-progress-circular.md-teal-theme .md-inset {
+  background-color: #f44336;
+}
+.loading-container .loading {
+  background-color: transparent;
 }
 .detail-list md-item md-item-content {
   background-color: #4f474f;

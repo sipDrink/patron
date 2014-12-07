@@ -1,0 +1,38 @@
+<ion-view view-title="Brands">
+  <ion-nav-buttons side="left">
+    <div class="btn-wrapper" md-ink-ripple="#ffffff" ng-click="main.goBack($event)">
+      <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
+        <!-- {{ main.getPrevTitle() || 'back' }} -->
+      </i>
+    </div>
+  </ion-nav-buttons>
+  <md-button id="order-fab"
+  class="md-fab md-primary md-fab-bottom-right right"
+  ng-click="">
+    <i style="font-size: 1.2em;" class="icon icon-material-cart">{{ brand.cart.length || ''}}</i>
+  </md-button>
+  <ion-header-bar class="bar-subheader accent-dark">
+    <div layout="row" layout-align="start center">
+      <div flex="10">
+        <i class="icon icon-material-search" style="color: white;"></i>
+      </div>
+      <div flex="90">
+        <md-text-float class="cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float>
+      </div>
+    </div>
+  </ion-header-bar>
+  <ion-content on-swipe-right="main.nav('open')">
+    <md-content>
+      <md-card layout="column" layout-align="center center"
+      ng-repeat="brand in brand.label.brands | filter:search" class="cat-card"
+      ng-class="{'first-cat-card': $first}">
+        <div flex>
+          <h2><strong>{{ brand.name }}</strong></h2>
+        </div>
+        <div flex>
+          <h3>DESCRIPTION</h3>
+        </div>
+      </md-card>
+    </md-content>
+  </ion-content>
+</ion-view>

@@ -1,28 +1,29 @@
 /**
-* sip.main.bars.list.drinks Module
+* sip.main.bars.list.catergories Module
 *
-* drinks for each bar
+* catergories for each bar
 */
-angular.module('sip.main.bars.list.detail.categories.drinks', [])
+angular.module('sip.main.bars.list.detail.drinks',
+  [
+
+  ]
+)
   .config(function($stateProvider) {
     $stateProvider
       .state('sip.main.bars.drinks', {
-        url: '/drinks/:bar/:cat',
-        templateUrl: 'app/main/bars/list/detail/categories/drinks/drinks.tpl.html',
+        url: '/drinks/:bar',
+        templateUrl: 'app/main/bars/list/detail/drinks/drinks.tpl.html',
         controller: 'DrinksCtrl as drinks',
         data: {
           requiresLogin: true
         }
       });
   })
-  .controller('DrinksCtrl', function($stateParams, $scope, $store, $log, $actions, $mdToast) {
+  .controller('DrinksCtrl', function($stateParams, $scope, $store, $log, $mdToast, $actions) {
     $store.bindTo($scope, function() {
       this.cart = $store.getCart($stateParams.bar);
     }.bind(this));
-
-    var bar = $store.getBar($stateParams.bar);
-    this.drinks = _.find(bar.categories, { name: $stateParams.cat }).drinks;
-    $log.log('drinks', this.drinks);
+    this.drinks = $store.getBar($stateParams.bar).drinks;
 
     this.addToCart = function(drink) {
       $actions.updateCart($stateParams.bar, drink);
