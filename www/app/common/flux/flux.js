@@ -47,6 +47,7 @@ angular.module('sip.common.flux', [
         this.bars = [];
         this.user = {};
         this.carts = {};
+        this.orders = {};
         this.emitChange();
       },
 

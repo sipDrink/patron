@@ -23,4 +23,7 @@ angular.module('sip.main.bars.list.detail.create.brands',
     var types = $store.getBar($stateParams.bar).drinkTypes;
     this.label = _.find(types, { _id: $stateParams.type });
     $log.log(this.label);
+    $store.bindTo($scope, function() {
+      this.cart = $store.getCart($stateParams.bar);
+    }.bind(this));
   });

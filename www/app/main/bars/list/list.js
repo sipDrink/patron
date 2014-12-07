@@ -22,8 +22,9 @@ angular.module('sip.main.bars.list', [
     var showLoader = function() {
       $log.log('loading');
       $ionicLoading.show({
-        template: 'add nice icon...',
-        duration: 3000
+
+        template:  '<md-progress-circular md-theme="teal" md-mode="indeterminate"></md-progress-circular>',
+        duration: 5000
       });
       initial = true;
     };
