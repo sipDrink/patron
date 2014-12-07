@@ -15,22 +15,32 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      // LIBS
       'lib/collide/collide.js',
       'lib/hammerjs/hammer.js',
-      'io.js',
-      'lib/angular/angular.js',
-      'lib/angular-animate/angular-animate.js',
-      'lib/angular-aria/angular-aria.js',
-      'lib/angular-sanitize/angular-sanitize.js',
-      'lib/angular-mocks/angular-mocks.js',
-      'nightly.js',
-      'lib/auth0-angular/build/auth0-angular.js',
-      'lib/a0-angular-storage/dist/angular-storage.js',
-      'lib/angular-jwt/dist/angular-jwt.js',
+      'lib/pubnub/web/pubnub.js',
       'lib/auth0-lock/build/auth0-lock.js',
-      'lib/angular-material/angular-material.js',
-      'lib/angular-ui-router/release/angular-ui-router.js',
 
+      // all ng & ionic
+      'lib/ionic/js/ionic.bundle.js',
+
+      // 3rd party ng modules
+      'lib/angular-aria/angular-aria.js',
+      'lib/angular-material/angular-material.js',
+      'lib/angular-mocks/angular-mocks.js',
+      'lib/auth0-angular/build/auth0-angular.js',
+      'lib/angular-local-storage/dist/angular-local-storage.js',
+      'lib/angular-jwt/dist/angular-jwt.js',
+      'lib/angular-material/angular-material.js',
+      'lib/pubnub-angular/lib/pubnub-angular.js',
+      'lib/ngCordova/dist/ng-cordova.js',
+      'lib/flux-angular/build/flux-angular.js',
+      'lib/ngGeodist/dist/ng-geodist.js',
+
+      // expect.js
+      '../node_modules/expect.js/index.js',
+
+      // app code and specs
       'app/**/*.js'
     ],
 
@@ -49,7 +59,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['mocha'],
 
 
     // web server port
@@ -71,11 +81,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'Safari'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   });
 };

@@ -17,7 +17,9 @@ angular.module('sip.main.bars.list', [
         }
       });
   })
-  .controller('BarListCtrl', function($scope, $timeout, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration, $ionicLoading){
+  .controller('BarListCtrl', function($scope, $timeout, $ionicHistory, $cordovaGeolocation, $log, $actions, $store, $cordovaVibration, $ionicLoading){
+    $ionicHistory.clearHistory();
+
     var initial;
     var showLoader = function() {
       $log.log('loading');
