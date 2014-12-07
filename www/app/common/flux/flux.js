@@ -36,28 +36,10 @@ angular.module('sip.common.flux', [
       },
 
       receiveBars: function(bars) {
-        // group drinks by their categories
-        var that = this;
         this.bars = _.map(bars, function(bar) {
-          bar.distance = ngGeodist.getDistance(that.user.coords, bar.loc, { format: true });
-          var categories = {};
-
-          _.forEach(bar.drinks, function(drink) {
-            drink.category = drink.category || 'other';
-            drink.category = $filter('uppercase')(drink.category);
-            if (categories[drink.category]) {
-              categories[drink.category].push(drink);
-            } else {
-              categories[drink.category] = [drink];
-            }
-          });
-
-          bar.categories = _.map(Object.keys(categories), function(category) {
-            return { name: category, drinks: categories[category] };
-          });
-
+          bar.distance = ngGeodist.getDistance(this.user.coords, bar.loc, { format: true });
           return bar;
-        });
+        }.bind(this));
         this.emitChange();
       },
 
@@ -138,7 +120,6 @@ angular.module('sip.common.flux', [
           auth_key: user.auth_key,
           restore: true
         });
-
         pbFlux.sub(user.private_channel);
         // subscribe to global users channel
         // will be used for future features
