@@ -8,9 +8,9 @@ angular.module('sip', [
   'sip.auth', 'sip.common',
   'sip.main', 'ngCordova',
   'pubnub.angular.service',
-  'ngResource', 'angular-jwt',
-  'LocalStorageModule', 'flux',
-  'auth0', 'ngGeodist'
+   'angular-jwt','LocalStorageModule',
+   'flux', 'auth0',
+   'ngGeodist'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider) {
@@ -29,8 +29,8 @@ angular.module('sip', [
   localStorageServiceProvider
     .setPrefix('sip');
 
-  $ionicConfigProvider.views.maxCache(10)
-    .transition('android');
+  $ionicConfigProvider.views.maxCache(10);
+  $ionicConfigProvider.views.transition('none');
 
   authProvider.init({
     domain: 'sipdrink.auth0.com',
@@ -43,35 +43,23 @@ angular.module('sip', [
   $store.bindTo($scope, function() {
     this.user = $store.getUser();
   }.bind(this));
-
 })
 .run(function($ionicPlatform, $cordovaSplashscreen, $rootScope, $state, $cordovaStatusbar, Auth, User, auth, localStorageService, jwtHelper) {
   auth.hookEvents();
-  // $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
-  //   Auth.isSignedin(function(signedIn) {
-  //     if (toState.authenticate && !signedIn) {
-  //       e.preventDefault();
-  //       $state.go('sip.auth');
-  //     }
-  //   });
-  // });
 
   setTimeout(function(){
     $cordovaSplashscreen.hide();
-  }, 5000);
+  }, 2000);
 
   if (!auth.isAuthenticated) {
     var token = localStorageService.get('token');
-        console.log('here')
     if (token) {
-      console.log('token');
       if (!jwtHelper.isTokenExpired(token)) {
 
         auth.authenticate(localStorageService.get('profile'), token);
       } else {
         // Either show Login page or use the refresh token to get a new idToken
-        console.log('expired?')
-
+        console.log('expired?');
         $state.go('sip.auth');
       }
     }

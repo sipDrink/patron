@@ -5,7 +5,8 @@
 */
 angular.module('sip.main', [
   'sip.main.bars',
-  'sip.main.profile'
+  'sip.main.profile',
+  'sip.main.payments'
 ])
 .config(function($stateProvider) {
   $stateProvider
@@ -16,9 +17,16 @@ angular.module('sip.main', [
       controller: 'MainCtrl as main'
     });
 })
-.controller('MainCtrl', function($scope, $mdSidenav, $state, $dispatcher, $ionicPopover, $ionicHistory, $log, $rootScope, $store, Auth) {
-
+.controller('MainCtrl', function($scope, $mdSidenav, $state, $dispatcher, $ionicPopover, $ionicHistory, $log, $rootScope, $store, $ionicModal, Auth) {
+  // var that = this;
   $dispatcher.kickstart($store.getUser());
+
+  $ionicModal.fromTemplateUrl('app/main/cartModal.tpl.html', {
+    scope: $scope
+  }).then(function(modal){
+    $scope.modal = modal;
+  }.bind(this));
+
   this.signout = function() {
     Auth.signout();
   };
@@ -41,6 +49,25 @@ angular.module('sip.main', [
   this.getPrevTitle = function() {
     return $ionicHistory.backTitle();
   };
+
+  this.showCart = function(cart){
+    // $scope.cart = car
+    $scope.total = _.reduce(cart, function(total, item){
+      total += item.price;
+      return total;
+    }, 0);
+
+    $scope.cart = _.groupBy(cart, function(item) {
+      return item.name;
+    });
+
+    $scope.modal.show();
+  };
+
+  $scope.closeCart = function(modal){
+    modal.hide();
+    $scope.cart = null;
+  };
 })
 .controller('LeftCtrl', function(){
-})
+});

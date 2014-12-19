@@ -20,6 +20,7 @@ angular.module('sip.main.bars.list.detail.drinks',
       });
   })
   .controller('DrinksCtrl', function($stateParams, $scope, $store, $log, $mdToast, $actions) {
+
     $store.bindTo($scope, function() {
       this.cart = $store.getCart($stateParams.bar);
     }.bind(this));
@@ -30,7 +31,7 @@ angular.module('sip.main.bars.list.detail.drinks',
       $mdToast.show(
         $mdToast.simple()
         .content('1 ' + drink.name + ' added to cart')
-        .position('bottom')
+        .position('top')
         .action('undo')
         .hideDelay(1800)
       ).then(function() {

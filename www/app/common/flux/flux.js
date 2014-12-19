@@ -125,7 +125,7 @@ angular.module('sip.common.flux', [
         // subscribe to global users channel
         // will be used for future features
         pbFlux.sub(userGlobal);
-        $log.log('kickstart');
+        $log.log('kickstart', user.private_channel, user.auth_key);
       },
 
       sub: function(channel) {
@@ -139,16 +139,17 @@ angular.module('sip.common.flux', [
         });
       },
 
-      pub: function(message, channel) {
+      pub: function(message, channel, cb) {
         message.from = _alias;
         message.to = 'API';
+        cb = cb || function() {
+          $log.log('pubbed');
+        };
 
         PubNub.ngPublish({
           channel: channel,
           message: message,
-          callback: function() {
-            $log.log('pubbed');
-          }
+          callback: cb
         });
       }
     };

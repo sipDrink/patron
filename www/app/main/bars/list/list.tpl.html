@@ -4,6 +4,16 @@
       <i class="icon ion-navicon-round nav-ham"></i>
     </div>
   </ion-nav-buttons>
+  <ion-header-bar class="bar-subheader accent-dark">
+    <div layout="row" layout-align="start center">
+      <div flex="10">
+        <i class="icon icon-material-search" style="color: white;"></i>
+      </div>
+      <div flex="90">
+        <md-text-float class="cat-search" label="SEARCH FOR DRINK OR TYPE" ng-model="search"></md-text-float>
+      </div>
+    </div>
+  </ion-header-bar>
   <ion-content on-swipe-right="main.nav('open')">
     <ion-refresher
       on-refresh="bars.refreshBars()"
@@ -12,13 +22,13 @@
     </ion-refresher>
     <md-content>
       <md-list class="bars-list">
-        <md-item ng-repeat-start="bar in bars.bars">
+        <md-item ng-repeat-start="bar in bars.bars | filter:search">
           <md-item-content layout-padding layout="row"
             layout-fill layout-align="start center"
             ui-sref="sip.main.bars.detail({ bar: bar._id })"
-            md-ink-ripple="#F44336">
-            <div flex class="md-tile-leftsdf">{{ ::bar.name }}</div>
-            <div flex class="md-tile-contensdfsadt">
+            md-ink-ripple="#F44336" nav-transition="platform">
+            <div flex>{{ ::bar.name }}</div>
+            <div flex>
               {{ ::bar.distance }}
             </div>
             <div flex>

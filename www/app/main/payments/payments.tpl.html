@@ -1,0 +1,53 @@
+<ion-view title="Manage Cards">
+  <ion-nav-buttons side="left">
+    <i ng-click="main.nav('toggle')" class="icon ion-navicon-round nav-ham"></i>
+  </ion-nav-buttons>
+  <ion-content on-swipe-right="main.nav('open')" class="payments-view">
+    <md-content style="width: 100%;height:100%;">
+      <!-- <md-list>
+        <md-item ng-repeat-start="card in payments.cards">
+          <md-item-content layout layout="row" layout-fill layout-align="center center">
+            <h2>{{ card }}</h2>
+          </md-item-content>
+        </md-item>
+        <md-divider ng-repeat-end></md-divider>
+      </md-list> -->
+
+      <!-- <div ng-if="payments.cards.length < 1 || showForm" class="no-card"
+       layout="column" layout-align="center center">
+        <div flex="100">
+          <h2>Create a card</h2>
+          <i class="icon ion-plus-round" style="font-size:10em;" ng-click="showForm = true"></i>
+        </div>
+      </div> -->
+      <form name="cardForm" novalidate ng-submit="payments.submitNewCard(payments.newCard)">
+        <div layout="row" layout-align="center center">
+          <label class="item item-input item-floating-label" flex="100">
+            <span class="input-label">name</span>
+            <input type="tel" ng-model="payments.newCard.name" name="cardName" placeholder="name">
+          </label>
+        </div>
+
+        <div layout="row" layout-align="center center">
+          <label class="item item-input item-floating-label" flex="80">
+            <span class="input-label">card #</span>
+            <input type="tel" ng-model="payments.newCard.number" name="cardNumber"
+            payments-type-model="payments.cardType" payments-validate="card"
+            payments-format="card" pattern="[0-9]*" placeholder="card #">
+          </label>
+          <img ng-src="{{ payments.cardTypes[payments.cardType] }}" alt="" width="50%" style="background-color: #efefef;" flex="20">
+        </div>
+
+        <div layout="row" layout-align="center center">
+          <label class="item item-input item-floating-label" flex="100">
+            <span class="input-label">CVC</span>
+            <input type="tel" ng-model="payments.newCard.cvv" name="cardCvc"
+            payments-validate="cvc"
+            payments-format="cvc" pattern="[0-9]*" placeholder="CVC">
+          </label>
+        </div>
+        <md-button class="md-raised accent" type="submit">create card</md-button>
+      </form>
+    </md-content>
+  </ion-content>
+</ion-view>

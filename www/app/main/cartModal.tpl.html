@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar class="primary">
+    <h1 class="title">Cart {{ cart.total | currency }}</h1>
+    <div class="buttons">
+      <button ng-click="closeCart(modal)"><i class="icon ion-close"></i></button>
+  </div>
+  </ion-header-bar>
+  <ion-content>
+    <md-content>
+      <md-list>
+        <md-item ng-repeat-start="(name, drink) in cart track by $index">
+          <md-item-content layout="row" layout-align="start center">
+            <div flex>
+              <span>{{ name }}</span>
+            </div>
+            <div>{{ drink.length }}</div>
+          </md-item-content>
+        </md-item>
+        <md-divider ng-repeat-end></md-divider>
+      </md-list>
+    </md-content>
+  </ion-content>
+</ion-modal-view>

@@ -2,13 +2,13 @@
   background-color: #1de9b6 !important;
 }
 .primary {
-  background-color: #f44336 !important;
+  background-color: #c2185b !important;
 }
 .primary-dark {
-  background-color: #b71c1c !important;
+  background-color: #880e4f !important;
 }
 .primary-light {
-  background-color: #e57373 !important;
+  background-color: #e91e63 !important;
 }
 .accent-dark {
   background-color: #00bfa5 !important;
@@ -105,10 +105,16 @@ h1.title {
   color: #ccc;
 }
 md-progress-circular.md-teal-theme .md-inset {
-  background-color: #f44336;
+  background-color: #c2185b;
 }
 .loading-container .loading {
   background-color: transparent;
+}
+.bar-details {
+  background: url("../img/bar.jpg") no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(20px);
+  -webkit-filter: blur(2px);
 }
 .detail-list md-item md-item-content {
   background-color: #4f474f;
@@ -215,13 +221,37 @@ ion-header-bar.bar-subheader.accent-dark {
   color: #00bfa5 !important;
 }
 .drink-action.fave * {
-  color: #f44336 !important;
+  color: #c2185b !important;
 }
 .drink-action.notes * {
   color: #ccc !important;
 }
 .last-drink {
   margin-bottom: 20%;
+}
+.profile-list {
+  margin-top: 20px;
+}
+.profile-list * {
+  color: #ccc;
+}
+.no-card {
+  margin-top: 40%;
+}
+.no-card * {
+  color: #ccc;
+}
+.payments-view * input {
+  background-color: #4f474f;
+  color: #ccc;
+  font-size: 1.2em;
+}
+.payments-view * label {
+  background-color: #383238;
+  border: 0px;
+}
+.payments-view * label * {
+  color: #ccc;
 }
 body * {
   font-family: Roboto;
