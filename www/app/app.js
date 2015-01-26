@@ -36,8 +36,8 @@ angular.module('sip', [
 
   // As of Ionic Beta 14, you can canche views, set the limit
   // here. You can also choose what transition animation you'd like
-  $ionicConfigProvider.views.maxCache(10);
-  $ionicConfigProvider.views.transition('platform');
+  $ionicConfigProvider.views.maxCache(5);
+  $ionicConfigProvider.views.transition('android');
 
   authProvider.init({
     domain: 'sipdrink.auth0.com',

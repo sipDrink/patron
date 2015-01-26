@@ -28,8 +28,7 @@
         <md-item ng-repeat-start="bar in bars.bars | filter:search">
           <md-item-content layout-padding layout="row"
             layout-fill layout-align="start center"
-            ui-sref="sip.main.bars.detail({ bar: bar._id })"
-            nav-transition="platform">
+            ui-sref="sip.main.bars.detail({ bar: bar._id })">
             <div flex class="bar-name">{{ ::bar.name }}</div>
             <div flex class="bar-distance">
               {{ ::bar.distance }}
