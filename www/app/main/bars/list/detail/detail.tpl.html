@@ -1,6 +1,6 @@
 <ion-view view-title="{{ detail.bar.name }}">
   <ion-nav-buttons side="left">
-    <div class="btn-wrapper" md-ink-ripple="#ffffff" ng-click="main.goBack($event)">
+    <div class="btn-wrapper" ng-click="main.goBack($event)">
       <i style="font-size: 1.2em;"class="icon ion-android-arrow-back back">
         <!-- {{ main.getPrevTitle() || 'back' }} -->
       </i>
@@ -9,7 +9,7 @@
   <md-button id="order-fab"
   class="md-fab md-primary md-fab-bottom-right right"
   ng-click="">
-    <i style="font-size: 1.2em;" class="icon icon-material-cart">{{ detail.cart.length || '' }}</i>
+    <i style="font-size: 1.2em; color:white;" class="icon icon-material-cart">{{ detail.cart.length || '' }}</i>
   </md-button>
   <div layout="column" layout-align="start" layout-fill class="detail-container">
     <md-toolbar class="bar-details" layout="vertical" layout-align="center center">
@@ -21,7 +21,7 @@
       <md-content>
         <md-list class="detail-list">
           <md-item>
-            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" layout-fill>
               <div flex="10">
                 <i class="icon ion-heart"></i>
               </div>
@@ -33,7 +33,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" layout-fill>
               <div flex="10">
                 <i class="icon ion-clock"></i>
               </div>
@@ -45,7 +45,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill ui-sref="sip.main.bars.create({bar: detail.bar._id})">
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" layout-fill ui-sref="sip.main.bars.create({bar: detail.bar._id})">
               <div flex="10">
                 <i class="icon ion-beaker"></i>
               </div>
@@ -57,7 +57,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" layout-fill>
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" layout-fill>
               <div flex="10">
                 <i class="icon ion-star"></i>
               </div>
@@ -69,7 +69,7 @@
           <md-divider></md-divider>
 
           <md-item>
-            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" md-ink-ripple="#F44336" ui-sref="sip.main.bars.drinks({bar: detail.bar._id} )" layout-fill>
+            <md-item-content layout-padding layout="row" layout-align="space-between center" class="detail-list-item" ui-sref="sip.main.bars.drinks({bar: detail.bar._id} )" layout-fill>
               <div flex="10">
                 <i class="icon ion-beer"></i>
               </div>

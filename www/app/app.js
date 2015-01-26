@@ -1,8 +1,5 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
+// **sip** module. Main entry module. All app modules
+// will be fed here
 angular.module('sip', [
   'ionic', 'ngMaterial',
   'sip.auth', 'sip.common',
@@ -13,24 +10,34 @@ angular.module('sip', [
    'ngGeodist'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider) {
-  $httpProvider.interceptors.push('jwtInterceptor');
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider, $mdThemingProvider) {
+  // $httpProvider.interceptors.push('jwtInterceptor');
+  $mdThemingProvider.theme('default')
+    .primaryColor('teal')
+    .accentColor('red');
 
   $urlRouterProvider.otherwise('/main/bars/list');
   $stateProvider
     .state('sip', {
+      // abstract means you can't navigate to this state,
+      // its just a means for organizing not presentation
       abstract: true,
       url: '',
 
       template: '<ion-nav-view></ion-nav-view>',
+      // controllerAs syntax, we will now be able to use the
+      // 'app' controller in the html
       controller: 'AppController as app'
     });
+
 
   localStorageServiceProvider
     .setPrefix('sip');
 
+  // As of Ionic Beta 14, you can canche views, set the limit
+  // here. You can also choose what transition animation you'd like
   $ionicConfigProvider.views.maxCache(10);
-  $ionicConfigProvider.views.transition('none');
+  $ionicConfigProvider.views.transition('platform');
 
   authProvider.init({
     domain: 'sipdrink.auth0.com',

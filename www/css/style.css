@@ -1,17 +1,17 @@
 .accent {
-  background-color: #1de9b6 !important;
+  background-color: #536dfe !important;
 }
 .primary {
-  background-color: #c2185b !important;
+  background-color: #009688 !important;
 }
 .primary-dark {
-  background-color: #880e4f !important;
+  background-color: #00695c !important;
 }
 .primary-light {
-  background-color: #e91e63 !important;
+  background-color: #80cbc4 !important;
 }
 .accent-dark {
-  background-color: #00bfa5 !important;
+  background-color: #3d5afe !important;
 }
 .auth-view {
   background: url("../img/auth-bg.jpg") no-repeat center center;
@@ -41,7 +41,7 @@ md-backdrop {
   z-index: 11;
 }
 md-sidenav {
-  background-color: #383238 !important;
+  background-color: #212121 !important;
   z-index: 12;
   width: 80%;
 }
@@ -49,17 +49,17 @@ md-sidenav md-toolbar {
   background: url("../img/side-nav-bg.jpg") no-repeat center center;
 }
 md-sidenav md-content * {
-  background-color: #4f474f;
+  background-color: #424242;
   color: #ccc;
 }
 md-divider {
-  border-top-color: rgba(102,102,102,0.6) !important;
+  border-top-color: rgba(51,51,51,0.6) !important;
 }
 .bar {
   background-image: none;
 }
 h1.title {
-  color: #4f474f !important;
+  color: #424242 !important;
 }
 .nav-menu {
   font-size: 1.3em;
@@ -85,7 +85,7 @@ h1.title {
 }
 .nav-ham {
   font-size: 2em;
-  color: #4f474f;
+  color: #424242;
 }
 .btn-wrapper {
   width: 120px;
@@ -98,26 +98,26 @@ h1.title {
   margin-top: 10px;
 }
 .bars-list md-item md-item-content {
-  background-color: #4f474f;
+  background-color: #424242;
   min-height: 55px;
 }
 .bars-list md-item md-item-content * {
   color: #ccc;
 }
-md-progress-circular.md-teal-theme .md-inset {
-  background-color: #c2185b;
+md-progress-circular .md-inset {
+  background-color: #536dfe;
 }
 .loading-container .loading {
   background-color: transparent;
 }
-.bar-details {
-  background: url("../img/bar.jpg") no-repeat center center fixed;
-  background-size: cover;
-  filter: blur(20px);
-  -webkit-filter: blur(2px);
+.bar-name {
+  font-size: 1.8em;
+}
+.bar-distance {
+  font-size: 1.6em;
 }
 .detail-list md-item md-item-content {
-  background-color: #4f474f;
+  background-color: #424242;
 }
 .detail-list md-item md-item-content * {
   color: #ccc;
@@ -128,7 +128,7 @@ md-progress-circular.md-teal-theme .md-inset {
 .detail-list-item div i {
   font-size: 1.5em;
   margin: 0px;
-  color: #1de9b6;
+  color: #536dfe;
 }
 .detail-list-item div strong {
   font-size: 1.5em;
@@ -152,7 +152,7 @@ md-progress-circular.md-teal-theme .md-inset {
   min-height: 30%;
 }
 .bar-search {
-  background-color: #00bfa5;
+  background-color: #3d5afe;
   padding-left: 5%;
 }
 .bar-search label,
@@ -163,7 +163,7 @@ md-progress-circular.md-teal-theme .md-inset {
   font-size: 1.2em;
 }
 .category-list md-item md-item-content {
-  background-color: #4f474f;
+  background-color: #424242;
 }
 .category-list md-item md-item-content * {
   color: #ccc;
@@ -184,29 +184,30 @@ md-progress-circular.md-teal-theme .md-inset {
 }
 .cat-name {
   text-align: center;
-  background-color: #4f474f;
+  background-color: #424242;
 }
 .cat-card {
-  background-color: #4f474f;
+  background-color: #424242;
 }
 .cat-card * {
   color: #ccc;
 }
 .cat-card-list {
-  background-color: #383238 !important;
+  background-color: #212121 !important;
 }
 .first-cat-card {
   margin-top: 6%;
 }
-ion-header-bar.bar-subheader.accent-dark {
+ion-header-bar.bar-subheader.accent-dark,
+ion-header-bar.bar-subheader.accent {
   height: 55px;
 }
 #order-fab {
-  background-color: #1de9b6 !important;
-  color: #4f474f;
+  background-color: #536dfe !important;
+  color: #424242;
 }
 .drinks-list md-item md-item-content {
-  background-color: #4f474f;
+  background-color: #424242;
 }
 .drinks-list md-item md-item-content * {
   color: #ccc;
@@ -218,10 +219,10 @@ ion-header-bar.bar-subheader.accent-dark {
   font-size: 1.2em;
 }
 .drink-action.add * {
-  color: #00bfa5 !important;
+  color: #3d5afe !important;
 }
 .drink-action.fave * {
-  color: #c2185b !important;
+  color: #009688 !important;
 }
 .drink-action.notes * {
   color: #ccc !important;
@@ -242,12 +243,12 @@ ion-header-bar.bar-subheader.accent-dark {
   color: #ccc;
 }
 .payments-view * input {
-  background-color: #4f474f;
+  background-color: #424242;
   color: #ccc;
   font-size: 1.2em;
 }
 .payments-view * label {
-  background-color: #383238;
+  background-color: #212121;
   border: 0px;
 }
 .payments-view * label * {
@@ -258,6 +259,7 @@ body * {
 }
 md-content,
 ion-content,
-body {
-  background-color: #383238 !important;
+body,
+ion-view {
+  background-color: #212121 !important;
 }
