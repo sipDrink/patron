@@ -80,6 +80,18 @@ angular.module('sip.common.flux', [
 
       sendOrder: function(order) {
         $log.log(order);
+        var newOrder = {
+          actions:{
+            'order': {
+              order: order
+            }
+          },
+          respondTo: {
+            action: 'recieveOrder',
+            channel: order.bar.channel
+          }
+        };
+        $dispatcher.pub(newOrder, 'orders')
       },
 
       receiveOrderUpdate: function(order){

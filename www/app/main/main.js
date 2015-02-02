@@ -137,7 +137,10 @@ angular.module('sip.main', [
 
       order: cart,
 
-      bar: barId,
+      bar: {
+        id: barId,
+        channel: 'auth0|54cf9c8044426379723e057d'
+      },
       code: code
     };
 
