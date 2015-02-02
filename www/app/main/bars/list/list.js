@@ -46,7 +46,7 @@ angular.module('sip.main.bars.list', [
             },
             extra: {
               populate: 'drinkTypes',
-              limit: 10
+              limit: 8
             }
           };
           $store.fetchBars(opts);

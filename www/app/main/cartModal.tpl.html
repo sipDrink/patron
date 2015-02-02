@@ -2,22 +2,46 @@
   <ion-header-bar class="primary">
     <h1 class="title">Cart {{ cart.total | currency }}</h1>
     <div class="buttons">
-      <button ng-click="closeCart(modal)"><i class="icon ion-close"></i></button>
+      <i class="icon ion-close" ng-click="closeCart(modal)"></i>
   </div>
   </ion-header-bar>
   <ion-content>
     <md-content>
-      <md-list>
-        <md-item ng-repeat-start="(name, drink) in cart track by $index">
+      <md-list class="cart-list">
+        <md-item ng-repeat-start="drinks in cart | orderBy:'name'">
           <md-item-content layout="row" layout-align="start center">
             <div flex>
-              <span>{{ name }}</span>
+              <span>{{ drinks.name }} X {{ drinks.length }}</span>
             </div>
-            <div>{{ drink.length }}</div>
+            <div flex class="group-total">
+              {{  drinks.total | currency }}
+            </div>
+            <div flex>
+              <i class="icon ion-plus-round add" ng-click="modifyCart(drinks[0])"></i>
+            </div>
+            <div flex>
+              <i class="icon ion-minus-round minus" ng-click="modifyCart(drinks[0], drinks.name)"></i>
+            </div>
           </md-item-content>
         </md-item>
         <md-divider ng-repeat-end></md-divider>
       </md-list>
+
+      <!-- <div class="bar bar-footer">
+        <div class="title">send order</div>
+      </div> -->
+
     </md-content>
   </ion-content>
+  <div class="bar bar-footer">
+    <div>
+      <div class="tax">
+        <h3>TAX stuff here ?</h3>
+      </div>
+      <div class="order" ng-click="sendOrder(cart)">
+        <h2>send order {{ cart.total | currency }}</h2>
+      </div>
+    </div>
+
+  </div>
 </ion-modal-view>

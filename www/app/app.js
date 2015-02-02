@@ -46,7 +46,7 @@ angular.module('sip', [
   });
 
 })
-.controller('AppController', function($store, $scope, $log) {
+.controller('AppController', function($store, $scope, $log, Auth, $mdSidenav, $state) {
   $store.bindTo($scope, function() {
     this.user = $store.getUser();
   }.bind(this));

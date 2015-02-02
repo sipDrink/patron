@@ -11,7 +11,9 @@ angular.module('sip.common.flux', [
      'receiveUser',
      'receiveBars',
      'reset',
-     'updateCart'
+     'updateCart',
+     'sendOrder',
+     'receiveOrderUpdate'
     ]);
   })
   .factory('$store', function(flux, $actions, $dispatcher, localStorageService, $log, ngGeodist, $filter) {
@@ -21,7 +23,9 @@ angular.module('sip.common.flux', [
         $actions.receiveUser,
         $actions.receiveBars,
         $actions.reset,
-        $actions.updateCart
+        $actions.updateCart,
+        $actions.sendOrder,
+        $actions.receiveOrderUpdate
       ],
 
       user: localStorageService.get('profile') || {},
@@ -30,6 +34,7 @@ angular.module('sip.common.flux', [
       orders: {},
 
       receiveUser: function(nUser) {
+        $log.log('incoming user')
         _.extend(this.user, nUser);
         localStorageService.set('profile', this.user);
         this.emitChange();
@@ -40,6 +45,7 @@ angular.module('sip.common.flux', [
           bar.distance = ngGeodist.getDistance(this.user.coords, bar.loc, { format: true });
           return bar;
         }.bind(this));
+        $log.log(this.bars[0]);
         this.emitChange();
       },
 
@@ -48,20 +54,41 @@ angular.module('sip.common.flux', [
         this.user = {};
         this.carts = {};
         this.orders = {};
+        // this.emitChange();
+      },
+
+      updateCart: function(barId, item, drinkname, clean) {
+        if (clean) {
+          this.carts[barId] = null;
+          this.emitChange();
+
+          return;
+        }
+        var cart = this.carts[barId];
+        if (drinkname) {
+          // remove form cart
+          cart.splice(_.findIndex(cart, { name: drinkname }), 1);
+        } else if (!cart) {
+          this.carts[barId] = [item];
+        } else {
+          if (item){
+            cart.push(item);
+          }
+        }
         this.emitChange();
       },
 
-      updateCart: function(barId, item, drinkname) {
-        if (drinkname) {
-          // remove form cart
-          var cart = this.carts[barId];
-          cart.splice(_.findIndex(cart, { name: drinkname }), 1);
-        } else if (!this.carts[barId]) {
-          this.carts[barId] = [item];
-        } else {
-          this.carts[barId].push(item);
-        }
-        this.emitChange();
+      sendOrder: function(order) {
+        $log.log(order);
+      },
+
+      receiveOrderUpdate: function(order){
+        if (order) {
+          var orderState = this.orders[order._id];
+          _.extend(orderState, order);
+
+          this.emitChange();
+        };
       },
       exports: {
         getCart: function(barId) {
@@ -125,11 +152,11 @@ angular.module('sip.common.flux', [
         // subscribe to global users channel
         // will be used for future features
         pbFlux.sub(userGlobal);
-        $log.log('kickstart', user.private_channel, user.auth_key);
+        // $log.log('kickstart', user.private_channel, user.auth_key);
       },
 
       sub: function(channel) {
-        $log.log('subscribing to ' +channel)
+        // $log.log('subscribing to ' +channel)
         PubNub.ngSubscribe({
           channel: channel,
           callback: _pnCb,

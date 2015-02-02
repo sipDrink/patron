@@ -66,6 +66,7 @@ angular.module('sip.auth', [])
       localStorageService.remove('refreshToken');
       // $mdSidenav('left').close();
       $ionicHistory.clearCache();
+      $ionicHistory.clearHistory();
       $state.go('sip.auth');
     };
     return {

@@ -32,6 +32,27 @@
 div.scroll {
   height: 100%;
 }
+[sip-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+.angular-ripple {
+  display: block;
+  position: absolute;
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 50%;
+  transform: scale(0);
+}
+.angular-ripple.animate {
+  animation: ripple 0.35s linear;
+}
+
+@keyframes ripple {
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
 ion-nav-view,
 .pane,
 .view {
@@ -42,11 +63,8 @@ md-backdrop {
 }
 md-sidenav {
   background-color: #212121 !important;
-  z-index: 12;
+  z-index: 60;
   width: 80%;
-}
-md-sidenav md-toolbar {
-  background: url("../img/side-nav-bg.jpg") no-repeat center center;
 }
 md-sidenav md-content * {
   background-color: #424242;
@@ -97,6 +115,35 @@ h1.title {
 .buttons.right-buttons {
   margin-top: 10px;
 }
+md-dialog md-content * {
+  color: #ccc;
+}
+md-dialog .md-actions {
+  background-color: #424242;
+}
+.bar.bar-footer {
+  padding: 0px;
+  height: 120px;
+}
+.bar.bar-footer div {
+  height: 100%;
+  width: 100%;
+}
+.bar.bar-footer div .tax {
+  background-color: #424242;
+  height: 50%;
+  text-align: center;
+  padding-top: 4%;
+}
+.bar.bar-footer div .tax * {
+  color: #ccc;
+}
+.bar.bar-footer div .order {
+  height: 50%;
+  background-color: #80cbc4;
+  text-align: center;
+  padding-top: 4%;
+}
 .bars-list md-item md-item-content {
   background-color: #424242;
   min-height: 55px;
@@ -115,6 +162,16 @@ md-progress-circular .md-inset {
 }
 .bar-distance {
   font-size: 1.6em;
+}
+.bar-details {
+  background: url("../img/bg.png") no-repeat center center fixed;
+  background-size: cover;
+}
+.icon.icon-material-cart {
+  color: #fff;
+}
+md-toast button span {
+  color: #e51c23;
 }
 .detail-list md-item md-item-content {
   background-color: #424242;
@@ -161,6 +218,27 @@ md-progress-circular .md-inset {
 }
 .bar-search input {
   font-size: 1.2em;
+}
+.cart-list md-item md-item-content {
+  min-height: 120px;
+  height: 100%;
+  background-color: #424242;
+}
+.cart-list md-item md-item-content div span {
+  color: #ccc;
+}
+.cart-list md-item md-item-content div.group-total {
+  color: #009688;
+  font-size: 24px;
+}
+.cart-list md-item md-item-content div i {
+  font-size: 26px;
+}
+.cart-list md-item md-item-content div i.add {
+  color: #80cbc4;
+}
+.cart-list md-item md-item-content div i.minus {
+  color: #f00;
 }
 .category-list md-item md-item-content {
   background-color: #424242;
@@ -236,22 +314,34 @@ ion-header-bar.bar-subheader.accent {
 .profile-list * {
   color: #ccc;
 }
-.no-card {
-  margin-top: 40%;
-}
-.no-card * {
+.payments-view * {
   color: #ccc;
 }
 .payments-view * input {
   background-color: #424242;
-  color: #ccc;
-  font-size: 1.2em;
+  font-size: 2em;
 }
 .payments-view * label {
-  background-color: #212121;
+  background-color: transparent;
   border: 0px;
+  font-size: 1.6em;
 }
 .payments-view * label * {
+  color: #ccc;
+}
+.payments-view md-input-container .md-input {
+  color: #ccc;
+}
+.payments-view md-input-container label {
+  color: #ccc;
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label {
+  color: #009688;
+}
+md-input-container:not(.md-input-invalid).md-input-focused label {
+  color: #009688;
+}
+.my-cards * {
   color: #ccc;
 }
 body * {
@@ -260,6 +350,7 @@ body * {
 md-content,
 ion-content,
 body,
-ion-view {
+ion-view,
+ion-nav-view {
   background-color: #212121 !important;
 }

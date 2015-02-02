@@ -24,12 +24,14 @@ angular.module('sip.main.payments', ['angularPayments'])
     var Balanced = {
       makeCard: function(card){
         var future = $q.defer();
-
         var cardName = card.nickName || 'my card';
         var cardType = card.type;
-        $log.log('cardType', cardType);
+        var main = card.main;
+
+
         delete card.nickName;
         delete card.type;
+        delete card.main;
 
         balanced.card.create(card, function(res){
           if (res.status_code === 201) {
@@ -47,7 +49,7 @@ angular.module('sip.main.payments', ['angularPayments'])
                     '$push': {
                       'cards':{
                         name: cardName,
-                        main: true,
+                        main: main,
                         href: token.href,
                         cardType: cardType
                       }
@@ -76,6 +78,7 @@ angular.module('sip.main.payments', ['angularPayments'])
   .controller('PaymentsCtrl', function($store, $scope, $log, Balanced){
     $store.bindTo($scope, function(){
       this.cards = $store.getUser().cards || [];
+      $log.log($store.getUser())
     }.bind(this));
 
     this.newCard = {
@@ -90,9 +93,8 @@ angular.module('sip.main.payments', ['angularPayments'])
     };
 
     this.submitNewCard = function(card){
-      $log.log('before submit', card);
+
       card.type = this.cardType;
-      card.nickName = 'Navy card';
 
       Balanced.makeCard(card)
         .then(function(){

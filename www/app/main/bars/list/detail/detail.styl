@@ -1,8 +1,14 @@
 .bar-details
-  // background url(../img/bar.jpg) no-repeat center center fixed
-  // background-size cover
+  background url(../img/bg.png) no-repeat center center fixed
+  background-size cover
   // filter blur(20px)
   // -webkit-filter blur(2px)
+
+.icon.icon-material-cart
+  color white
+
+md-toast button span
+  color #e51c23
 
 .detail-list md-item md-item-content
   background-color light
@@ -44,3 +50,19 @@
   input
     font-size 1.2em
 
+.cart-list md-item md-item-content
+  min-height 120px
+  height 100%
+  background-color light
+  div span
+    color textColor
+
+  div.group-total
+    color primary
+    font-size 24px
+  div i
+    font-size 26px
+  div i.add
+    color primaryLight
+  div i.minus
+    color red

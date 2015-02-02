@@ -8,13 +8,16 @@
   </ion-nav-buttons>
   <md-button id="order-fab"
   class="md-fab md-primary md-fab-bottom-right right"
-  ng-click="">
+  ng-click="main.showCart(detail.cart)">
     <i style="font-size: 1.2em; color:white;" class="icon icon-material-cart">{{ detail.cart.length || '' }}</i>
   </md-button>
   <div layout="column" layout-align="start" layout-fill class="detail-container">
     <md-toolbar class="bar-details" layout="vertical" layout-align="center center">
       <div flex>
-        {{ detail.bar.name }}
+        {{ ::detail.bar.name }}
+      </div>
+      <div flex>
+        {{ ::detail.bar.description }}
       </div>
     </md-toolbar>
     <ion-content on-swipe-right="main.nav('open')" class="detail" flex>
