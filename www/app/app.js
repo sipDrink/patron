@@ -1,36 +1,43 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
+// **sip** module. Main entry module. All app modules
+// will be fed here
 angular.module('sip', [
   'ionic', 'ngMaterial',
   'sip.auth', 'sip.common',
   'sip.main', 'ngCordova',
   'pubnub.angular.service',
-  'ngResource', 'angular-jwt',
-  'LocalStorageModule', 'flux',
-  'auth0', 'ngGeodist'
+   'angular-jwt','LocalStorageModule',
+   'flux', 'auth0',
+   'ngGeodist'
 ])
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider) {
-  $httpProvider.interceptors.push('jwtInterceptor');
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider, $ionicConfigProvider, authProvider, $mdThemingProvider) {
+  // $httpProvider.interceptors.push('jwtInterceptor');
+  $mdThemingProvider.theme('default')
+    .primaryColor('teal')
+    .accentColor('red');
 
   $urlRouterProvider.otherwise('/main/bars/list');
   $stateProvider
     .state('sip', {
+      // abstract means you can't navigate to this state,
+      // its just a means for organizing not presentation
       abstract: true,
       url: '',
 
       template: '<ion-nav-view></ion-nav-view>',
+      // controllerAs syntax, we will now be able to use the
+      // 'app' controller in the html
       controller: 'AppController as app'
     });
+
 
   localStorageServiceProvider
     .setPrefix('sip');
 
-  $ionicConfigProvider.views.maxCache(10)
-    .transition('android');
+  // As of Ionic Beta 14, you can canche views, set the limit
+  // here. You can also choose what transition animation you'd like
+  $ionicConfigProvider.views.maxCache(5);
+  $ionicConfigProvider.views.transition('android');
 
   authProvider.init({
     domain: 'sipdrink.auth0.com',
@@ -39,39 +46,27 @@ angular.module('sip', [
   });
 
 })
-.controller('AppController', function($store, $scope, $log) {
+.controller('AppController', function($store, $scope, $log, Auth, $mdSidenav, $state) {
   $store.bindTo($scope, function() {
     this.user = $store.getUser();
   }.bind(this));
-
 })
 .run(function($ionicPlatform, $cordovaSplashscreen, $rootScope, $state, $cordovaStatusbar, Auth, User, auth, localStorageService, jwtHelper) {
   auth.hookEvents();
-  // $rootScope.$on('$stateChangeStart', function(e, toState, toStateParams, fromState) {
-  //   Auth.isSignedin(function(signedIn) {
-  //     if (toState.authenticate && !signedIn) {
-  //       e.preventDefault();
-  //       $state.go('sip.auth');
-  //     }
-  //   });
-  // });
 
   setTimeout(function(){
     $cordovaSplashscreen.hide();
-  }, 5000);
+  }, 2000);
 
   if (!auth.isAuthenticated) {
     var token = localStorageService.get('token');
-        console.log('here')
     if (token) {
-      console.log('token');
       if (!jwtHelper.isTokenExpired(token)) {
 
         auth.authenticate(localStorageService.get('profile'), token);
       } else {
         // Either show Login page or use the refresh token to get a new idToken
-        console.log('expired?')
-
+        console.log('expired?');
         $state.go('sip.auth');
       }
     }

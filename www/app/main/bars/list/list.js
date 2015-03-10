@@ -22,10 +22,9 @@ angular.module('sip.main.bars.list', [
 
     var initial;
     var showLoader = function() {
-      $log.log('loading');
       $ionicLoading.show({
 
-        template:  '<md-progress-circular md-theme="teal" md-mode="indeterminate"></md-progress-circular>',
+        template:  '<md-progress-circular md-theme="default" md-mode="indeterminate"></md-progress-circular>',
         duration: 5000
       });
       initial = true;
@@ -47,7 +46,7 @@ angular.module('sip.main.bars.list', [
             },
             extra: {
               populate: 'drinkTypes',
-              limit: 10
+              limit: 8
             }
           };
           $store.fetchBars(opts);

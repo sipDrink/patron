@@ -8,8 +8,8 @@
   </ion-nav-buttons>
   <md-button id="order-fab"
   class="md-fab md-primary md-fab-bottom-right right"
-  ng-click="">
-    <i style="font-size: 1.2em;" class="icon icon-material-cart">{{ drinks.cart.length || '' }}</i>
+  ng-click="main.showCart(drinks.cart)">
+    <i style="font-size: 1.2em; color: white;" class="icon icon-material-cart">{{ drinks.cart.length || '' }}</i>
   </md-button>
 
   <ion-content on-swipe-right="main.nav('open')">

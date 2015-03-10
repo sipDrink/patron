@@ -1,6 +1,30 @@
 div.scroll
   height 100%
 
+[sip-ripple]
+  position relative
+  overflow hidden
+
+.angular-ripple
+  display block
+  position absolute
+  background-color rgba(0,0,0,0.1)
+  border-radius 50%
+  transform scale(0)
+
+.angular-ripple.animate
+  animation ripple 0.35s linear
+
+@css {
+  @keyframes ripple {
+    100% {
+      opacity: 0;
+      transform: scale(2.5);
+    }
+  }
+}
+
+
 ion-nav-view
 .pane
 .view
@@ -10,16 +34,12 @@ md-backdrop
   z-index 11
 md-sidenav
   background-color dark !important
-  z-index 12
+  z-index 60
   width 80%
-  md-toolbar
-    // background-color primary !important
-    background url(../img/side-nav-bg.jpg) no-repeat center center
-  md-content
-    // background-color light !important
-    *
-      background-color light
-      color textColor
+
+  md-content *
+    background-color light
+    color textColor
 md-divider
   border-top-color rgba(dividerColor, .6) !important
 
@@ -50,29 +70,39 @@ h1.title
 .nav-ham
   font-size 2em
   color light
+
 .btn-wrapper
   width 120px
   height 100%
 
 .left-buttons
   height 46px
-.bar-header.bar
-  // height 56px
 
 .buttons.right-buttons
   margin-top 10px
 
-// .buttons.left-buttons
-//   margin-top 10px
-//   color light
+md-dialog
+  md-content
+    *
+      color textColor
+  .md-actions
+    background-color light
 
-// .settings
-//   color light
-//   font-size 1.6em
-//   margin-left 80px
-// .popover
-//   margin-top 2%
-
-.platform-android .scroll-content.ionic-scroll
-  // margin-top 10px
-
+.bar.bar-footer
+  padding 0px
+  height 120px
+  div
+    height 100%
+    width 100%
+    .tax
+      background-color light
+      height 50%
+      text-align center
+      padding-top 4%
+      *
+        color textColor
+    .order
+      height 50%
+      background-color primaryLight
+      text-align center
+      padding-top 4%

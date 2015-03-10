@@ -2,10 +2,17 @@
   <ion-nav-buttons side="left">
     <i ng-click="main.nav('toggle')" class="icon ion-navicon-round nav-ham"></i>
   </ion-nav-buttons>
-  <ion-nav-buttons side="right">
-    <i ng-click="main.openPopover($event)" class="icon ion-android-more settings"></i>
-  </ion-nav-buttons>
   <ion-content on-swipe-right="main.nav('open')">
-    <h1>Profile</h1>
+    <md-content class="profile-list">
+      <md-list>
+
+        <md-item>
+          <md-item-content layout layout="row" layout-fill layout-align="center center">
+            <h2>Manage Payments</h2>
+          </md-item-content>
+        </md-item>
+        <md-divider></md-divider>
+      </md-list>
+    </md-content>
   </ion-content>
 </ion-view>

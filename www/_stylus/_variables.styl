@@ -1,23 +1,24 @@
-base = #000000
-// dark = #263238 // soft black
-// light = #37474F // soft lighter black
-primary = #F44336 // deep-orange-500
-primaryLight = #E57373 // cyan-100
-primaryDark = #B71C1C
-accent = #1DE9B6 // teal-A400
-accentDark = #00BFA5
-dividerColor = lighten(base, 40%)
+base          = #000000
+greyBlue      = #263238 // soft black
+lightGreyBlue = #37474F // soft lighter black
+primary       = #009688 // teal 500
+primaryLight  = #80CBC4 // teal 200
+primaryDark   = #00695C // teal 800
+
+accent = #536DFE // blue-A200
+accentDark = #3D5AFE // blue-A400
+
+dividerColor = lighten(base, 20%)
 hintColor = lighten(base, 74%)
 iconColor = lighten(base, 46%)
 textColor = lighten(base, 80%)
 
-redVal = blue(#263238)
-dark = red(#263238, redVal)
+// redVal = blue(greyBlue)
+dark = #212121 //red(greyBlue, redVal)
 
-val = blue(#37474F)
-light = red(#37474F, val)
+// val = blue(lightGreyBlue)
 
-
+light = #424242
 
 .accent
   background-color accent !important
