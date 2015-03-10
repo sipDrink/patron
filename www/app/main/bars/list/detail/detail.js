@@ -20,7 +20,7 @@ angular.module('sip.main.bars.list.detail', [
   })
   .controller('DetailCtrl', function($stateParams, $scope, $store, $log) {
     $store.bindTo($scope, function() {
-      this.bar = $store.getBar($stateParams.bar);
+      this.bar = $store.getBar($stateParams.bar); //detail.bar since controller DetailCtrl defined as detail above
       this.cart = $store.getCart($stateParams.bar);
     }.bind(this));
   });

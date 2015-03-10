@@ -36,13 +36,11 @@ angular.module('sip.main', [
   };
 
   this.goAndClose = function(state) {
-
     this.nav('close');
     $state.go(state);
   };
 
   this.goBack = function(event) {
-
     $ionicHistory.goBack(event);
   };
 

@@ -77,11 +77,11 @@ angular.module('sip.main.payments', ['angularPayments'])
   })
   .controller('PaymentsCtrl', function($store, $scope, $log, Balanced){
     $store.bindTo($scope, function(){
-      this.cards = $store.getUser().cards || [];
+      this.cards = $store.getUser().cards || []; //Can reuse cards - only have to enter once
       $log.log($store.getUser())
     }.bind(this));
 
-    this.newCard = {
+    this.newCard = { //**Placeholders
       expiration_month: '12',
       expiration_year: '2020'
     };
