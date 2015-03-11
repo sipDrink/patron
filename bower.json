@@ -1,5 +1,5 @@
 {
-  "name": "HelloIonic",
+  "name": "Sip",
   "private": "true",
   "devDependencies": {
     "angular-mocks": "~1.3.2"

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.keychainlogistics.ios" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sip.ios" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>sip</name>
     <description>
-        sip drinks with homies
+        Sip Drinks With Friends
     </description>
-    <author email="willscottmoss@gmail.com" href="http://ionicframework.com/">
-      Scott Moss
+    <author email="daniel.liebeskind@gmail.com" href="http://ionicframework.com/">
+      Daniel Liebeskind
     </author>
     <content src="index.html" />
     <access origin="*" />

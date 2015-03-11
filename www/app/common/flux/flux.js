@@ -33,19 +33,20 @@ angular.module('sip.common.flux', [
       carts: {},
       orders: {},
 
-      receiveUser: function(nUser) {
-        $log.log('incoming user')
+      receiveUser: function(nUser) { //**just coordinates?  Latitude, longitude
+        $log.log('incoming user at ', nUser);
         _.extend(this.user, nUser); //Copies all the properties of nUser into this.user.  Using extend overrides any properties of the same name, but will leave intact anything that already existed in this.user but doesn't exist in nUser.
         localStorageService.set('profile', this.user); //set profile in localStorageService to this.user
         this.emitChange(); //tells the view that something in the store has changed so it can update itself.
       },
 
       receiveBars: function(bars) {
+        $log.log('list of bars: ', bars);
         this.bars = _.map(bars, function(bar) { //**Need to understand this.  Assuming it basically sets distance for each bar to distance between the bar's location and the user's coordinates
           bar.distance = ngGeodist.getDistance(this.user.coords, bar.loc, { format: true });
           return bar;
         }.bind(this));
-        $log.log(this.bars[0]);
+        $log.log('first bar is ', this.bars[0]);
         this.emitChange();
       },
 
@@ -113,7 +114,7 @@ angular.module('sip.common.flux', [
 
         fetchBars: function(options) {
           var that = this; //local variable makes channel private
-          $log.log('fetching bars', that.user.private_channel);
+          $log.log('fetching bars for ', that.user, that.user.private_channel);
           $dispatcher.pub({ //publishes a get request to 'bars' in the user's private channel.  Optional query and options in get request.
             actions: {
               'get': {
